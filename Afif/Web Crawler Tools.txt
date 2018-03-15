@@ -1,0 +1,26 @@
+1. Octoparse 
+	Tools ini memiliki dua mode penggunaan, Wizard dan Advanced Mode.
+	Sama seperti web crawler yang lain, sistemnya dia dapat mengambil
+	data dari suatu website dan mengubahnya ke format data lain seperti
+	excel, html, dan txt
+
+	Tools ini juga mampu menembus tingkat kerumitan sebuah website
+	dengan berbagai block layoutnya. Selain itu juga dalam pengguanaannya
+	kita tidak perlu khawatir dengan masalah IP Blocking, karena tools
+	ini sudah mempersiapkan fitur khusus untuk menanganinya.
+
+	Kelebihan lain dari situs ini adalah dapat dijalankan dengan mudah tanpa
+	Menggunakan skill ngoding yang ahli.
+
+2. HTTrack
+	Tools freeware ini memiliki fungsi-fungsi unggulan dibanding yang lainnya.
+	Salah satu di antaranya adalah membuat mirror sites. Selain itu kemampuannya
+	yang fleksibel membuatnya dapat digunakan di berbagai jenis platform operasi
+	
+
+	Tools ini juga memliki pengaturan proxy support yang dapat meningkatkan
+	kecepatan koneksi dengan websites. 
+
+	HTTrack merupakan tipikal command-line program, dapat berjalan secara private
+	maupun professional. Dengan demikian, banyak kalangan ahli yang lebih memilih
+	HTTrack dibanding yang lainnya.
