@@ -28,7 +28,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class TabelOpr {
     
-    private static final String FILE_NAME = "*/../src/Excel/MyFirstExcel.xlsx";
+    private static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";
     DefaultTableModel A;
     JTextField dataType,type,size;
     
@@ -133,8 +133,8 @@ public class TabelOpr {
             Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void showTable(JTable table1){
-        Object[] isi = {"tipe data","blabla","sese"};
+    public void showTable(JTable table1, Object[] isi, int sheet){
+        
         A = new DefaultTableModel(null,isi);
         table1.setModel(A);
         int i;
@@ -143,7 +143,7 @@ public class TabelOpr {
 
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet datatypeSheet = workbook.getSheetAt(0);
+            Sheet datatypeSheet = workbook.getSheetAt(sheet);
             Iterator<Row> iterator = datatypeSheet.iterator();
             iterator.next();
             while (iterator.hasNext()) {

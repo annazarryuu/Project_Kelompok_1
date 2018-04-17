@@ -19,12 +19,14 @@ public class Transaksi extends javax.swing.JFrame {
      * Creates new form home
      */
     TabelOpr A = new TabelOpr();
+    Object[] isi = {"Row ID","Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit"};
     
     public Transaksi() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        A.showTable(table1);
+        
+        A.showTable(t_transaksi,isi,3);
     }
     
     
@@ -49,7 +51,7 @@ public class Transaksi extends javax.swing.JFrame {
         a_pelanggan = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table1 = new javax.swing.JTable();
+        t_transaksi = new javax.swing.JTable();
         dataType = new javax.swing.JTextField();
         type = new javax.swing.JTextField();
         size = new javax.swing.JTextField();
@@ -187,7 +189,7 @@ public class Transaksi extends javax.swing.JFrame {
 
         konten.setBackground(new java.awt.Color(250, 250, 250));
 
-        table1.setModel(new javax.swing.table.DefaultTableModel(
+        t_transaksi.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -198,12 +200,12 @@ public class Transaksi extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        table1.addMouseListener(new java.awt.event.MouseAdapter() {
+        t_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                table1MouseClicked(evt);
+                t_transaksiMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(table1);
+        jScrollPane1.setViewportView(t_transaksi);
 
         dataType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -241,36 +243,36 @@ public class Transaksi extends javax.swing.JFrame {
         kontenLayout.setHorizontalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kontenLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(dataType)
-                        .addComponent(type, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
-                        .addComponent(size))
-                    .addComponent(buttonAdd)
-                    .addComponent(jButton1))
-                .addContainerGap(273, Short.MAX_VALUE))
+                .addGroup(kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(dataType, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(kontenLayout.createSequentialGroup()
+                            .addGap(157, 157, 157)
+                            .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(size, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(buttonAdd)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton1))
+                        .addGroup(kontenLayout.createSequentialGroup()
+                            .addGap(26, 26, 26)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 805, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         kontenLayout.setVerticalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kontenLayout.createSequentialGroup()
-                .addGroup(kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(kontenLayout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(kontenLayout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addComponent(dataType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(buttonAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                .addGap(22, 22, 22)
+                .addComponent(dataType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(size, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonAdd)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -327,7 +329,7 @@ public class Transaksi extends javax.swing.JFrame {
 
     private void buttonAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_buttonAddMouseClicked
         A.addRow(dataType.getText(), type.getText(), Integer.parseInt(size.getText()));
-        A.showTable(table1);
+        A.showTable(t_transaksi,isi,3);
     }//GEN-LAST:event_buttonAddMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -336,13 +338,13 @@ public class Transaksi extends javax.swing.JFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         A.deleteRow(1);
-        A.showTable(table1);
+        A.showTable(t_transaksi,isi,3);
     }//GEN-LAST:event_jButton1MouseClicked
 
-    private void table1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_table1MouseClicked
-        int row = table1.getSelectedRow();
+    private void t_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_transaksiMouseClicked
+        int row = t_transaksi.getSelectedRow();
         
-    }//GEN-LAST:event_table1MouseClicked
+    }//GEN-LAST:event_t_transaksiMouseClicked
 
     /**
      * @param args the command line arguments
@@ -404,7 +406,7 @@ public class Transaksi extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel konten;
     private javax.swing.JTextField size;
-    private javax.swing.JTable table1;
+    private javax.swing.JTable t_transaksi;
     private javax.swing.JTextField type;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,13 +14,14 @@ import java.awt.Toolkit;
  */
 public class Pelanggan extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Pelanggan
-     */
+    TabelOpr A = new TabelOpr();
+    Object[] isi = {"Customer ID","Name","Segment"};
+    
     public Pelanggan() {
         initComponents();
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        A.showTable(t_pelanggan,isi,2);
     }
 
     /**
@@ -44,7 +45,7 @@ public class Pelanggan extends javax.swing.JFrame {
         a_pelanggan = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        t_pelanggan = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -173,7 +174,7 @@ public class Pelanggan extends javax.swing.JFrame {
 
         konten.setBackground(new java.awt.Color(250, 250, 250));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        t_pelanggan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -184,7 +185,7 @@ public class Pelanggan extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(t_pelanggan);
 
         javax.swing.GroupLayout kontenLayout = new javax.swing.GroupLayout(konten);
         konten.setLayout(kontenLayout);
@@ -290,7 +291,7 @@ public class Pelanggan extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JPanel konten;
+    private javax.swing.JTable t_pelanggan;
     // End of variables declaration//GEN-END:variables
 }
