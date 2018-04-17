@@ -11,6 +11,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.logging.Level;
@@ -177,21 +178,18 @@ public class TabelOpr {
                     if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
                         if (DateUtil.isCellDateFormatted(currentCell)) {
                             Date tanggal = new Date(df.formatCellValue(currentCell));
-                            System.out.println(tanggal);
                         }
                     }
                     
                     isi[i] = df.formatCellValue(currentCell);
                     
-//                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-//                        if (DateUtil.isCellDateFormatted(currentCell)) {
-//                        
-//                            if (isi[i] instanceof String)
-//                                System.out.println("right");
-//                            
-//                        }
-//                            else System.out.println("left");
-//                    }
+                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+                        if (DateUtil.isCellDateFormatted(currentCell)) {
+                            Date tanggal = new Date((String)isi[i]);
+                            SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
+                            isi[i] = dt1.format(tanggal);
+                        }
+                    }
                     
                     i++;
 
