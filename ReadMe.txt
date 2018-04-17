@@ -40,5 +40,7 @@ Rancangan Topik Kelompok 1 :
 
 - Sistemnya terlalu simple
 
-Rancangan yang kami ambil adalah rancangan nomor 4, mengenai Aplikasi e-Commerce dengan donasi di dalamnya
+Rancangan yang kami ambil adalah rancangan nomor 4, mengenai Aplikasi e-Commerce dengan donasi di dalamnya.
+
+Link Repository : 
 https://github.com/annazarryuu/Project_Kelompok_1.git

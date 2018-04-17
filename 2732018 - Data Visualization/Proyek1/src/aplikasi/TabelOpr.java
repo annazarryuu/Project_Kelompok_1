@@ -9,8 +9,11 @@ import javax.swing.*;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
@@ -27,7 +30,109 @@ public class TabelOpr {
     
     private static final String FILE_NAME = "*/../src/Excel/MyFirstExcel.xlsx";
     DefaultTableModel A;
+    JTextField dataType,type,size;
     
+    public void selectRow(int rowIndex, JTextField f1, JTextField f2, JTextField f3){
+        try{
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new XSSFWorkbook(excelFile);
+            Sheet sheet = workbook.getSheetAt(0);
+            Row row = sheet.getRow(rowIndex);
+         
+            FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+            workbook.write(outputStream);
+            workbook.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void updateRow(int rowIndex,String dataType, String type, int size){
+        try{
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new XSSFWorkbook(excelFile);
+            Sheet sheet = workbook.getSheetAt(0);
+            Cell cell = null;
+            
+            cell = sheet.getRow(rowIndex).getCell(1);
+            cell.setCellValue(dataType);
+            cell = sheet.getRow(rowIndex).getCell(2);
+            cell.setCellValue(type);
+            cell = sheet.getRow(rowIndex).getCell(3);
+            cell.setCellValue(size);
+            
+            FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+            workbook.write(outputStream);
+            workbook.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void deleteRow(int rowIndex){
+        try{
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new XSSFWorkbook(excelFile);
+            Sheet sheet = workbook.getSheetAt(0);
+            
+            int lastRowNum=sheet.getLastRowNum();
+            
+            if(rowIndex>=0&&rowIndex<lastRowNum){
+                sheet.shiftRows(rowIndex+1,lastRowNum, -1);
+            }
+            if(rowIndex==lastRowNum){
+                Row removingRow=sheet.getRow(rowIndex);
+                if(removingRow!=null){
+                    sheet.removeRow(removingRow);
+                }
+            }
+            
+            FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+            workbook.write(outputStream);
+            workbook.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void addRow(String dataType, String type, int size){
+        try {
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new XSSFWorkbook(excelFile);
+            Sheet sheet = workbook.getSheetAt(0);
+            Iterator<Row> iterator = sheet.iterator();
+            
+            int rowNum = 0;
+
+            while (iterator.hasNext()) {
+                    rowNum++;
+                    Row currentRow = iterator.next();
+            }
+            
+            Row row = sheet.createRow(rowNum++);
+            Cell cell = row.createCell(1);
+            cell.setCellValue(dataType);
+            cell = row.createCell(2);
+            cell.setCellValue(type);
+            cell = row.createCell(3);
+            cell.setCellValue(size);
+            
+            FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+            workbook.write(outputStream);
+            workbook.close();
+            
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void showTable(JTable table1){
         Object[] isi = {"tipe data","blabla","sese"};
         A = new DefaultTableModel(null,isi);
@@ -53,9 +158,9 @@ public class TabelOpr {
                     //getCellTypeEnum shown as deprecated for version 3.15
                     //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
                     if (currentCell.getCellTypeEnum() == CellType.STRING) {
-                        System.out.print(currentCell.getStringCellValue() + "--");
+//                        System.out.print(currentCell.getStringCellValue() + "--");
                         isi[i] = currentCell.getStringCellValue();                        
-                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
                         System.out.print(currentCell.getNumericCellValue() + "--");
                         isi[i] = currentCell.getNumericCellValue();
                     }
