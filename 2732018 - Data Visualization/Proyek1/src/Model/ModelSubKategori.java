@@ -77,7 +77,7 @@ public class ModelSubKategori {
         try {
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet sheet = workbook.getSheetAt(8);
+            Sheet sheet = workbook.getSheetAt(5);
             Iterator<Row> iterator = sheet.iterator();
             iterator.next();
             
@@ -108,6 +108,31 @@ public class ModelSubKategori {
             getAllSub();
         }
         return this.list;
+    }
+    
+    public ModelSubKategori searchObject(String id) throws IOException{
+        ModelSubKategori kat = new ModelSubKategori();
+        
+        if(this.list.isEmpty()){
+            getAllSub();
+        }
+        
+        int i = 0;
+        boolean ketemu = false;
+        while(i<list.size() && !ketemu){
+            String ID = list.get(i).id_sub;
+
+            kat = list.get(i);
+
+            if(ID.equals(id)){
+                ketemu = true;
+            }
+
+            i += 1;
+        }
+        
+        
+        return kat;
     }
     
     private static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";

@@ -95,23 +95,23 @@ public class ModelKategori {
     public ModelKategori searchObject(String id) throws IOException{
         ModelKategori kat = new ModelKategori();
         
-        //if(this.list.isEmpty()){
+        if(this.list.isEmpty()){
             getAllKategori();
-        //}else{
-            int i = 0;
-            boolean ketemu = false;
-            while(i<list.size() && !ketemu){
-                String ID = list.get(i).getId_kategori();
-                
-                kat = list.get(i);
-                
-                if(ID.equals(id)){
-                    ketemu = true;
-                }
-                
-                i += 1;
+        }
+        
+        int i = 0;
+        boolean ketemu = false;
+        while(i<list.size() && !ketemu){
+            String ID = list.get(i).getId_kategori();
+
+            kat = list.get(i);
+
+            if(ID.equals(id)){
+                ketemu = true;
             }
-        //}
+
+            i += 1;
+        }
         
         return kat;
     }
