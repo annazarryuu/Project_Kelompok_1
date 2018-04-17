@@ -173,12 +173,7 @@ public class TabelOpr {
 ////                        System.out.print(currentCell.getNumericCellValue() + "--");
 //                        isi[i] = currentCell.getNumericCellValue();
 //                    }
-                    
-                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-                        if (DateUtil.isCellDateFormatted(currentCell)) {
-                            Date tanggal = new Date(df.formatCellValue(currentCell));
-                        }
-                    }
+
                     
                     isi[i] = df.formatCellValue(currentCell);
                     
@@ -193,8 +188,12 @@ public class TabelOpr {
                     i++;
 
                 }
-                System.out.println();
-                A.addRow(isi);
+                
+                if(!"First Class".equals((String)isi[4])) {
+                    
+                } else {
+                    A.addRow(isi);
+                }
 
             }
         } catch (FileNotFoundException e) {

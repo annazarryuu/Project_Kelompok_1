@@ -43,6 +43,7 @@ public class Lokasi extends javax.swing.JFrame {
         a_barang = new javax.swing.JLabel();
         a_lokasi = new javax.swing.JLabel();
         a_pelanggan = new javax.swing.JLabel();
+        a_pelanggan1 = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         t_lokasi = new javax.swing.JTable();
@@ -139,6 +140,17 @@ public class Lokasi extends javax.swing.JFrame {
             }
         });
 
+        a_pelanggan1.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        a_pelanggan1.setForeground(new java.awt.Color(0, 0, 51));
+        a_pelanggan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/user.png"))); // NOI18N
+        a_pelanggan1.setText("Login");
+        a_pelanggan1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        a_pelanggan1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_pelanggan1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -147,6 +159,7 @@ public class Lokasi extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(a_pelanggan1)
                     .addComponent(a_pelanggan)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -168,7 +181,9 @@ public class Lokasi extends javax.swing.JFrame {
                 .addComponent(a_lokasi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(a_pelanggan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(186, 186, 186)
+                .addGap(18, 18, 18)
+                .addComponent(a_pelanggan1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(153, 153, 153)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -244,6 +259,10 @@ public class Lokasi extends javax.swing.JFrame {
         p.setVisible(true);
     }//GEN-LAST:event_a_pelangganMouseClicked
 
+    private void a_pelanggan1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_pelanggan1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_a_pelanggan1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -283,6 +302,7 @@ public class Lokasi extends javax.swing.JFrame {
     private javax.swing.JLabel a_barang;
     private javax.swing.JLabel a_lokasi;
     private javax.swing.JLabel a_pelanggan;
+    private javax.swing.JLabel a_pelanggan1;
     private javax.swing.JLabel a_transaksi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
