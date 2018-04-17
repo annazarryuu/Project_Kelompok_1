@@ -216,6 +216,7 @@ public class TabelOpr {
             Sheet datatypeSheet = workbook.getSheetAt(sheet);
             Iterator<Row> iterator = datatypeSheet.iterator();
             iterator.next();
+            DataFormatter df = new DataFormatter();
             k = 0;
             while (iterator.hasNext()) {
 
@@ -228,12 +229,21 @@ public class TabelOpr {
                     Cell currentCell = cellIterator.next();
                     //getCellTypeEnum shown as deprecated for version 3.15
                     //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
-                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
-//                        System.out.print(currentCell.getStringCellValue() + "--");
-                        isi[i] = currentCell.getStringCellValue();                        
-                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-//                        System.out.print(currentCell.getNumericCellValue() + "--");
-                        isi[i] = currentCell.getNumericCellValue();
+//                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
+////                        System.out.print(currentCell.getStringCellValue() + "--");
+//                        isi[i] = currentCell.getStringCellValue();                        
+//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+////                        System.out.print(currentCell.getNumericCellValue() + "--");
+//                        isi[i] = currentCell.getNumericCellValue();
+//                    }
+isi[i] = df.formatCellValue(currentCell);
+                    
+                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+                        if (DateUtil.isCellDateFormatted(currentCell)) {
+                            Date tanggal = new Date((String)isi[i]);
+                            SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
+                            isi[i] = dt1.format(tanggal);
+                        }
                     }
                     i++;
 
