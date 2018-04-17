@@ -179,4 +179,51 @@ public class TabelOpr {
         }
     }
     
+    public void search(JTable table1, int sheet, int cell, String searched){
+        Object[] isi = {"Row ID","Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit"};
+        A = new DefaultTableModel(null,isi);
+        table1.setModel(A);
+        int i,k;
+
+        try {
+
+            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
+            Workbook workbook = new XSSFWorkbook(excelFile);
+            Sheet datatypeSheet = workbook.getSheetAt(sheet);
+            Iterator<Row> iterator = datatypeSheet.iterator();
+            iterator.next();
+            k = 0;
+            while (iterator.hasNext()) {
+
+                Row currentRow = iterator.next();
+                Iterator<Cell> cellIterator = currentRow.iterator();
+                i = 0;
+
+                while (cellIterator.hasNext()) {
+
+                    Cell currentCell = cellIterator.next();
+                    //getCellTypeEnum shown as deprecated for version 3.15
+                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
+                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
+//                        System.out.print(currentCell.getStringCellValue() + "--");
+                        isi[i] = currentCell.getStringCellValue();                        
+                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+//                        System.out.print(currentCell.getNumericCellValue() + "--");
+                        isi[i] = currentCell.getNumericCellValue();
+                    }
+                    i++;
+
+                }
+                System.out.println();
+                if( k==0 || isi[cell].toString().contains(searched) ){
+                    A.addRow(isi);
+                }
+                k++;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
