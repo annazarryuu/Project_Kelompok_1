@@ -240,7 +240,7 @@ public class TabelOpr {
 
                 }
                 System.out.println();
-                if( k==0 || isi[cell].toString().contains(searched) ){
+                if(isi[cell].toString().contains(searched) ){
                     A.addRow(isi);
                 }
                 k++;
