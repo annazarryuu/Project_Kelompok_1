@@ -11,12 +11,16 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -146,6 +150,7 @@ public class TabelOpr {
             Sheet datatypeSheet = workbook.getSheetAt(sheet);
             Iterator<Row> iterator = datatypeSheet.iterator();
             iterator.next();
+            DataFormatter df = new DataFormatter();
             while (iterator.hasNext()) {
 
                 Row currentRow = iterator.next();
@@ -158,13 +163,33 @@ public class TabelOpr {
                     Cell currentCell = cellIterator.next();
                     //getCellTypeEnum shown as deprecated for version 3.15
                     //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
-                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
-//                        System.out.print(currentCell.getStringCellValue() + "--");
-                        isi[i] = currentCell.getStringCellValue();                        
-                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-//                        System.out.print(currentCell.getNumericCellValue() + "--");
-                        isi[i] = currentCell.getNumericCellValue();
+//                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
+////                        System.out.print(currentCell.getStringCellValue() + "--");
+//                        isi[i] = currentCell.getStringCellValue();
+//                    } else if (HSSFDateUtil.isCellDateFormatted(currentCell)) {
+//                        System.out.println("Up");
+//                        isi[i] = currentCell.getDateCellValue();
+//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+////                        System.out.print(currentCell.getNumericCellValue() + "--");
+//                        isi[i] = currentCell.getNumericCellValue();
+//                    }
+                    
+                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+                        if (DateUtil.isCellDateFormatted(currentCell)) {
+                            Date tanggal = new Date(df.formatCellValue(currentCell));
+                        }
                     }
+                    
+                    isi[i] = df.formatCellValue(currentCell);
+                    
+                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+                        if (DateUtil.isCellDateFormatted(currentCell)) {
+                            Date tanggal = new Date((String)isi[i]);
+                            SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
+                            isi[i] = dt1.format(tanggal);
+                        }
+                    }
+                    
                     i++;
 
                 }
