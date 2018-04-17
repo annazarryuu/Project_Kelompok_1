@@ -145,10 +145,11 @@ public class TabelOpr {
             Workbook workbook = new XSSFWorkbook(excelFile);
             Sheet datatypeSheet = workbook.getSheetAt(0);
             Iterator<Row> iterator = datatypeSheet.iterator();
-
+            iterator.next();
             while (iterator.hasNext()) {
 
                 Row currentRow = iterator.next();
+                
                 Iterator<Cell> cellIterator = currentRow.iterator();
                 i = 0;
 
@@ -160,8 +161,8 @@ public class TabelOpr {
                     if (currentCell.getCellTypeEnum() == CellType.STRING) {
 //                        System.out.print(currentCell.getStringCellValue() + "--");
                         isi[i] = currentCell.getStringCellValue();                        
-//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-                        System.out.print(currentCell.getNumericCellValue() + "--");
+                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
+//                        System.out.print(currentCell.getNumericCellValue() + "--");
                         isi[i] = currentCell.getNumericCellValue();
                     }
                     i++;
