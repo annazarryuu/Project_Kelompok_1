@@ -189,11 +189,7 @@ public class TabelOpr {
 
                 }
                 
-                if(!"First Class".equals((String)isi[4])) {
-                    
-                } else {
                     A.addRow(isi);
-                }
 
             }
         } catch (FileNotFoundException e) {
@@ -236,7 +232,7 @@ public class TabelOpr {
 ////                        System.out.print(currentCell.getNumericCellValue() + "--");
 //                        isi[i] = currentCell.getNumericCellValue();
 //                    }
-isi[i] = df.formatCellValue(currentCell);
+                    isi[i] = df.formatCellValue(currentCell);
                     
                     if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
                         if (DateUtil.isCellDateFormatted(currentCell)) {
@@ -248,7 +244,7 @@ isi[i] = df.formatCellValue(currentCell);
                     i++;
 
                 }
-                System.out.println();
+//                System.out.println();
                 if(isi[cell].toString().contains(searched) ){
                     A.addRow(isi);
                 }
