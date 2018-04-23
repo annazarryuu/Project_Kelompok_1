@@ -18,8 +18,8 @@ import java.util.List;
 public class ujiCoba {
     public static void main(String[] args) throws IOException{
         
-        ShipController sub = new ShipController();
-        List<ModelShipMode> subList;
+        TransaksiController sub = new TransaksiController();
+        List<ModelTransaksi> subList;
         
         subList = sub.getList();
         
@@ -29,7 +29,8 @@ public class ujiCoba {
             size = subList.size();
             
             for(int i=0;i<size;i++){
-                System.out.println(subList.get(i).getShipID()+ " - " + subList.get(i).getShipMode());
+                System.out.println(subList.get(i).getOrderID()+ " - " + subList.get(i).getOrderDate()
+                    + " - " + subList.get(i).getProduct().getProductName());
             }
 
         }
