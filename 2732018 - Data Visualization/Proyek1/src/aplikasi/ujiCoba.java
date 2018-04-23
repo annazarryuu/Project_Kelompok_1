@@ -6,6 +6,7 @@
         
 package aplikasi;
 
+import Controller.*;
 import Model.*;
 import java.io.IOException;
 import java.util.List;
@@ -16,9 +17,9 @@ import java.util.List;
  */
 public class ujiCoba {
     public static void main(String[] args) throws IOException{
-        /*
-        ModelSubKategori sub = new ModelSubKategori();
-        List<ModelSubKategori> subList;
+        
+        ShipController sub = new ShipController();
+        List<ModelShipMode> subList;
         
         subList = sub.getList();
         
@@ -28,13 +29,12 @@ public class ujiCoba {
             size = subList.size();
             
             for(int i=0;i<size;i++){
-                System.out.println(subList.get(i).getId_sub()+ " - " + subList.get(i).getKategori().getKategori() 
-                        + " - " + subList.get(i).getSubKategori());
+                System.out.println(subList.get(i).getShipID()+ " - " + subList.get(i).getShipMode());
             }
 
         }
-        */
         
+        /*
         ModelDaerah mdl = new ModelDaerah();
         List<ModelDaerah> list;
         
@@ -53,5 +53,6 @@ public class ujiCoba {
             }
 
         }
+        */
     }
 }

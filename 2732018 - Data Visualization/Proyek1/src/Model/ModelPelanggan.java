@@ -5,6 +5,9 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Gibran
@@ -52,6 +55,9 @@ public class ModelPelanggan {
     public void setSegment(String segment) {
         this.segment = segment;
     }
+    
+    public static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";
+    
     private String customerID;
     private String customerName;
     private String segment;

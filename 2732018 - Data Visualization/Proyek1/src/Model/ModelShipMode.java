@@ -38,6 +38,8 @@ public class ModelShipMode {
     public void setShipMode(String shipMode) {
         this.shipMode = shipMode;
     }
+    public static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";
+    
     private String shipID;
     private String shipMode;
 }
