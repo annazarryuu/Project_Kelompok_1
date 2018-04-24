@@ -6,8 +6,12 @@
 package aplikasi;
 
 import Controller.BarangController;
+import Controller.DaerahController;
+import Controller.PelangganController;
 import Controller.TransaksiController;
 import Model.ModelBarang;
+import Model.ModelDaerah;
+import Model.ModelPelanggan;
 import Model.ModelTransaksi;
 import javax.swing.*;
 import java.io.File;
@@ -145,59 +149,70 @@ public class TabelOpr {
     
     public void showTable(JTable table1, Object[] isi, int sheet){
         
-        A = new DefaultTableModel(null,isi);
-        table1.setModel(A);
-        int i;
+//        A = new DefaultTableModel(null,isi);
+//        table1.setModel(A);
 
         try {
-
-            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
-            Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet datatypeSheet = workbook.getSheetAt(sheet);
-            Iterator<Row> iterator = datatypeSheet.iterator();
-            iterator.next();
-            DataFormatter df = new DataFormatter();
-            while (iterator.hasNext()) {
-
-                Row currentRow = iterator.next();
-                
-                Iterator<Cell> cellIterator = currentRow.iterator();
-                i = 0;
-
-                while (cellIterator.hasNext()) {
-
-                    Cell currentCell = cellIterator.next();
-                    //getCellTypeEnum shown as deprecated for version 3.15
-                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
-//                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
-////                        System.out.print(currentCell.getStringCellValue() + "--");
-//                        isi[i] = currentCell.getStringCellValue();
-//                    } else if (HSSFDateUtil.isCellDateFormatted(currentCell)) {
-//                        System.out.println("Up");
-//                        isi[i] = currentCell.getDateCellValue();
-//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-////                        System.out.print(currentCell.getNumericCellValue() + "--");
-//                        isi[i] = currentCell.getNumericCellValue();
-//                    }
-
-                    
-                    isi[i] = df.formatCellValue(currentCell);
-                    
-                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-                        if (DateUtil.isCellDateFormatted(currentCell)) {
-                            Date tanggal = new Date((String)isi[i]);
-                            SimpleDateFormat dt1 = new SimpleDateFormat("MMM d, yyyy");
-                            isi[i] = dt1.format(tanggal);
+        
+            switch(sheet){
+                case 1: Object[] isi1 = {"Postal Code","Region","Country","City","State"};
+                        A = new DefaultTableModel(null,isi1);
+                        table1.setModel(A);
+                        List<ModelDaerah> lis1 = new DaerahController().getList();
+                        Iterator<ModelDaerah> iterator1 = lis1.iterator();
+                        while (iterator1.hasNext()) 
+                        {
+                            ModelDaerah hsl = iterator1.next();
+                            isi1[0] = hsl.getPostalCode();
+                            isi1[1] = hsl.getRegion();
+                            isi1[2] = hsl.getCountry();
+                            isi1[3] = hsl.getCity();
+                            isi1[4] = hsl.getState();
+                            A.addRow(isi1);
                         }
-                    }
-                    
-                    i++;
-
-                }
+                        break;
                 
-                    A.addRow(isi);
-
+                case 2: Object[] isi2 = {"Customer ID","Name","Segment"};
+                        A = new DefaultTableModel(null,isi2);
+                        table1.setModel(A);
+                        List<ModelPelanggan> lis2 = new PelangganController().getList();
+                        Iterator<ModelPelanggan> iterator2 = lis2.iterator();
+                        while (iterator2.hasNext()) 
+                        {
+                            ModelPelanggan hsl = iterator2.next();
+                            isi2[0] = hsl.getCustomerID();
+                            isi2[1] = hsl.getCustomerName();
+                            isi2[2] = hsl.getSegment();
+                            A.addRow(isi2);
+                        }
+                        break;
+                        
+                case 3: Object[] isi3 = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+                        A = new DefaultTableModel(null,isi3);
+                        table1.setModel(A);
+                        List<ModelTransaksi> lis3 = new TransaksiController().getList();
+                        Iterator<ModelTransaksi> iterator3 = lis3.iterator();
+                        while (iterator3.hasNext()) 
+                        {
+                            ModelTransaksi hsl = iterator3.next();
+                            isi3[0] = hsl.getOrderID();
+                            isi3[1] = hsl.getOrderDate();
+                            isi3[2] = hsl.getShipDate();
+                            isi3[3] = hsl.getShipMode().getShipMode();
+                            isi3[4] = hsl.getPelanggan().getCustomerID();
+                            isi3[5] = hsl.getPostal().getPostalCode();
+                            isi3[6] = hsl.getProduct().getProductID();
+                            isi3[7] = hsl.getSales();
+                            isi3[8] = hsl.getQuantity();
+                            isi3[9] = hsl.getDiscount();
+                            isi3[10] = hsl.getProfit();
+                            isi3[11] = hsl.getDonation();
+                            isi3[12] = hsl.getTotal();
+                            A.addRow(isi3);
+                        }
+                        break;
             }
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -205,57 +220,94 @@ public class TabelOpr {
         }
     }
     
-    public void search(JTable table1, int sheet, int cell, String searched){
-        Object[] isi = {"Row ID","Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit"};
-        A = new DefaultTableModel(null,isi);
-        table1.setModel(A);
-        int i,k;
-
+    public void search(JTable table1, int sheet, int cell, String searched) throws IOException{
+//        Object[] isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit"};
+        
         try {
-
-            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
-            Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet datatypeSheet = workbook.getSheetAt(sheet);
-            Iterator<Row> iterator = datatypeSheet.iterator();
-            iterator.next();
-            DataFormatter df = new DataFormatter();
-            k = 0;
-            while (iterator.hasNext()) {
-
-                Row currentRow = iterator.next();
-                Iterator<Cell> cellIterator = currentRow.iterator();
-                i = 0;
-
-                while (cellIterator.hasNext()) {
-
-                    Cell currentCell = cellIterator.next();
-                    //getCellTypeEnum shown as deprecated for version 3.15
-                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
-//                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
-////                        System.out.print(currentCell.getStringCellValue() + "--");
-//                        isi[i] = currentCell.getStringCellValue();                        
-//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-////                        System.out.print(currentCell.getNumericCellValue() + "--");
-//                        isi[i] = currentCell.getNumericCellValue();
-//                    }
-                    isi[i] = df.formatCellValue(currentCell);
-                    
-                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-                        if (DateUtil.isCellDateFormatted(currentCell)) {
-                            Date tanggal = new Date((String)isi[i]);
-                            SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
-                            isi[i] = dt1.format(tanggal);
+        
+            switch(sheet){
+                case 1: Object[] isi1 = {"Postal Code","Region","Country","City","State"};
+                        A = new DefaultTableModel(null,isi1);
+                        table1.setModel(A);
+                        List<ModelDaerah> lis1 = new DaerahController().getList();
+                        Iterator<ModelDaerah> iterator1 = lis1.iterator();
+                        while (iterator1.hasNext()) 
+                        {
+                            ModelDaerah hsl = iterator1.next();
+                            isi1[0] = hsl.getPostalCode();
+                            isi1[1] = hsl.getRegion();
+                            isi1[2] = hsl.getCountry();
+                            isi1[3] = hsl.getCity();
+                            isi1[4] = hsl.getState();
+                            if(isi1[cell].toString().contains(searched) ){
+                                A.addRow(isi1);
+                            }
                         }
-                    }
-                    i++;
-
-                }
-//                System.out.println();
-                if(isi[cell].toString().contains(searched) ){
-                    A.addRow(isi);
-                }
-                k++;
+                        break;
+                
+                case 2: Object[] isi2 = {"Customer ID","Name","Segment"};
+                        A = new DefaultTableModel(null,isi2);
+                        table1.setModel(A);
+                        List<ModelPelanggan> lis2 = new PelangganController().getList();
+                        Iterator<ModelPelanggan> iterator2 = lis2.iterator();
+                        while (iterator2.hasNext()) 
+                        {
+                            ModelPelanggan hsl = iterator2.next();
+                            isi2[0] = hsl.getCustomerID();
+                            isi2[1] = hsl.getCustomerName();
+                            isi2[2] = hsl.getSegment();
+                            if(isi2[cell].toString().contains(searched) ){
+                                A.addRow(isi2);
+                            }
+                        }
+                        break;
+                        
+                case 3: Object[] isi3 = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+                        A = new DefaultTableModel(null,isi3);
+                        table1.setModel(A);
+                        List<ModelTransaksi> lis3 = new TransaksiController().getList();
+                        Iterator<ModelTransaksi> iterator3 = lis3.iterator();
+                        while (iterator3.hasNext()) 
+                        {
+                            ModelTransaksi hsl = iterator3.next();
+                            isi3[0] = hsl.getOrderID();
+                            isi3[1] = hsl.getOrderDate();
+                            isi3[2] = hsl.getShipDate();
+                            isi3[3] = hsl.getShipMode().getShipMode();
+                            isi3[4] = hsl.getPelanggan().getCustomerID();
+                            isi3[5] = hsl.getPostal().getPostalCode();
+                            isi3[6] = hsl.getProduct().getProductID();
+                            isi3[7] = hsl.getSales();
+                            isi3[8] = hsl.getQuantity();
+                            isi3[9] = hsl.getDiscount();
+                            isi3[10] = hsl.getProfit();
+                            isi3[11] = hsl.getDonation();
+                            isi3[12] = hsl.getTotal();
+                            if(isi3[cell].toString().contains(searched) ){
+                                A.addRow(isi3);
+                            }
+                        }
+                        break;
+                 
+                case 4: Object[] isi4 = {"Product ID","Category","Sub-Category","Product Name"};
+                        A = new DefaultTableModel(null,isi4);
+                        table1.setModel(A);
+                        List<ModelBarang> lis4 = new BarangController().getList();
+                        Iterator<ModelBarang> iterator4 = lis4.iterator();
+                        while (iterator4.hasNext()) 
+                        {
+                            ModelBarang hsl = iterator4.next();
+                            isi4[0] = hsl.getProductID();
+                            isi4[1] = hsl.getSubcategory().getKategori().getKategori();
+                            isi4[2] = hsl.getSubcategory().getSubKategori();
+                            isi4[3] = hsl.getProductName();
+                            if(isi4[cell].toString().contains(searched) ){
+                                A.addRow(isi4);
+                            }
+                        }
+                        break;
             }
+            
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

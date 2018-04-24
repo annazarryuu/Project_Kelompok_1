@@ -69,7 +69,12 @@ public class TransaksiController extends ModelTransaksi{
                 trs.setShipDate(shipDate.getDateCellValue());
                 trs.setShipMode(sh.searchObject(smode.toString()));
                 trs.setPelanggan(cus.searchObject(cusID.toString()));
-                trs.setPostal(loc.searchObject(pos.toString()));
+                
+                String id = pos.toString();
+                int x = (int) Double.parseDouble(id);
+                id = String.valueOf(x);
+                
+                trs.setPostal(loc.searchObject(id));
                 trs.setProduct(brg.searchObject(product.toString()));
                 trs.setSales(harga.getNumericCellValue());
                 trs.setQuantity((int) qty.getNumericCellValue());
