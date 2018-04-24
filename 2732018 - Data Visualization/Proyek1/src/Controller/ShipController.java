@@ -6,7 +6,6 @@
 package Controller;
 
 import Model.ModelKategori;
-import Model.ModelPelanggan;
 import Model.ModelShipMode;
 import java.io.File;
 import java.io.FileInputStream;

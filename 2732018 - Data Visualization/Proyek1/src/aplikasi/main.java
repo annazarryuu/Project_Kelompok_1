@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 public class main {
      public static void main(String[] args) {
          try {
-             Thread.sleep(3000);
+             Thread.sleep(0);
          } catch (InterruptedException ex) {
              Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
          }

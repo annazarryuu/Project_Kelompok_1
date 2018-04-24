@@ -5,7 +5,6 @@
  */
 package Controller;
 
-import Model.ModelBarang;
 import Model.ModelKategori;
 import Model.ModelTransaksi;
 import java.io.File;

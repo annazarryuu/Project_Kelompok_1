@@ -6,7 +6,6 @@
 package Controller;
 
 import Model.ModelDaerah;
-import static Model.ModelDaerah.FILE_NAME;
 import Model.ModelKategori;
 import java.io.File;
 import java.io.FileInputStream;

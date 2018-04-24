@@ -7,7 +7,6 @@ package Controller;
 
 import Model.ModelKategori;
 import Model.ModelSubKategori;
-import static Model.ModelSubKategori.FILE_NAME;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

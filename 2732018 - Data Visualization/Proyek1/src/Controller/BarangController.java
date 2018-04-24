@@ -7,7 +7,6 @@ package Controller;
 
 import Model.ModelBarang;
 import Model.ModelKategori;
-import Model.ModelSubKategori;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -93,5 +94,31 @@ public class BarangController extends ModelBarang{
         }
         
         return brg;
+    }
+    
+    public void showTable(JTable table1, Object[] isi) throws IOException{
+        BarangController sub = new BarangController();
+        List<ModelBarang> subList;
+        DefaultTableModel A = new DefaultTableModel(null,isi);
+        table1.setModel(A);
+        
+        subList = sub.getList();
+        
+        if(!subList.isEmpty()){
+            int size;
+            
+            size = subList.size();
+            
+            A.addRow(isi);
+            
+            for(int i = 1;i < size;i++){
+                isi[0] = subList.get(i).getProductID();
+                isi[1] = subList.get(i).getSubcategory().getKategori().getKategori();
+                isi[2] = subList.get(i).getSubcategory().getSubKategori();
+                isi[3] = subList.get(i).getProductName();
+                
+                A.addRow(isi);
+            }
+        }
     }
 }
