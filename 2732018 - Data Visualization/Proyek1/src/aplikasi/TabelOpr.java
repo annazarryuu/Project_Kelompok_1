@@ -137,7 +137,6 @@ public class TabelOpr {
             Logger.getLogger(TabelOpr.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
     public void showTable(JTable table1, Object[] isi, int sheet){
         
         A = new DefaultTableModel(null,isi);
@@ -181,7 +180,7 @@ public class TabelOpr {
                     if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
                         if (DateUtil.isCellDateFormatted(currentCell)) {
                             Date tanggal = new Date((String)isi[i]);
-                            SimpleDateFormat dt1 = new SimpleDateFormat("MMM d, yyyy");
+                            SimpleDateFormat dt1 = new SimpleDateFormat("MM/dd/yyyy");
                             isi[i] = dt1.format(tanggal);
                         }
                     }
@@ -250,119 +249,6 @@ public class TabelOpr {
                     A.addRow(isi);
                 }
                 k++;
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    
-    public void FilterTransaksi(JTable table1, Object[] isi, int sheet, int awal, int akhir, String ShipMode, int donation, int total){
-        
-        A = new DefaultTableModel(null,isi);
-        table1.setModel(A);
-        
-        int i;
-        boolean add;
-        int compareTanggal;
-        int compareDonasi;
-        int compareTotal;
-        String cmpShip = null;
-        SimpleDateFormat dt1 = new SimpleDateFormat("MMM d, yyyy");
-        SimpleDateFormat dt2 = new SimpleDateFormat("yyyyMMdd");
-        Date tanggal = null;
-
-        try {
-
-            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
-            Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet datatypeSheet = workbook.getSheetAt(sheet);
-            Iterator<Row> iterator = datatypeSheet.iterator();
-            iterator.next();
-            DataFormatter df = new DataFormatter();
-            while (iterator.hasNext()) {
-
-                Row currentRow = iterator.next();
-                add = true;
-                Iterator<Cell> cellIterator = currentRow.iterator();
-                i = 0;
-
-                while (cellIterator.hasNext()) {
-
-                    Cell currentCell = cellIterator.next();
-                    //getCellTypeEnum shown as deprecated for version 3.15
-                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
-//                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
-////                        System.out.print(currentCell.getStringCellValue() + "--");
-//                        isi[i] = currentCell.getStringCellValue();
-//                    } else if (HSSFDateUtil.isCellDateFormatted(currentCell)) {
-//                        System.out.println("Up");
-//                        isi[i] = currentCell.getDateCellValue();
-//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-////                        System.out.print(currentCell.getNumericCellValue() + "--");
-//                        isi[i] = currentCell.getNumericCellValue();
-//                    }
-
-                    
-                    isi[i] = df.formatCellValue(currentCell);
-                    
-                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-                        if (DateUtil.isCellDateFormatted(currentCell)) {
-                            tanggal = new Date((String)isi[i]);
-                            isi[i] = dt1.format(tanggal);
-                        }
-                    }
-                            if(i == 2) {
-                                compareTanggal = Integer.parseInt(dt2.format(tanggal));
-                                if(awal != 0) {
-                                    if(compareTanggal < awal) {
-                                        add = false;
-                                    }
-                                }
-                                
-                                if(akhir != 0) {
-                                    if(compareTanggal > akhir) {
-                                        add = false;
-                                    }
-                                }
-                            }
-                            
-                            if(i == 4) {
-                                if(ShipMode != null) {
-                                    cmpShip = (String) isi[i];
-                                    if(!cmpShip.equals(ShipMode)) {
-                                        add = false;
-                                    }
-                                }
-                            }
-                            
-//                            if(i == 12) {
-//                                compareDonasi = (int) isi[i];
-//                                if(donation != -1) {
-//                                    if(compareDonasi > donation) {
-//                                        add = false;
-//                                    }
-//                                }
-//                            }
-                            
-//                            if(i == 11) {
-//                                compareTotal = Integer.parseInt((String) isi[i]);
-//                                if(total != -1) {
-//                                    if(compareTotal > total) {
-//                                        add = false;
-//                                    }
-//                                }
-//                            }
-                    
-                    i++;
-
-                }
-                
-                    if(add) {
-                        A.addRow(isi);
-                    }
-
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -12,20 +12,6 @@ package Model;
 public class ModelDonation {
 
     /**
-     * @return the pelanggan
-     */
-    public ModelPelanggan getPelanggan() {
-        return pelanggan;
-    }
-
-    /**
-     * @param pelanggan the pelanggan to set
-     */
-    public void setPelanggan(ModelPelanggan pelanggan) {
-        this.pelanggan = pelanggan;
-    }
-
-    /**
      * @return the donationID
      */
     public String getDonationID() {
@@ -52,10 +38,6 @@ public class ModelDonation {
     public void setJmlDonasi(double jmlDonasi) {
         this.jmlDonasi = jmlDonasi;
     }
-    
-    public static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";
-    
     private String donationID;
-    private ModelPelanggan pelanggan;
     private double jmlDonasi;
 }
