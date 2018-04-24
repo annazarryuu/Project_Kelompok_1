@@ -5,6 +5,7 @@
  */
 package aplikasi;
 
+import Controller.DaerahController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
@@ -16,15 +17,21 @@ import java.util.logging.Logger;
  * @author ACER
  */
 public class Lokasi extends javax.swing.JFrame {
-    
+
     TabelOpr A = new TabelOpr();
-    Object[] isi = {"Postal Code","Region","Country","City","State"};
-    
+    DaerahController d = new DaerahController();
+    Object[] isi = {"Postal Code", "Region", "Country", "City", "State"};
+
     public Lokasi() {
-        initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        A.showTable(t_lokasi,isi,1);
+        try {
+            initComponents();
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+//        A.showTable(t_lokasi,isi,1);
+            d.showTable(t_lokasi, isi);
+        } catch (IOException ex) {
+            Logger.getLogger(Lokasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -349,7 +356,7 @@ public class Lokasi extends javax.swing.JFrame {
     private void a_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksiMouseClicked
         Transaksi t = new Transaksi();
         this.hide();
-        t.setVisible(true);    
+        t.setVisible(true);
     }//GEN-LAST:event_a_transaksiMouseClicked
 
     private void a_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barangMouseClicked
@@ -363,7 +370,7 @@ public class Lokasi extends javax.swing.JFrame {
     }//GEN-LAST:event_a_barangMouseClicked
 
     private void a_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_lokasiMouseClicked
-        
+
     }//GEN-LAST:event_a_lokasiMouseClicked
 
     private void a_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_pelangganMouseClicked

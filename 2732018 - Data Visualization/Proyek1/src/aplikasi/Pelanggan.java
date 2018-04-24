@@ -5,6 +5,7 @@
  */
 package aplikasi;
 
+import Controller.PelangganController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
@@ -18,13 +19,19 @@ import java.util.logging.Logger;
 public class Pelanggan extends javax.swing.JFrame {
 
     TabelOpr A = new TabelOpr();
-    Object[] isi = {"Customer ID","Name","Segment"};
-    
+    PelangganController p = new PelangganController();
+    Object[] isi = {"Customer ID", "Name", "Segment"};
+
     public Pelanggan() {
-        initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        A.showTable(t_pelanggan,isi,2);
+        try {
+            initComponents();
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+//        A.showTable(t_pelanggan,isi,2);
+            p.showTable(t_pelanggan, isi);
+        } catch (IOException ex) {
+            Logger.getLogger(Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -348,7 +355,7 @@ public class Pelanggan extends javax.swing.JFrame {
     }//GEN-LAST:event_a_lokasiMouseClicked
 
     private void a_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_pelangganMouseClicked
-        
+
     }//GEN-LAST:event_a_pelangganMouseClicked
 
     private void searchOnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchOnMouseClicked

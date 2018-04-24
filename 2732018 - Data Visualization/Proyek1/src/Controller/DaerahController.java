@@ -16,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -96,4 +98,30 @@ public class DaerahController extends ModelDaerah{
         
         return mdl;
     }
+    
+    public void showTable(JTable table1, Object[] isi) throws IOException{
+        //{"Postal Code","Region","Country","City","State"};
+        List<ModelDaerah> subList;
+        DefaultTableModel A = new DefaultTableModel(null,isi);
+        table1.setModel(A);
+        
+        subList = this.getList();
+        
+        if(!subList.isEmpty()){
+            int size;
+            
+            size = subList.size();
+            
+            for(int i = 1;i < size;i++){
+                isi[0] = subList.get(i).getPostalCode();
+                isi[1] = subList.get(i).getRegion();
+                isi[2] = subList.get(i).getCountry();
+                isi[3] = subList.get(i).getCity();
+                isi[4] = subList.get(i).getState();
+                
+                A.addRow(isi);
+            }
+        }
+    }
+    
 }

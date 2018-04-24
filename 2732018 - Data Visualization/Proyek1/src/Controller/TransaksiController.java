@@ -16,6 +16,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -125,4 +127,42 @@ public class TransaksiController extends ModelTransaksi{
         
         return trs;
     }
+    
+    public void showTable(JTable table1, Object[] isi) throws IOException{
+        //{"Order ID","Order Date","Ship Date","Ship Mode","Customer ID",
+        //"Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"}
+        List<ModelTransaksi> subList;
+        DefaultTableModel A = new DefaultTableModel(null,isi);
+        table1.setModel(A);
+        
+        subList = this.getList();
+        
+        if(!subList.isEmpty()){
+            int size;
+            
+            size = subList.size();
+            
+            //A.addRow(isi);
+            
+            for(int i = 1;i < size;i++){
+                isi[0] = subList.get(i).getOrderID();
+                isi[1] = subList.get(i).getOrderDate();
+                isi[2] = subList.get(i).getShipDate();
+                isi[3] = subList.get(i).getShipMode().getShipMode();
+                isi[4] = subList.get(i).getPelanggan().getCustomerName();
+                isi[5] = subList.get(i).getPostal().getPostalCode();
+                isi[6] = subList.get(i).getProduct().getProductName();
+                isi[7] = subList.get(i).getSales();
+                isi[8] = subList.get(i).getQuantity();
+                isi[9] = subList.get(i).getDiscount();
+                isi[10] = subList.get(i).getProfit();
+                isi[11] = subList.get(i).getDonation() != null 
+                        ? subList.get(i).getDonation().getJmlDonasi() : null;
+                isi[12] = subList.get(i).getTotal();
+                
+                A.addRow(isi);
+            }
+        }
+    }
+    
 }

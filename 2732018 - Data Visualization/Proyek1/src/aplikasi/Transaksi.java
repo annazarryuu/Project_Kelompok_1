@@ -5,6 +5,7 @@
  */
 package aplikasi;
 
+import Controller.TransaksiController;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.IOException;
@@ -25,14 +26,19 @@ public class Transaksi extends javax.swing.JFrame {
      */
     TabelOpr A = new TabelOpr();
     final Object[] isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
-
+    TransaksiController trs = new TransaksiController();
     
     public Transaksi() {
-        initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        
-        A.showTable(t_transaksi,isi,3);
+        try {
+            initComponents();
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+            this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+            
+            //A.showTable(t_transaksi,isi,3);
+            trs.showTable(t_transaksi, isi);
+        } catch (IOException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     

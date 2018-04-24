@@ -23,6 +23,7 @@ public class Barang extends javax.swing.JFrame {
      */
     TabelOpr A = new TabelOpr();
     Object[] isi = {"Product ID","Category","Sub-Category","Product Name"};
+    Controller.BarangController Brg = new BarangController();
         
     public Barang() throws IOException {
         initComponents();
@@ -30,7 +31,6 @@ public class Barang extends javax.swing.JFrame {
         this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
         
          //A.showTable(t_barang,isi,0);
-         Controller.BarangController Brg = new BarangController();
          Brg.showTable(t_barang, isi);
     }
 
