@@ -5,11 +5,27 @@
  */
 package Model;
 
+import java.util.Date;
+
 /**
  *
  * @author Gibran
  */
 public class ModelUser {
+
+    /**
+     * @return the last_login
+     */
+    public Date getLast_login() {
+        return last_login;
+    }
+
+    /**
+     * @param last_login the last_login to set
+     */
+    public void setLast_login(Date last_login) {
+        this.last_login = last_login;
+    }
 
     /**
      * @return the username
@@ -38,6 +54,9 @@ public class ModelUser {
     public void setPassword(String password) {
         this.password = password;
     }
+    public static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";
+    
     private String username;
     private String password;
+    private Date last_login;
 }
