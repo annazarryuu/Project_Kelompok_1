@@ -155,11 +155,12 @@ public class TabelOpr {
         try {
         
             switch(sheet){
-                case 1: Object[] isi1 = {"Postal Code","Region","Country","City","State"};
-                        A = new DefaultTableModel(null,isi1);
-                        table1.setModel(A);
-                        List<ModelDaerah> lis1 = new DaerahController().getList();
-                        Iterator<ModelDaerah> iterator1 = lis1.iterator();
+                case 1:
+                    Object[] isi1 = {"Postal Code","Region","Country","City","State"};
+                    A = new DefaultTableModel(null,isi1);
+                    table1.setModel(A);
+                    List<ModelDaerah> lis1 = new DaerahController().getList();
+                    Iterator<ModelDaerah> iterator1 = lis1.iterator();
                         while (iterator1.hasNext()) 
                         {
                             ModelDaerah hsl = iterator1.next();

@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -27,9 +28,9 @@ public class Barang extends javax.swing.JFrame {
         
     public Barang() throws IOException {
         initComponents();
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        
+//        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+//        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
          //A.showTable(t_barang,isi,0);
          Brg.showTable(t_barang, isi);
     }

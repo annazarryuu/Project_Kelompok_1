@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -25,9 +26,10 @@ public class Lokasi extends javax.swing.JFrame {
     public Lokasi() {
         try {
             initComponents();
-            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-            this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+//            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+//            this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
 //        A.showTable(t_lokasi,isi,1);
+            this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             d.showTable(t_lokasi, isi);
         } catch (IOException ex) {
             Logger.getLogger(Lokasi.class.getName()).log(Level.SEVERE, null, ex);
