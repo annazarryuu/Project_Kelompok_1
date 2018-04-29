@@ -144,7 +144,7 @@ public class TransaksiController extends ModelTransaksi{
             
             //A.addRow(isi);
             
-            for(int i = 1;i < size;i++){
+            for(int i = 0;i < size;i++){
                 isi[0] = subList.get(i).getOrderID();
                 isi[1] = subList.get(i).getOrderDate();
                 isi[2] = subList.get(i).getShipDate();
@@ -152,13 +152,12 @@ public class TransaksiController extends ModelTransaksi{
                 isi[4] = subList.get(i).getPelanggan().getCustomerName();
                 isi[5] = subList.get(i).getPostal().getPostalCode();
                 isi[6] = subList.get(i).getProduct().getProductName();
-                isi[7] = subList.get(i).getSales();
+                isi[7] = (double) subList.get(i).getSales();
                 isi[8] = subList.get(i).getQuantity();
-                isi[9] = subList.get(i).getDiscount();
+                isi[9] = (double) subList.get(i).getDiscount();
                 isi[10] = subList.get(i).getProfit();
-                isi[11] = subList.get(i).getDonation() != null 
-                        ? subList.get(i).getDonation().getJmlDonasi() : null;
-                isi[12] = subList.get(i).getTotal();
+                isi[11] = subList.get(i).getDonation() != null? (double) subList.get(i).getDonation().getJmlDonasi() : (double) 0;
+                isi[12] = (int) isi[8] * (double) isi[7] - ((int) isi[8] * (double) isi[7] * (double) isi[9]) + (double) isi[11];
                 
                 A.addRow(isi);
             }

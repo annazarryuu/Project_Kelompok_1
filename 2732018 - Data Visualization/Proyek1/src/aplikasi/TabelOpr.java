@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
@@ -315,116 +316,108 @@ public class TabelOpr {
         }
     }
     
-    public void FilterTransaksi(JTable table1, Object[] isi, int sheet, int awal, int akhir, String ShipMode, int donation, int total){
+    public void FilterTransaksi(JTable table1, Object[] isi, int awal, int akhir, String ShipMode, int donationMin, int donationMax, int totalMin, int totalMax) throws IOException, ParseException {
+        //isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+        
+        isi[0] = "Order ID";
+        isi[1] = "Order Date";
+        isi[2] = "Ship Date";
+        isi[3] = "Ship Mode";
+        isi[4] = "Customer ID";
+        isi[5] = "Postal Code";
+        isi[6] = "Product ID";
+        isi[7] = "Sales";
+        isi[8] = "Quantity";
+        isi[9] = "Discount";
+        isi[10] = "Profit";
+        isi[11] = "Donation";
+        isi[12] = "Total";
+            
+        boolean add;
+        int compareTanggal;
+        int compareDonasi;
+        double total;
+        double donation;
+        String cmpShip = null;
+        SimpleDateFormat dt1 = new SimpleDateFormat("yyyyMMdd");
         
         A = new DefaultTableModel(null,isi);
         table1.setModel(A);
         
-        int i;
-        boolean add;
-        int compareTanggal;
-        int compareDonasi;
-        int compareTotal;
-        String cmpShip = null;
-        SimpleDateFormat dt1 = new SimpleDateFormat("MMM d, yyyy");
-        SimpleDateFormat dt2 = new SimpleDateFormat("yyyyMMdd");
-        Date tanggal = null;
-
-        try {
-
-            FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
-            Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet datatypeSheet = workbook.getSheetAt(sheet);
-            Iterator<Row> iterator = datatypeSheet.iterator();
-            iterator.next();
-            DataFormatter df = new DataFormatter();
-            while (iterator.hasNext()) {
-
-                Row currentRow = iterator.next();
-                add = true;
-                Iterator<Cell> cellIterator = currentRow.iterator();
-                i = 0;
-
-                while (cellIterator.hasNext()) {
-
-                    Cell currentCell = cellIterator.next();
-                    //getCellTypeEnum shown as deprecated for version 3.15
-                    //getCellTypeEnum ill be renamed to getCellType starting from version 4.0
-//                    if (currentCell.getCellTypeEnum() == CellType.STRING) {
-////                        System.out.print(currentCell.getStringCellValue() + "--");
-//                        isi[i] = currentCell.getStringCellValue();
-//                    } else if (HSSFDateUtil.isCellDateFormatted(currentCell)) {
-//                        System.out.println("Up");
-//                        isi[i] = currentCell.getDateCellValue();
-//                    } else if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-////                        System.out.print(currentCell.getNumericCellValue() + "--");
-//                        isi[i] = currentCell.getNumericCellValue();
-//                    }
-
-                    
-                    isi[i] = df.formatCellValue(currentCell);
-                    
-                    if (currentCell.getCellTypeEnum() == CellType.NUMERIC) {
-                        if (DateUtil.isCellDateFormatted(currentCell)) {
-                            tanggal = new Date((String)isi[i]);
-                            isi[i] = dt1.format(tanggal);
-                        }
-                    }
-                            if(i == 2) {
-                                compareTanggal = Integer.parseInt(dt2.format(tanggal));
-                                if(awal != 0) {
-                                    if(compareTanggal < awal) {
-                                        add = false;
-                                    }
-                                }
-                                
-                                if(akhir != 0) {
-                                    if(compareTanggal > akhir) {
-                                        add = false;
-                                    }
-                                }
-                            }
-                            
-                            if(i == 4) {
-                                if(ShipMode != null) {
-                                    cmpShip = (String) isi[i];
-                                    if(!cmpShip.equals(ShipMode)) {
-                                        add = false;
-                                    }
-                                }
-                            }
-                            
-//                            if(i == 12) {
-//                                compareDonasi = (int) isi[i];
-//                                if(donation != -1) {
-//                                    if(compareDonasi > donation) {
-//                                        add = false;
-//                                    }
-//                                }
-//                            }
-                            
-//                            if(i == 11) {
-//                                compareTotal = Integer.parseInt((String) isi[i]);
-//                                if(total != -1) {
-//                                    if(compareTotal > total) {
-//                                        add = false;
-//                                    }
-//                                }
-//                            }
-                    
-                    i++;
-
+        List<ModelTransaksi> list = new TransaksiController().getList();
+        Iterator<ModelTransaksi> iterator = list.iterator();
+        while (iterator.hasNext()) 
+        {
+            add = true;
+            
+            ModelTransaksi hsl = iterator.next();
+            isi[0] = hsl.getOrderID();
+            isi[1] = hsl.getOrderDate();
+            isi[2] = hsl.getShipDate();
+            isi[3] = hsl.getShipMode().getShipMode();
+            isi[4] = hsl.getPelanggan().getCustomerID();
+            isi[5] = hsl.getPostal().getPostalCode();
+            isi[6] = hsl.getProduct().getProductID();
+            isi[7] = (double) hsl.getSales();
+            isi[8] = hsl.getQuantity();
+            isi[9] = (double) hsl.getDiscount();
+            isi[10] = hsl.getProfit();
+            isi[11] = hsl.getDonation() != null? (double) hsl.getDonation().getJmlDonasi() : (double) 0;
+            isi[12] = (int) isi[8] * (double) isi[7] - ((int) isi[8] * (double) isi[7] * (double) isi[9]) + (double) isi[11];
+            
+            
+            if(awal != 0) {
+                compareTanggal = Integer.parseInt(dt1.format(isi[1]));
+                if(compareTanggal < awal) {
+                    add = false;
                 }
-                
-                    if(add) {
-                        A.addRow(isi);
-                    }
-
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+
+            if(akhir != 0) {
+                compareTanggal = Integer.parseInt(dt1.format(isi[1]));
+                if(compareTanggal > akhir) {
+                    add = false;
+                }
+            }
+            
+            if(ShipMode != null) {
+                cmpShip = (String) isi[3];
+                if(!cmpShip.equals(ShipMode)) {
+                    add = false;
+                }
+            }
+            
+            if(donationMin != -1) {
+                donation = (double) isi[11];
+                if(donation < donationMin) {
+                    add = false;
+                }
+            }
+            
+            if(donationMax != -1) {
+                donation = (double) isi[11];
+                if(donation > donationMax) {
+                    add = false;
+                }
+            }
+            
+            if(totalMin != -1) {
+                total = (double) isi[12];
+                if(total < totalMin) {
+                    add = false;
+                }
+            }
+            
+            if(totalMax != -1) {
+                total = (double) isi[12];
+                if(total > totalMax) {
+                    add = false;
+                }
+            }
+            
+            if(add) {
+                A.addRow(isi);
+            }
         }
     }
 }
