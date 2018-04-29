@@ -72,13 +72,13 @@
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
-                  <Component id="a_transaksi" pref="25" max="32767" attributes="0"/>
+                  <Component id="a_transaksi" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="a_barang" pref="25" max="32767" attributes="0"/>
+                  <Component id="a_barang" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="a_lokasi" pref="26" max="32767" attributes="0"/>
+                  <Component id="a_lokasi" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="a_pelanggan" pref="25" max="32767" attributes="0"/>
+                  <Component id="a_pelanggan" max="32767" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="a_login" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>

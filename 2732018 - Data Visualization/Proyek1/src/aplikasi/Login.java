@@ -7,6 +7,9 @@ package aplikasi;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -199,9 +202,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        Transaksi t = new Transaksi();
-        this.hide();
-        t.setVisible(true);
+        try {
+            Transaksi t = new Transaksi();
+            this.hide();
+            t.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jLabel5MouseClicked
 
     /**

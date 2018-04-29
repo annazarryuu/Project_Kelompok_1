@@ -19,7 +19,7 @@ public class main {
          } catch (InterruptedException ex) {
              Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
          }
-       Transaksi a= new Transaksi();
+       Dashboard a= new Dashboard();
        a.setVisible(true);
     }
 }

@@ -61,9 +61,7 @@ public class ModelBarang {
         return productName;
     }
 
-    /**
-     * @param productName the productName to set
-     */
+
     public void setProductName(String productName) {
         this.productName = productName;
     }

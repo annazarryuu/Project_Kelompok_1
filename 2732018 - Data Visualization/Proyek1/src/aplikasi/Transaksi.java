@@ -5,7 +5,10 @@
  */
 package aplikasi;
 
+import Controller.DaerahController;
 import Controller.TransaksiController;
+import Model.ModelDaerah;
+import Model.ModelTransaksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.KeyAdapter;
@@ -15,9 +18,13 @@ import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.NumberFormatter;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -576,8 +583,27 @@ public class Transaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_a_pelangganMouseClicked
 
     private void t_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_transaksiMouseClicked
-        int row = t_transaksi.getSelectedRow();
-        
+        try {
+            int row = t_transaksi.getSelectedRow();
+            String klik = (t_transaksi.getModel().getValueAt(row, 0).toString());
+            Boolean ketemu=false;
+            List<ModelTransaksi> lis3 = new TransaksiController().getList();
+            Iterator<ModelTransaksi> iterator3 = lis3.iterator();
+            ModelTransaksi hsl = iterator3.next();
+            while (!ketemu && iterator3.hasNext())
+            {
+                hsl = iterator3.next();
+                if(hsl.getOrderID().equals(klik)){
+                    ketemu=true;
+                }
+            }
+            if(ketemu)
+                JOptionPane.showMessageDialog(this, "Ketemu !"+hsl.getOrderID());
+            else
+                JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
+        } catch (IOException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_t_transaksiMouseClicked
 
     private void searchOnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_searchOnMouseClicked
