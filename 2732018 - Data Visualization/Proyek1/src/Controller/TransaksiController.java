@@ -11,7 +11,9 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -83,9 +85,9 @@ public class TransaksiController extends ModelTransaksi{
                 trs.setDiscount(dic.getNumericCellValue());
                 trs.setProfit(profit.getNumericCellValue());
                 if(donID != null){
-                    trs.setDonation(don.searchObject(donID.toString()));
+                    trs.setDonation(donID.getNumericCellValue());
                 } else {
-                    trs.setDonation(null);
+                    trs.setDonation(0.0);
                 }
                 trs.setTotal(tot.getNumericCellValue());
                 
@@ -146,7 +148,10 @@ public class TransaksiController extends ModelTransaksi{
             
             for(int i = 0;i < size;i++){
                 isi[0] = subList.get(i).getOrderID();
-                isi[1] = subList.get(i).getOrderDate();
+                SimpleDateFormat bebas = new SimpleDateFormat("yyyy MM dd");
+                //Date d = new Date(bebas.format(subList.get(i).getOrderDate()));
+                //isi[1] = d;
+                
                 isi[2] = subList.get(i).getShipDate();
                 isi[3] = subList.get(i).getShipMode().getShipMode();
                 isi[4] = subList.get(i).getPelanggan().getCustomerName();
@@ -156,7 +161,7 @@ public class TransaksiController extends ModelTransaksi{
                 isi[8] = subList.get(i).getQuantity();
                 isi[9] = (double) subList.get(i).getDiscount();
                 isi[10] = subList.get(i).getProfit();
-                isi[11] = subList.get(i).getDonation() != null? (double) subList.get(i).getDonation().getJmlDonasi() : (double) 0;
+                isi[11] = subList.get(i).getDonation() != null ? (double) subList.get(i).getDonation() : (double) 0;
                 isi[12] = (int) isi[8] * (double) isi[7] - ((int) isi[8] * (double) isi[7] * (double) isi[9]) + (double) isi[11];
                 
                 A.addRow(isi);

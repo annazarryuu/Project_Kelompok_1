@@ -363,7 +363,7 @@ public class TabelOpr {
             isi[8] = hsl.getQuantity();
             isi[9] = (double) hsl.getDiscount();
             isi[10] = hsl.getProfit();
-            isi[11] = hsl.getDonation() != null? (double) hsl.getDonation().getJmlDonasi() : (double) 0;
+            isi[11] = hsl.getDonation() != null? (double) hsl.getDonation() : (double) 0;
             isi[12] = (int) isi[8] * (double) isi[7] - ((int) isi[8] * (double) isi[7] * (double) isi[9]) + (double) isi[11];
             
             

@@ -14,18 +14,29 @@ import java.util.Date;
 public class ModelTransaksi {
 
     /**
-     * @return the donation
+     * @param donation the donation to set
      */
-    public ModelDonation getDonation() {
-        return donation;
+    public void setDonation(Double donation) {
+        this.donation = donation;
+    }
+    
+    public Double getDonation(){
+        return this.donation;
     }
 
     /**
-     * @param donation the donation to set
+     * @return the donation
      */
-    public void setDonation(ModelDonation donation) {
-        this.donation = donation;
-    }
+//    public ModelDonation getDonation() {
+//        return donation;
+//    }
+//
+//    /**
+//     * @param donation the donation to set
+//     */
+//    public void setDonation(ModelDonation donation) {
+//        this.setDonation(donation);
+//    }
 
     /**
      * @return the orderID
@@ -207,6 +218,7 @@ public class ModelTransaksi {
     private int quantity;
     private double discount;
     private double profit;
-    private ModelDonation donation;
+    //private ModelDonation donation;
+    private Double donation;
     private double total;
 }
