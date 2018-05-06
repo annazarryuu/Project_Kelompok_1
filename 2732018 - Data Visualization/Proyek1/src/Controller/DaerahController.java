@@ -29,7 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Gibran
  */
 public class DaerahController extends ModelDaerah{
-    private List<ModelDaerah> list = new ArrayList<>();
+    private static List<ModelDaerah> list = new ArrayList<>();
     
     public void getAllData() throws IOException{
         //this.list = new ArrayList<ModelKategori>();

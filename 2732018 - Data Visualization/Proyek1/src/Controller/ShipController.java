@@ -27,7 +27,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Gibran
  */
 public class ShipController extends ModelShipMode{
-    List<ModelShipMode> list = new ArrayList<>();
+    static List<ModelShipMode> list = new ArrayList<>();
     
     public void getAllData() throws IOException{
         //this.list = new ArrayList<>();

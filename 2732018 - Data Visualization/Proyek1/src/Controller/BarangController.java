@@ -29,7 +29,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Gibran
  */
 public class BarangController extends ModelBarang{
-    private List<ModelBarang> list = new ArrayList<>();
+    private static List<ModelBarang> list = new ArrayList<>();
     
     public void getAllData() throws IOException{
         //this.list = new ArrayList<>();
