@@ -202,13 +202,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
-        try {
-            Transaksi t = new Transaksi();
-            this.hide();
-            t.setVisible(true);
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Dashboard d = new Dashboard();
+        this.hide();
+        d.setVisible(true);
     }//GEN-LAST:event_jLabel5MouseClicked
 
     /**
