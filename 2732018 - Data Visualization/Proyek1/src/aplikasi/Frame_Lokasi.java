@@ -5,9 +5,19 @@
  */
 package aplikasi;
 import Controller.DaerahController;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class Frame_Lokasi extends javax.swing.JInternalFrame {
 
@@ -78,8 +88,13 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Region");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "West", "Central", "East", "South" }));
         jComboBox1.setBorder(null);
+        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox1ItemStateChanged(evt);
+            }
+        });
 
         jLabel10.setText(":");
 
@@ -87,8 +102,13 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("FILTER");
         jButton1.setBorder(null);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         jComboBox2.setBorder(null);
 
         jLabel14.setText("City");
@@ -184,6 +204,68 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_searchOnMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String region = (String) jComboBox1.getSelectedItem();
+        String city = (String) jComboBox2.getSelectedItem();
+        
+        if(region.length() == 0) {
+            region = null;
+        }
+        
+        if(city.length() == 0) {
+            city = null;
+        }
+        
+        try {
+            A.FilterLokasi(t_lokasi, isi, region, city);
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Lokasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+        try {
+            // TODO add your handling code here:
+            int state = jComboBox1.getSelectedIndex();
+            int cellIndex =  state - 1;
+            List<String> listString = new ArrayList<>();
+            
+            if(cellIndex > -1) {
+                FileInputStream excelFile = new FileInputStream(new File("*/../src/Excel/DataTransaksi.xlsx"));
+                Workbook workbook = new XSSFWorkbook(excelFile);
+                Sheet sheet = workbook.getSheet("Lokasi");
+                Iterator<Row> iterator = sheet.iterator();
+                iterator.next();
+
+                Row currentRow = iterator.next();            
+                while(iterator.hasNext() && currentRow.getCell(cellIndex) != null) {
+                    Cell element = currentRow.getCell(cellIndex);
+                    listString.add(element.getStringCellValue());
+                    currentRow = iterator.next();
+                }
+
+                String[] arrayString = new String[listString.size() + 1];
+                arrayString[0] = "";
+
+                int i = 1;
+                for(String elmnt : listString) {
+                    arrayString[i] = elmnt;
+                    i++;
+                }
+
+                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(arrayString));
+                
+            } else {
+                String[] arrayString = new String[1];
+                arrayString[0] = "";
+                jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(arrayString));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Lokasi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jComboBox1ItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

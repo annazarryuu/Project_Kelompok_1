@@ -79,8 +79,13 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Product Category");
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Furniture", "Office Supplies", "Technology" }));
         jComboBox7.setBorder(null);
+        jComboBox7.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox7ItemStateChanged(evt);
+            }
+        });
 
         jLabel20.setText(":");
 
@@ -88,8 +93,13 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("FILTER");
         jButton4.setBorder(null);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
         jComboBox8.setBorder(null);
 
         jLabel21.setText("Product Sub-Category");
@@ -183,39 +193,47 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_searchOnMouseClicked
 
+    private void jComboBox7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox7ItemStateChanged
+        // TODO add your handling code here:
+        int state = jComboBox7.getSelectedIndex();
+        
+        switch(state){
+            case 0 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" })); break;
+            case 1 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Bookcases", "Chairs", "Furnishings", "Tables" })); break;
+            case 2 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Appliances", "Art", "Binders", "Envelopes", "Fasteers", "Labels", "Paper", "Storage", "Supplies" })); break;
+            case 3 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Copiers", "Machines", "Phones" })); break;
+        }
+    }//GEN-LAST:event_jComboBox7ItemStateChanged
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String kategori = (String) jComboBox7.getSelectedItem();
+        String subKategori = (String) jComboBox8.getSelectedItem();
+        
+        if(kategori.length() == 0) {
+            kategori = null;
+        }
+        
+        if(subKategori.length() == 0) {
+            subKategori = null;
+        }
+        
+        try {
+            A.FilterBarang(t_barang, isi, kategori, subKategori);
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Barang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField searchBox;

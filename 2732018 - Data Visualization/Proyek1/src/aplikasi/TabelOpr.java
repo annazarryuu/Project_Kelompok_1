@@ -421,4 +421,126 @@ public class TabelOpr {
             }
         }
     }
+
+    public void FilterBarang(JTable table1, Object[] isi, String kategori, String subKategori) throws IOException {
+        //isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+        
+        isi[0] = "Product ID";
+        isi[1] = "Category";
+        isi[2] = "Sub-Category";
+        isi[3] = "Product Name";
+            
+        boolean add;
+        
+        
+        A = new DefaultTableModel(null,isi);
+        table1.setModel(A);
+        
+        List<ModelBarang> list = new BarangController().getList();
+        Iterator<ModelBarang> iterator = list.iterator();
+        while (iterator.hasNext()) 
+        {
+            add = true;
+            
+            ModelBarang hsl = iterator.next();
+            isi[0] = hsl.getProductID();
+            isi[1] = hsl.getSubcategory().getKategori().getKategori();
+            isi[2] = hsl.getSubcategory().getSubKategori();
+            isi[3] = hsl.getProductName();
+            
+            if(kategori != null) {
+                if(!isi[1].equals(kategori)) {
+                    add = false;
+                }
+            }
+            
+            if(subKategori != null) {
+                if(!isi[2].equals(subKategori)) {
+                    add = false;
+                }
+            }
+            
+            if(add) {
+                A.addRow(isi);
+            }
+        }
+    }
+    
+    public void FilterPelanggan(JTable table1, Object[] isi, String segment) throws IOException {
+        //isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+        
+        isi[0] = "Customer ID";
+        isi[1] = "Name";
+        isi[2] = "Segment";
+            
+        boolean add;
+        
+        A = new DefaultTableModel(null,isi);
+        table1.setModel(A);
+        
+        List<ModelPelanggan> list = new PelangganController().getList();
+        Iterator<ModelPelanggan> iterator = list.iterator();
+        while (iterator.hasNext()) 
+        {
+            add = true;
+            
+            ModelPelanggan hsl = iterator.next();
+            isi[0] = hsl.getCustomerID();
+            isi[1] = hsl.getCustomerName();
+            isi[2] = hsl.getSegment();
+            
+            if(segment != null) {
+                if(!isi[2].equals(segment)) {
+                    add = false;
+                }
+            }
+            
+            if(add) {
+                A.addRow(isi);
+            }
+        }
+    }
+    
+    public void FilterLokasi(JTable table1, Object[] isi, String region, String city) throws IOException {
+        //isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+        
+        isi[0] = "Customer ID";
+        isi[1] = "Name";
+        isi[2] = "Segment";
+            
+        boolean add;
+        
+        A = new DefaultTableModel(null,isi);
+        table1.setModel(A);
+        
+        List<ModelDaerah> list = new DaerahController().getList();
+        Iterator<ModelDaerah> iterator = list.iterator();
+        while (iterator.hasNext()) 
+        {
+            add = true;
+            
+            ModelDaerah hsl = iterator.next();
+            isi[0] = hsl.getPostalCode();
+            isi[1] = hsl.getRegion();
+            isi[2] = hsl.getCountry();
+            isi[3] = hsl.getCity();
+            isi[4] = hsl.getState();
+            
+            if(region != null) {
+                if(!isi[1].equals(region)) {
+                    add = false;
+                }
+            }
+            
+            if(city != null) {
+                if(!isi[3].equals(city)) {
+                    add = false;
+                }
+            }
+            
+            if(add) {
+                A.addRow(isi);
+            }
+        }
+    }
 }
