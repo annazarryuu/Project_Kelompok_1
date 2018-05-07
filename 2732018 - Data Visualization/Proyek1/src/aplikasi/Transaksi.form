@@ -523,12 +523,11 @@
             <Component class="javax.swing.JComboBox" name="jComboBox1">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value=""/>
-                    <StringItem index="1" value="Standard Class"/>
-                    <StringItem index="2" value="Second Class"/>
-                    <StringItem index="3" value="First Class"/>
-                    <StringItem index="4" value="Same Day"/>
+                  <StringArray count="4">
+                    <StringItem index="0" value="Standard Class"/>
+                    <StringItem index="1" value="Second Class"/>
+                    <StringItem index="2" value="First Class"/>
+                    <StringItem index="3" value="Same Day"/>
                   </StringArray>
                 </Property>
               </Properties>

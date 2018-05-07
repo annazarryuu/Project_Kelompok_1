@@ -76,7 +76,7 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Segment");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Consumer", "Home Office", "Corporate" }));
         jComboBox4.setBorder(null);
 
         jLabel14.setText(":");
@@ -85,6 +85,11 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("FILTER");
         jButton4.setBorder(null);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -166,27 +171,27 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_searchOnMouseClicked
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        String segment = (String) jComboBox4.getSelectedItem();
+        
+        if(segment.length() == 0) {
+            segment = null;
+        }
+        
+        try {
+            A.FilterPelanggan(t_pelanggan, isi, segment);
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField searchBox;
