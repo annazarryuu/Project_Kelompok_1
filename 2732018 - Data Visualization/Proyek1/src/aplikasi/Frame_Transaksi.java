@@ -393,16 +393,29 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             List<ModelTransaksi> lis3 = new TransaksiController().getList();
             Iterator<ModelTransaksi> iterator3 = lis3.iterator();
             ModelTransaksi hsl = iterator3.next();
+            
             while (!ketemu && iterator3.hasNext())
             {
-                hsl = iterator3.next();
-                if(hsl.getOrderID().equals(klik)){
+                if(hsl.getOrderID().equals(klik)){       
                     ketemu=true;
                 }
             }
-            if(ketemu)
-            JOptionPane.showMessageDialog(this, "Ketemu !"+hsl.getOrderID());
-            else
+            if(ketemu){
+                Detail_Transaksi a= new Detail_Transaksi();
+                a.orderIDText.setText(hsl.getOrderID());
+                a.orderDateText.setText(hsl.getOrderDate().toString());
+                a.shipModeText1.setText(hsl.getShipMode().getShipMode());
+                a.shipDateText.setText(hsl.getShipDate().toString());
+                a.custIDText.setText(hsl.getPelanggan().getCustomerID());
+                a.custNameText.setText(hsl.getPelanggan().getCustomerName());
+                a.kodePOSText.setText(hsl.getPostal().getPostalCode());
+                a.kotaText.setText(hsl.getPostal().getCity());
+                a.stateText.setText(hsl.getPostal().getState());
+                a.namaProdukText.setText(hsl.getProduct().getProductName());
+                a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                a.donationText.setText(hsl.getDonation().toString());
+                a.setVisible(true);
+            }else
             JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
