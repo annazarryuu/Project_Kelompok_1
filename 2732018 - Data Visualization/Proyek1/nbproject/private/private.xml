@@ -6,25 +6,13 @@
         <group/>
 =======
         <group>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/main.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Barang.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Dashboard.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Pelanggan.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Lokasi.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Login.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/TransaksiController.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Transaksi.java</file>
-=======
-            <file>file:/C:/Users/Annazar/Documents/GitHub/Project_Kelompok2/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/BarangController.java</file>
-            <file>file:/C:/Users/Annazar/Documents/GitHub/Project_Kelompok2/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Lokasi.java</file>
->>>>>>> ff2cd80267a350611004153f9d595ce46752ad41
-=======
-            <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/TabelOpr.java</file>
+            <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Lokasi.java</file>
             <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Login.java</file>
             <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Barang.java</file>
->>>>>>> Stashed changes
+            <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/main.java</file>
+            <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Transaksi.java</file>
+            <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Pelanggan.java</file>
+            <file>file:/D:/!!dataKuliah/Semester2/PROYEK1/Git/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Dash_Admin.java</file>
         </group>
 >>>>>>> dddbffc6b7890208ca85e820ba162f585af881d0
     </open-files>
