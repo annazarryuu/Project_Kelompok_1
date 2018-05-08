@@ -31,7 +31,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Gibran
  */
 public class TransaksiController extends ModelTransaksi{
-    List<ModelTransaksi> list = new ArrayList<>();
+    static List<ModelTransaksi> list = new ArrayList<>();
     
     public void getAllData() throws IOException{
         //this.list = new ArrayList<>();

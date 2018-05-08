@@ -26,7 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Gibran
  */
 public class DonationController extends ModelDonation{
-    List<ModelDonation> list = new ArrayList<>();
+    static List<ModelDonation> list = new ArrayList<>();
     
     public void getAllData() throws IOException{
         //this.list = new ArrayList<>();

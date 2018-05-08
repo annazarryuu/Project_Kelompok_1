@@ -27,7 +27,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Gibran
  */
 public class SubKategoriController extends ModelSubKategori{
-    private List<ModelSubKategori> list = new ArrayList<>();
+    private static List<ModelSubKategori> list = new ArrayList<>();
     
     public void getAllData() throws IOException{
         //this.list = new ArrayList<>();

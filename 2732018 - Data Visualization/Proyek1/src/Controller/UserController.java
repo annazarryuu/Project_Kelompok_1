@@ -26,7 +26,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Gibran
  */
 public class UserController extends ModelUser{
-    List<ModelUser> list = new ArrayList<>();
+    static List<ModelUser> list = new ArrayList<>();
     
     public void getAllData() throws IOException{
         //this.list = new ArrayList<ModelKategori>();
