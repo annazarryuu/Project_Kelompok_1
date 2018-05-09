@@ -6,9 +6,15 @@
 package aplikasi;
 
 import Controller.PelangganController;
+import Controller.TransaksiController;
+import Model.ModelPelanggan;
+import Model.ModelTransaksi;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class Frame_Pelanggan extends javax.swing.JInternalFrame {
 
@@ -70,6 +76,11 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        t_pelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_pelangganMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(t_pelanggan);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -193,6 +204,34 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
             Logger.getLogger(Frame_Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void t_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_pelangganMouseClicked
+        try {
+            int row = t_pelanggan.getSelectedRow();
+            String klik = (t_pelanggan.getModel().getValueAt(row, 0).toString());
+            Boolean ketemu=false;
+            List<ModelPelanggan> lis3 = new PelangganController().getList();
+            Iterator<ModelPelanggan> iterator3 = lis3.iterator();
+            ModelPelanggan hsl = iterator3.next();
+            
+            while (!ketemu && iterator3.hasNext())
+            {
+                if(hsl.getCustomerID().equals(klik)){       
+                    ketemu=true;
+                }
+            }
+            if(ketemu){
+                Detail_Pelanggan a = new Detail_Pelanggan();
+                a.textBoxCustomerID.setText(hsl.getCustomerID());
+                a.textBoxCustomerName.setText(hsl.getCustomerName());
+                a.textBoxCustomerSegment.setText(hsl.getSegment());
+                a.setVisible(true);
+            }else
+            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
+        } catch (IOException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_t_pelangganMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -388,7 +388,8 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
     private void t_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_transaksiMouseClicked
         try {
             int row = t_transaksi.getSelectedRow();
-            String klik = (t_transaksi.getModel().getValueAt(row, 0).toString());
+            String klik1 = (t_transaksi.getModel().getValueAt(row, 0).toString());
+            String klik2 = (t_transaksi.getModel().getValueAt(row, 6).toString());
             Boolean ketemu=false;
             List<ModelTransaksi> lis3 = new TransaksiController().getList();
             Iterator<ModelTransaksi> iterator3 = lis3.iterator();
@@ -396,27 +397,42 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             
             while (!ketemu && iterator3.hasNext())
             {
-                if(hsl.getOrderID().equals(klik)){       
+                if(hsl.getOrderID().equals(klik1) && hsl.getProduct().getProductName().equals(klik2)){       
                     ketemu=true;
+                    Detail_Transaksi a= new Detail_Transaksi();
+                    a.orderIDText.setText(hsl.getOrderID());
+                    a.orderDateText.setText(hsl.getOrderDate().toString());
+                    a.shipModeText1.setText(hsl.getShipMode().getShipMode());
+                    a.shipDateText.setText(hsl.getShipDate().toString());
+                    a.custIDText.setText(hsl.getPelanggan().getCustomerID());
+                    a.custNameText.setText(hsl.getPelanggan().getCustomerName());
+                    a.kodePOSText.setText(hsl.getPostal().getPostalCode());
+                    a.kotaText.setText(hsl.getPostal().getCity());
+                    a.stateText.setText(hsl.getPostal().getState());
+                    a.namaProdukText.setText(hsl.getProduct().getProductName());
+                    a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                    a.donationText.setText(hsl.getDonation().toString());
+                    a.setVisible(true);
                 }
+                hsl = iterator3.next();
             }
-            if(ketemu){
-                Detail_Transaksi a= new Detail_Transaksi();
-                a.orderIDText.setText(hsl.getOrderID());
-                a.orderDateText.setText(hsl.getOrderDate().toString());
-                a.shipModeText1.setText(hsl.getShipMode().getShipMode());
-                a.shipDateText.setText(hsl.getShipDate().toString());
-                a.custIDText.setText(hsl.getPelanggan().getCustomerID());
-                a.custNameText.setText(hsl.getPelanggan().getCustomerName());
-                a.kodePOSText.setText(hsl.getPostal().getPostalCode());
-                a.kotaText.setText(hsl.getPostal().getCity());
-                a.stateText.setText(hsl.getPostal().getState());
-                a.namaProdukText.setText(hsl.getProduct().getProductName());
-                a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
-                a.donationText.setText(hsl.getDonation().toString());
-                a.setVisible(true);
-            }else
-            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
+//            if(ketemu){
+//                Detail_Transaksi a= new Detail_Transaksi();
+//                a.orderIDText.setText(hsl.getOrderID());
+//                a.orderDateText.setText(hsl.getOrderDate().toString());
+//                a.shipModeText1.setText(hsl.getShipMode().getShipMode());
+//                a.shipDateText.setText(hsl.getShipDate().toString());
+//                a.custIDText.setText(hsl.getPelanggan().getCustomerID());
+//                a.custNameText.setText(hsl.getPelanggan().getCustomerName());
+//                a.kodePOSText.setText(hsl.getPostal().getPostalCode());
+//                a.kotaText.setText(hsl.getPostal().getCity());
+//                a.stateText.setText(hsl.getPostal().getState());
+//                a.namaProdukText.setText(hsl.getProduct().getProductName());
+//                a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
+//                a.donationText.setText(hsl.getDonation().toString());
+//                a.setVisible(true);
+//            }else
+//            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
