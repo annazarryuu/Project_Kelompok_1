@@ -82,6 +82,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        t_transaksi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         t_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 t_transaksiMouseClicked(evt);
@@ -394,45 +395,63 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             List<ModelTransaksi> lis3 = new TransaksiController().getList();
             Iterator<ModelTransaksi> iterator3 = lis3.iterator();
             ModelTransaksi hsl = iterator3.next();
-            
+            Detail_Transaksi a = new Detail_Transaksi();
+
             while (!ketemu && iterator3.hasNext())
             {
-                if(hsl.getOrderID().equals(klik1) && hsl.getProduct().getProductName().equals(klik2)){       
+                if(hsl.getOrderID().equals(klik1) && hsl.getProduct().getProductName().equals(klik2)){
+                    System.out.println(klik1 + " ketemu!!! " + klik2);
                     ketemu=true;
-                    Detail_Transaksi a= new Detail_Transaksi();
-                    a.orderIDText.setText(hsl.getOrderID());
+                    a.cardPanel.removeAll();
+                    a.cardPanel.add(a.mainPanel);
+                    a.orderID.setText(hsl.getOrderID());
+                    a.eOrderID.setText(hsl.getOrderDate().toString());
                     a.orderDateText.setText(hsl.getOrderDate().toString());
-                    a.shipModeText1.setText(hsl.getShipMode().getShipMode());
+                    a.eOrderDate.setDate(hsl.getOrderDate());
+                    a.shipModeText2.setText(hsl.getShipMode().getShipMode());
                     a.shipDateText.setText(hsl.getShipDate().toString());
-                    a.custIDText.setText(hsl.getPelanggan().getCustomerID());
-                    a.custNameText.setText(hsl.getPelanggan().getCustomerName());
-                    a.kodePOSText.setText(hsl.getPostal().getPostalCode());
-                    a.kotaText.setText(hsl.getPostal().getCity());
-                    a.stateText.setText(hsl.getPostal().getState());
-                    a.namaProdukText.setText(hsl.getProduct().getProductName());
-                    a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
-                    a.donationText.setText(hsl.getDonation().toString());
+                    a.eShipDate.setDate(hsl.getShipDate());
+                    a.custIDText1.setText(hsl.getPelanggan().getCustomerID());
+                    a.eCustID.setText(hsl.getPelanggan().getCustomerID());
+                    a.custNameText1.setText(hsl.getPelanggan().getCustomerName());
+                    a.eCustName.setText(hsl.getPelanggan().getCustomerName());
+                    a.kodePOSText1.setText(hsl.getPostal().getPostalCode());
+                    a.eKodePOS.setText(hsl.getPostal().getPostalCode());
+                    a.kotaText1.setText(hsl.getPostal().getCity());
+                    a.eKota.setText(hsl.getPostal().getCity());
+                    a.stateText1.setText(hsl.getPostal().getState());
+                    a.eState.setText(hsl.getPostal().getState());
+                    a.namaProdukText1.setText(hsl.getProduct().getProductName());
+                    a.eNamaProduk.setText(hsl.getProduct().getProductName());
+                    a.kategoriText1.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                    a.eKategori.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                    a.donationText1.setText(hsl.getDonation().toString());
+                    a.eDonation.setText(hsl.getDonation().toString());
+                    if(!true){  //cek admin
+                        a.EditButton.setVisible(false);
+                        a.DeleteButton.setVisible(false);
+                    }
                     a.setVisible(true);
                 }
                 hsl = iterator3.next();
             }
-//            if(ketemu){
-//                Detail_Transaksi a= new Detail_Transaksi();
-//                a.orderIDText.setText(hsl.getOrderID());
-//                a.orderDateText.setText(hsl.getOrderDate().toString());
-//                a.shipModeText1.setText(hsl.getShipMode().getShipMode());
-//                a.shipDateText.setText(hsl.getShipDate().toString());
-//                a.custIDText.setText(hsl.getPelanggan().getCustomerID());
-//                a.custNameText.setText(hsl.getPelanggan().getCustomerName());
-//                a.kodePOSText.setText(hsl.getPostal().getPostalCode());
-//                a.kotaText.setText(hsl.getPostal().getCity());
-//                a.stateText.setText(hsl.getPostal().getState());
-//                a.namaProdukText.setText(hsl.getProduct().getProductName());
-//                a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
-//                a.donationText.setText(hsl.getDonation().toString());
-//                a.setVisible(true);
-//            }else
-//            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
+            //            if(ketemu){
+                //                Detail_Transaksi a= new Detail_Transaksi();
+                //                a.orderIDText.setText(hsl.getOrderID());
+                //                a.orderDateText.setText(hsl.getOrderDate().toString());
+                //                a.shipModeText1.setText(hsl.getShipMode().getShipMode());
+                //                a.shipDateText.setText(hsl.getShipDate().toString());
+                //                a.custIDText.setText(hsl.getPelanggan().getCustomerID());
+                //                a.custNameText.setText(hsl.getPelanggan().getCustomerName());
+                //                a.kodePOSText.setText(hsl.getPostal().getPostalCode());
+                //                a.kotaText.setText(hsl.getPostal().getCity());
+                //                a.stateText.setText(hsl.getPostal().getState());
+                //                a.namaProdukText.setText(hsl.getProduct().getProductName());
+                //                a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                //                a.donationText.setText(hsl.getDonation().toString());
+                //                a.setVisible(true);
+                //            }else
+            //            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -461,50 +480,50 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Date awal = jDateChooser1.getDate();
         Date akhir = jDateChooser2.getDate();
-        
+
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyyMMdd");
         String tanggalAwal = null;
         String tanggalAkhir = null;
-        
+
         String ShipMode = (String) jComboBox1.getSelectedItem();
-        
+
         int cmpAwal = 0;
         int cmpAkhir = 0;
         int donationMin = -1;
         int donationMax = -1;
         int totalMin = -1;
         int totalMax = -1;
-        
+
         if(jFormattedTextField1.getText().length() != 0) {
             donationMin = Integer.parseInt(jFormattedTextField1.getText().replaceAll(",", ""));
         }
-        
+
         if(jFormattedTextField2.getText().length() != 0) {
             donationMax = Integer.parseInt(jFormattedTextField2.getText().replaceAll(",", ""));
         }
-        
+
         if(jFormattedTextField3.getText().length() != 0) {
             totalMin = Integer.parseInt(jFormattedTextField3.getText().replaceAll(",", ""));
         }
-        
+
         if(jFormattedTextField4.getText().length() != 0) {
             totalMax = Integer.parseInt(jFormattedTextField4.getText().replaceAll(",", ""));
         }
-        
+
         if(ShipMode.length() == 0) {
             ShipMode = null;
         }
-        
+
         if(awal != null) {
             tanggalAwal = dt1.format(awal);
             cmpAwal = Integer.parseInt(tanggalAwal);
         }
-        
+
         if(akhir != null) {
             tanggalAkhir = dt1.format(akhir);
             cmpAkhir = Integer.parseInt(tanggalAkhir);
         }
-        
+
         try {
             A.FilterTransaksi(t_transaksi, isi, cmpAwal, cmpAkhir, ShipMode, donationMin, donationMax, totalMin, totalMax);
         } catch (IOException ex) {
@@ -513,6 +532,10 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
@@ -529,10 +552,6 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
     private void jFormattedTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
