@@ -10,10 +10,10 @@ import Model.ModelTransaksi;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -106,7 +106,7 @@ public class TransaksiController extends ModelTransaksi{
         return this.list;
     }
     
-    public ModelTransaksi searchObject(String id) throws IOException{
+    public ModelTransaksi searchObject(String id, String produkName) throws IOException{
         ModelTransaksi trs = new ModelTransaksi();
         
         if(this.list.isEmpty()){
@@ -116,10 +116,11 @@ public class TransaksiController extends ModelTransaksi{
         boolean ketemu = false;
         while(i<list.size() && !ketemu){
             String ID = list.get(i).getOrderID();
+            String Name = list.get(i).getProduct().getProductName();
 
             trs = list.get(i);
 
-            if(ID.equals(id)){
+            if(ID.equals(id) && Name.equals(produkName)){
                 ketemu = true;
             }
 
@@ -128,6 +129,81 @@ public class TransaksiController extends ModelTransaksi{
         }
         
         return trs;
+    }
+    
+    public int searchObjectIndex(String id, String produkName) throws IOException{
+        ModelTransaksi trs = new ModelTransaksi();
+        
+        if(this.list.isEmpty()){
+            getAllData();
+        }
+        int i = 0;
+        boolean ketemu = false;
+        while(i<list.size() && !ketemu){
+            String ID = list.get(i).getOrderID();
+            String Name = list.get(i).getProduct().getProductName();
+
+            if(ID.equals(id) && Name.equals(produkName)){
+                ketemu = true;
+            }
+
+            i += 1;
+        
+        }
+        
+        if(ketemu){
+            return (i-1);
+        }else{
+            return -1;
+        }
+    }
+    
+    public void editListatIndex(int index, ModelTransaksi newList) {
+        list.set(index, newList);
+    }
+    
+    public void delete(String orderId, String Proname) throws IOException {
+        this.deleteList(orderId, Proname);
+        this.deleteExcel(orderId, Proname);
+    }
+    
+    public void deleteList(String OrderId, String ProName) throws IOException {
+        list.remove(searchObjectIndex(OrderId, ProName));
+    }
+    
+    public void deleteExcel(String OrderId, String ProName) throws FileNotFoundException, IOException {
+        
+        FileInputStream excelFile = new FileInputStream(new File(super.FILE_NAME));
+        XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
+        Sheet sheet = workbook.getSheetAt(3);
+        int lastRowNum = sheet.getLastRowNum();
+        int rowIndex = 1;
+        boolean ketemu = false;
+        Iterator<Row> iterator = sheet.iterator();
+        Row row = iterator.next();
+        BarangController br = new BarangController();
+        
+        while(iterator.hasNext() && !ketemu) {
+            row = iterator.next();
+            if(row.getCell(1).getStringCellValue().equals(OrderId) && br.searchObject(row.getCell(7).toString()).getProductName().equals(ProName)){
+                ketemu = true;
+            }else{
+                rowIndex++;
+            }
+        }
+        
+        if(rowIndex >= 0 && rowIndex < lastRowNum){
+            sheet.shiftRows(rowIndex + 1, lastRowNum, -1);
+        }else if(rowIndex == lastRowNum){
+            Row removingRow = sheet.getRow(rowIndex);
+            if(removingRow != null){
+                sheet.removeRow(removingRow);
+            }
+        }
+        
+        FileOutputStream outputStream = new FileOutputStream(super.FILE_NAME);
+        workbook.write(outputStream);
+        workbook.close();
     }
     
     public void showTable(JTable table1, Object[] isi) throws IOException{
@@ -149,9 +225,9 @@ public class TransaksiController extends ModelTransaksi{
             for(int i = 0;i < size;i++){
                 isi[0] = subList.get(i).getOrderID();
                 SimpleDateFormat bebas = new SimpleDateFormat("yyyy MM dd");
-                //Date d = new Date(bebas.format(subList.get(i).getOrderDate()));
-                //isi[1] = d;
-                
+//                Date d = new Date(bebas.format(subList.get(i).getOrderDate()));
+//                isi[1] = d;
+                isi[1] = subList.get(i).getOrderDate();
                 isi[2] = subList.get(i).getShipDate();
                 isi[3] = subList.get(i).getShipMode().getShipMode();
                 isi[4] = subList.get(i).getPelanggan().getCustomerName();

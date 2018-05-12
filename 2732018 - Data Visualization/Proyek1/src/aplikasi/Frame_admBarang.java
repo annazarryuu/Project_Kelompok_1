@@ -5,28 +5,22 @@
  */
 package aplikasi;
 
-import Controller.PelangganController;
-import Controller.TransaksiController;
-import Model.ModelPelanggan;
-import Model.ModelTransaksi;
+import Controller.BarangController;
 import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
-public class Frame_Pelanggan extends javax.swing.JInternalFrame {
+public class Frame_admBarang extends javax.swing.JInternalFrame {
 
     TabelOpr A = new TabelOpr();
-    PelangganController p = new PelangganController();
-    Object[] isi = {"Customer ID", "Name", "Segment"};
-    public Frame_Pelanggan() {
+    Object[] isi = {"Product ID","Category","Sub-Category","Product Name"};
+    Controller.BarangController Brg = new BarangController();
+    public Frame_admBarang() {
         try {
             initComponents();
-            p.showTable(t_pelanggan, isi);
+            Brg.showTable(t_barang, isi);
         } catch (IOException ex) {
-            Logger.getLogger(Frame_Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frame_admBarang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -43,15 +37,19 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
         searchBox = new javax.swing.JTextField();
         searchOn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        t_pelanggan = new javax.swing.JTable();
+        t_barang = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
-        jLabel14 = new javax.swing.JLabel();
+        jComboBox7 = new javax.swing.JComboBox<>();
+        jLabel20 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        jComboBox8 = new javax.swing.JComboBox<>();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        searchBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer ID", "Name", "Segment" }));
+        searchBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product ID", "Category", "Sub-Category", "Product Name" }));
 
         searchOn.setBackground(new java.awt.Color(0, 0, 51));
         searchOn.setForeground(new java.awt.Color(255, 255, 255));
@@ -65,7 +63,7 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
             }
         });
 
-        t_pelanggan.setModel(new javax.swing.table.DefaultTableModel(
+        t_barang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -76,22 +74,22 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        t_pelanggan.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_pelangganMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(t_pelanggan);
+        jScrollPane1.setViewportView(t_barang);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102), 2), "Filtering"));
 
-        jLabel13.setText("Segment");
+        jLabel13.setText("Product Category");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Consumer", "Home Office", "Corporate" }));
-        jComboBox4.setBorder(null);
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Furniture", "Office Supplies", "Technology" }));
+        jComboBox7.setBorder(null);
+        jComboBox7.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBox7ItemStateChanged(evt);
+            }
+        });
 
-        jLabel14.setText(":");
+        jLabel20.setText(":");
 
         jButton4.setBackground(new java.awt.Color(0, 0, 51));
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,50 +101,64 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
+        jComboBox8.setBorder(null);
+
+        jLabel21.setText("Product Sub-Category");
+
+        jLabel22.setText(":");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel14)
+                        .addComponent(jLabel20)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(90, 90, 90)
+                        .addComponent(jLabel21)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel22)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(529, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(10, 10, 10)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addGap(32, 32, 32)
+                    .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20)
+                    .addComponent(jLabel21)
+                    .addComponent(jComboBox8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel22))
+                .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("List Pelanggan");
+        jLabel1.setText("List Barang");
+
+        jButton1.setText("jButton1");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(268, 268, 268)))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -154,7 +166,9 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
                             .addComponent(searchBy, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(searchOn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchOn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -169,11 +183,13 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
                             .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)))
                     .addComponent(searchOn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -184,67 +200,60 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
         String cari = searchBox.getText();
         int cell = searchBy.getSelectedIndex();
         try {
-            A.search(t_pelanggan, 2, cell, cari);
+            A.search(t_barang, 4, cell, cari);
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_searchOnMouseClicked
 
+    private void jComboBox7ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox7ItemStateChanged
+        // TODO add your handling code here:
+        int state = jComboBox7.getSelectedIndex();
+        
+        switch(state){
+            case 0 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" })); break;
+            case 1 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Bookcases", "Chairs", "Furnishings", "Tables" })); break;
+            case 2 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Appliances", "Art", "Binders", "Envelopes", "Fasteners", "Labels", "Paper", "Storage", "Supplies" })); break;
+            case 3 : jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Copiers", "Machines", "Phones" })); break;
+        }
+    }//GEN-LAST:event_jComboBox7ItemStateChanged
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        String segment = (String) jComboBox4.getSelectedItem();
+        String kategori = (String) jComboBox7.getSelectedItem();
+        String subKategori = (String) jComboBox8.getSelectedItem();
         
-        if(segment.length() == 0) {
-            segment = null;
+        if(kategori.length() == 0) {
+            kategori = null;
+        }
+        
+        if(subKategori.length() == 0) {
+            subKategori = null;
         }
         
         try {
-            A.FilterPelanggan(t_pelanggan, isi, segment);
+            A.FilterBarang(t_barang, isi, kategori, subKategori);
         } catch (IOException ex) {
-            Logger.getLogger(Frame_Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Frame_admBarang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void t_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_pelangganMouseClicked
-        try {
-            int row = t_pelanggan.getSelectedRow();
-            String klik = (t_pelanggan.getModel().getValueAt(row, 0).toString());
-            Boolean ketemu=false;
-            List<ModelPelanggan> lis3 = new PelangganController().getList();
-            Iterator<ModelPelanggan> iterator3 = lis3.iterator();
-            ModelPelanggan hsl = iterator3.next();
-            
-            while (!ketemu && iterator3.hasNext())
-            {
-                if(hsl.getCustomerID().equals(klik)){       
-                    ketemu=true;
-                }
-            }
-            if(ketemu){
-                Detail_Pelanggan a = new Detail_Pelanggan();
-                a.textBoxCustomerID.setText(hsl.getCustomerID());
-                a.textBoxCustomerName.setText(hsl.getCustomerName());
-                a.textBoxCustomerSegment.setText(hsl.getSegment());
-                a.setVisible(true);
-            }else
-            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
-        } catch (IOException ex) {
-            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_t_pelangganMouseClicked
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox4;
+    private javax.swing.JComboBox<String> jComboBox7;
+    private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField searchBox;
     private javax.swing.JComboBox<String> searchBy;
     private javax.swing.JButton searchOn;
-    private javax.swing.JTable t_pelanggan;
+    private javax.swing.JTable t_barang;
     // End of variables declaration//GEN-END:variables
 }

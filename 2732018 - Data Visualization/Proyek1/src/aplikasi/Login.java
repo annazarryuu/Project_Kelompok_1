@@ -256,7 +256,6 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            //notifLabel.setText("Ariana Grande");
             String un = usernameField.getText();
             String pass = passwordField.getText();
             
@@ -270,6 +269,7 @@ public class Login extends javax.swing.JFrame {
             }else{
                 notifLabel.setText("Maaf, anda gagal login");
                 usernameField.setText("");
+                usernameField.enable(true);
                 passwordField.setText("");
             }
         } catch (Exception ex) {

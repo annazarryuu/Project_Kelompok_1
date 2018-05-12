@@ -67,6 +67,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1220, 717));
 
@@ -81,6 +82,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        t_transaksi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         t_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 t_transaksiMouseClicked(evt);
@@ -338,6 +340,9 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                                 .addGap(31, 31, 31))
                         );
 
+                        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+                        jLabel1.setText("List Transaksi");
+
                         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                         getContentPane().setLayout(layout);
                         layout.setHorizontalGroup(
@@ -353,7 +358,10 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(searchOn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
                         );
                         layout.setVerticalGroup(
@@ -366,11 +374,13 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                                         .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(searchBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(32, 32, 32)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addContainerGap(15, Short.MAX_VALUE))
                         );
 
                         pack();
@@ -379,22 +389,69 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
     private void t_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_transaksiMouseClicked
         try {
             int row = t_transaksi.getSelectedRow();
-            String klik = (t_transaksi.getModel().getValueAt(row, 0).toString());
+            String klik1 = (t_transaksi.getModel().getValueAt(row, 0).toString());
+            String klik2 = (t_transaksi.getModel().getValueAt(row, 6).toString());
             Boolean ketemu=false;
             List<ModelTransaksi> lis3 = new TransaksiController().getList();
             Iterator<ModelTransaksi> iterator3 = lis3.iterator();
             ModelTransaksi hsl = iterator3.next();
+            Detail_Transaksi a = new Detail_Transaksi();
+
             while (!ketemu && iterator3.hasNext())
             {
-                hsl = iterator3.next();
-                if(hsl.getOrderID().equals(klik)){
+                if(hsl.getOrderID().equals(klik1) && hsl.getProduct().getProductName().equals(klik2)){
+                    System.out.println(klik1 + " ketemu!!! " + klik2);
                     ketemu=true;
+                    a.cardPanel.removeAll();
+                    a.cardPanel.add(a.mainPanel);
+                    a.orderID.setText(hsl.getOrderID());
+                    a.eOrderID.setText(hsl.getOrderDate().toString());
+                    a.orderDateText.setText(hsl.getOrderDate().toString());
+                    a.eOrderDate.setDate(hsl.getOrderDate());
+                    a.shipModeText2.setText(hsl.getShipMode().getShipMode());
+                    a.shipDateText.setText(hsl.getShipDate().toString());
+                    a.eShipDate.setDate(hsl.getShipDate());
+                    a.custIDText1.setText(hsl.getPelanggan().getCustomerID());
+                    a.eCustID.setText(hsl.getPelanggan().getCustomerID());
+                    a.custNameText1.setText(hsl.getPelanggan().getCustomerName());
+                    a.eCustName.setText(hsl.getPelanggan().getCustomerName());
+                    a.kodePOSText1.setText(hsl.getPostal().getPostalCode());
+                    a.eKodePOS.setText(hsl.getPostal().getPostalCode());
+                    a.kotaText1.setText(hsl.getPostal().getCity());
+                    a.eKota.setText(hsl.getPostal().getCity());
+                    a.stateText1.setText(hsl.getPostal().getState());
+                    a.eState.setText(hsl.getPostal().getState());
+                    a.namaProdukText1.setText(hsl.getProduct().getProductName());
+                    a.eNamaProduk.setText(hsl.getProduct().getProductName());
+                    a.kategoriText1.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                    a.eKategori.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                    a.donationText1.setText(hsl.getDonation().toString());
+                    a.eDonation.setText(hsl.getDonation().toString());
+                    if(!true){  //cek admin
+                        a.EditButton.setVisible(false);
+                        a.DeleteButton.setVisible(false);
+                    }
+                    a.setVisible(true);
                 }
+                hsl = iterator3.next();
             }
-            if(ketemu)
-            JOptionPane.showMessageDialog(this, "Ketemu !"+hsl.getOrderID());
-            else
-            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
+            //            if(ketemu){
+                //                Detail_Transaksi a= new Detail_Transaksi();
+                //                a.orderIDText.setText(hsl.getOrderID());
+                //                a.orderDateText.setText(hsl.getOrderDate().toString());
+                //                a.shipModeText1.setText(hsl.getShipMode().getShipMode());
+                //                a.shipDateText.setText(hsl.getShipDate().toString());
+                //                a.custIDText.setText(hsl.getPelanggan().getCustomerID());
+                //                a.custNameText.setText(hsl.getPelanggan().getCustomerName());
+                //                a.kodePOSText.setText(hsl.getPostal().getPostalCode());
+                //                a.kotaText.setText(hsl.getPostal().getCity());
+                //                a.stateText.setText(hsl.getPostal().getState());
+                //                a.namaProdukText.setText(hsl.getProduct().getProductName());
+                //                a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
+                //                a.donationText.setText(hsl.getDonation().toString());
+                //                a.setVisible(true);
+                //            }else
+            //            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -423,50 +480,50 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         Date awal = jDateChooser1.getDate();
         Date akhir = jDateChooser2.getDate();
-        
+
         SimpleDateFormat dt1 = new SimpleDateFormat("yyyyMMdd");
         String tanggalAwal = null;
         String tanggalAkhir = null;
-        
+
         String ShipMode = (String) jComboBox1.getSelectedItem();
-        
+
         int cmpAwal = 0;
         int cmpAkhir = 0;
         int donationMin = -1;
         int donationMax = -1;
         int totalMin = -1;
         int totalMax = -1;
-        
+
         if(jFormattedTextField1.getText().length() != 0) {
             donationMin = Integer.parseInt(jFormattedTextField1.getText().replaceAll(",", ""));
         }
-        
+
         if(jFormattedTextField2.getText().length() != 0) {
             donationMax = Integer.parseInt(jFormattedTextField2.getText().replaceAll(",", ""));
         }
-        
+
         if(jFormattedTextField3.getText().length() != 0) {
             totalMin = Integer.parseInt(jFormattedTextField3.getText().replaceAll(",", ""));
         }
-        
+
         if(jFormattedTextField4.getText().length() != 0) {
             totalMax = Integer.parseInt(jFormattedTextField4.getText().replaceAll(",", ""));
         }
-        
+
         if(ShipMode.length() == 0) {
             ShipMode = null;
         }
-        
+
         if(awal != null) {
             tanggalAwal = dt1.format(awal);
             cmpAwal = Integer.parseInt(tanggalAwal);
         }
-        
+
         if(akhir != null) {
             tanggalAkhir = dt1.format(akhir);
             cmpAkhir = Integer.parseInt(tanggalAkhir);
         }
-        
+
         try {
             A.FilterTransaksi(t_transaksi, isi, cmpAwal, cmpAkhir, ShipMode, donationMin, donationMax, totalMin, totalMax);
         } catch (IOException ex) {
@@ -475,6 +532,10 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jFormattedTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField1ActionPerformed
         // TODO add your handling code here:
@@ -492,10 +553,6 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -506,6 +563,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
     private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JFormattedTextField jFormattedTextField4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
