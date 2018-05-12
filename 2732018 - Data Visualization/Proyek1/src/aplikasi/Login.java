@@ -46,8 +46,10 @@ public class Login extends javax.swing.JFrame {
         return new BASE64Encoder().encode(encVal);
     }
 
-    public static boolean masuk(String un, String pass) {
+    public static boolean masuk(String un, String pass, String id) {
         boolean valid = false;
+        String identifikasi = "";
+        
         try {
             FileInputStream excelFile = new FileInputStream(new File(FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
@@ -59,9 +61,17 @@ public class Login extends javax.swing.JFrame {
                 Row currentRow = iterator.next();
                 String username = currentRow.getCell(0).getStringCellValue();
                 String password = currentRow.getCell(1).getStringCellValue();
+                identifikasi = currentRow.getCell(2).getStringCellValue();
                 
                 valid = username.equals(un) && password.equals(pass);
             }
+            
+//            if(valid){
+                if(id.equals("ADMIN") && valid){
+                    identifikasi = identifikasi.substring(0, 2);
+                    valid = identifikasi.equals("A1") ? true : false;
+                }
+//            }
 
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
@@ -70,6 +80,13 @@ public class Login extends javax.swing.JFrame {
         }
 
         return valid;
+    }
+    
+    public static boolean isAdmin(String un, String pass){
+        boolean admin = false;
+        
+        
+        return admin;
     }
 
     /**
@@ -261,11 +278,13 @@ public class Login extends javax.swing.JFrame {
             
             pass = encrypt(pass);
             
-            if(masuk(un,pass)){
+            if(masuk(un,pass,"ADMIN")){
                 notifLabel.setText(un+", Anda berhasil login :D");
-                Dash_Admin da = new Dash_Admin();
+                Dash_Admin da = new Dash_Admin("Hallo, " + un);
                 this.hide();
                 da.setVisible(true);
+            }else if(masuk(un,pass,"USER")){
+                notifLabel.setText(un+", Anda Bukan Admin : D");
             }else{
                 notifLabel.setText("Maaf, anda gagal login");
                 usernameField.setText("");

@@ -10,12 +10,26 @@ package aplikasi;
  * @author Gibran
  */
 public class Dash_Admin extends javax.swing.JFrame {
-
+    private String username = "";
+    
+    public void setUsername(String un){
+        this.username = un;
+    }
+    
+    public String getUsername(){
+        return this.username;
+    }
     /**
      * Creates new form Dash_Admin
      */
     public Dash_Admin() {
         initComponents();
+    }
+    
+    public Dash_Admin(String username) {
+        initComponents();
+        setUsername(username);
+        userLabel.setText(getUsername());
     }
 
     /**
@@ -41,7 +55,7 @@ public class Dash_Admin extends javax.swing.JFrame {
         konten = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Admin");
@@ -192,9 +206,9 @@ public class Dash_Admin extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mansmall.png"))); // NOI18N
 
-        jLabel7.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel7.setText("Hallo Username !");
+        userLabel.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        userLabel.setForeground(new java.awt.Color(0, 0, 51));
+        userLabel.setText("Hallo Username !");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -204,7 +218,7 @@ public class Dash_Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel7)
+                .addComponent(userLabel)
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -213,7 +227,7 @@ public class Dash_Admin extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -246,7 +260,7 @@ public class Dash_Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                    .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
@@ -333,10 +347,10 @@ public class Dash_Admin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel konten;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }
