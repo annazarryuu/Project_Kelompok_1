@@ -131,71 +131,17 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         int i = start;
 
         while (i < end) {
-            Grid panel = new Grid();
-            panel.getjLabelNama().setText(subList.get(i).getProductName());
-            panel.getjLabelHarga().setText("Rp.");
-            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
-            ImageIcon icon = new ImageIcon(".\\splash.png");
-            panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage().getScaledInstance(130, 100, Image.SCALE_SMOOTH)));
+            Grid panel = new Grid(); 
+            panel.getjLabelNama().setText(subList.get(i).getProductName()); 
+            panel.getjLabelHarga().setText("Rp."); 
+            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori()); 
+            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
+            panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
 
-//            JPanel panel = new JPanel();
-//            JLabel label = new JLabel(subList.get(i).getProductName());
-//            JLabel kat = new JLabel(subList.get(i).getSubcategory().getKategori().getKategori());
-//            JLabel harga = new JLabel("Price : Rp");
-//            JButton add = new JButton("Add to Cart");
-//
-//            panel.add(label);
-//            panel.add(kat);
-//            panel.add(harga);
-//            panel.add(add);
-//
-//            panel.setLayout(null);
-//            panel.setSize(400, 136);
-//
-//            Font font = label.getFont();
-//            Font boldFont = new Font(font.getFontName(), Font.BOLD, 15);
-//
-//            label.setLocation(150, 10);
-//            label.setSize(220, 30);
-//
-//            label.setFont(boldFont);
-//
-//            //----------------------
-//            font = kat.getFont();
-//            Font fontKat = new Font(font.getFontName(), Font.HANGING_BASELINE, 13);
-//
-//            kat.setLocation(150, 40);
-//            kat.setSize(220, 10);
-//
-//            kat.setFont(fontKat);
-//
-//            //----------------------
-//            font = harga.getFont();
-//            Font priceFont = new Font(font.getFontName(), Font.LAYOUT_LEFT_TO_RIGHT, 13);
-//
-//            harga.setLocation(150, 60);
-//            harga.setSize(220, 30);
-//
-//            harga.setFont(priceFont);
-//
-//            add.setLocation(150, 90);
-//            add.setSize(220, 35);
-//            add.addActionListener(new MyActionListener(
-//                    subList.get(i).getProductID()));
-//            //----------------------
-//            
-//            panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.add(panel);
             i++;
         }
-//        JPanel foot = new JPanel();
-//        
-//        foot.setLayout(null);
-//        foot.setSize(1200, 136);
-//        foot.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//        foot.add(new JLabel("PanasLAH"));
-//        
-//        frame.add(foot);
+
     }
 
     private class MyActionListener implements ActionListener {
