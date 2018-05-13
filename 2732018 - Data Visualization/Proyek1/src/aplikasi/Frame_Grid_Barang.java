@@ -10,6 +10,7 @@ import Model.ModelBarang;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
@@ -129,53 +131,60 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         int i = start;
 
         while (i < end) {
-            JPanel panel = new JPanel();
-            JLabel label = new JLabel(subList.get(i).getProductName());
-            JLabel kat = new JLabel(subList.get(i).getSubcategory().getKategori().getKategori());
-            JLabel harga = new JLabel("Price : Rp");
-            JButton add = new JButton("Add to Cart");
+            Grid panel = new Grid();
+            panel.getjLabelNama().setText(subList.get(i).getProductName());
+            panel.getjLabelHarga().setText("Rp.");
+            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
+            ImageIcon icon = new ImageIcon(".\\splash.png");
+            panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage().getScaledInstance(130, 100, Image.SCALE_SMOOTH)));
 
-            panel.add(label);
-            panel.add(kat);
-            panel.add(harga);
-            panel.add(add);
-
-            panel.setLayout(null);
-            panel.setSize(400, 136);
-
-            Font font = label.getFont();
-            Font boldFont = new Font(font.getFontName(), Font.BOLD, 15);
-
-            label.setLocation(150, 10);
-            label.setSize(220, 30);
-
-            label.setFont(boldFont);
-
-            //----------------------
-            font = kat.getFont();
-            Font fontKat = new Font(font.getFontName(), Font.HANGING_BASELINE, 13);
-
-            kat.setLocation(150, 40);
-            kat.setSize(220, 10);
-
-            kat.setFont(fontKat);
-
-            //----------------------
-            font = harga.getFont();
-            Font priceFont = new Font(font.getFontName(), Font.LAYOUT_LEFT_TO_RIGHT, 13);
-
-            harga.setLocation(150, 60);
-            harga.setSize(220, 30);
-
-            harga.setFont(priceFont);
-
-            add.setLocation(150, 90);
-            add.setSize(220, 35);
-            add.addActionListener(new MyActionListener(
-                    subList.get(i).getProductID()));
-            //----------------------
-            
-            panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//            JPanel panel = new JPanel();
+//            JLabel label = new JLabel(subList.get(i).getProductName());
+//            JLabel kat = new JLabel(subList.get(i).getSubcategory().getKategori().getKategori());
+//            JLabel harga = new JLabel("Price : Rp");
+//            JButton add = new JButton("Add to Cart");
+//
+//            panel.add(label);
+//            panel.add(kat);
+//            panel.add(harga);
+//            panel.add(add);
+//
+//            panel.setLayout(null);
+//            panel.setSize(400, 136);
+//
+//            Font font = label.getFont();
+//            Font boldFont = new Font(font.getFontName(), Font.BOLD, 15);
+//
+//            label.setLocation(150, 10);
+//            label.setSize(220, 30);
+//
+//            label.setFont(boldFont);
+//
+//            //----------------------
+//            font = kat.getFont();
+//            Font fontKat = new Font(font.getFontName(), Font.HANGING_BASELINE, 13);
+//
+//            kat.setLocation(150, 40);
+//            kat.setSize(220, 10);
+//
+//            kat.setFont(fontKat);
+//
+//            //----------------------
+//            font = harga.getFont();
+//            Font priceFont = new Font(font.getFontName(), Font.LAYOUT_LEFT_TO_RIGHT, 13);
+//
+//            harga.setLocation(150, 60);
+//            harga.setSize(220, 30);
+//
+//            harga.setFont(priceFont);
+//
+//            add.setLocation(150, 90);
+//            add.setSize(220, 35);
+//            add.addActionListener(new MyActionListener(
+//                    subList.get(i).getProductID()));
+//            //----------------------
+//            
+//            panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             this.add(panel);
             i++;
         }
