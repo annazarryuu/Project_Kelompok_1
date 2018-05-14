@@ -6,8 +6,6 @@
 package aplikasi;
 
 import Controller.TransaksiController;
-
-import Controller.TransaksiController;
 import Model.ModelTransaksi;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -20,7 +18,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.text.NumberFormatter;
 
 public class Frame_Transaksi extends javax.swing.JInternalFrame {
@@ -396,11 +393,10 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             Iterator<ModelTransaksi> iterator3 = lis3.iterator();
             ModelTransaksi hsl = iterator3.next();
             Detail_Transaksi a = new Detail_Transaksi();
-
+            
             while (!ketemu && iterator3.hasNext())
             {
-                if(hsl.getOrderID().equals(klik1) && hsl.getProduct().getProductName().equals(klik2)){
-                    System.out.println(klik1 + " ketemu!!! " + klik2);
+                if(hsl.getOrderID().equals(klik1) && hsl.getProduct().getProductName().equals(klik2)){      
                     ketemu=true;
                     a.cardPanel.removeAll();
                     a.cardPanel.add(a.mainPanel);
@@ -435,23 +431,6 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                 }
                 hsl = iterator3.next();
             }
-            //            if(ketemu){
-                //                Detail_Transaksi a= new Detail_Transaksi();
-                //                a.orderIDText.setText(hsl.getOrderID());
-                //                a.orderDateText.setText(hsl.getOrderDate().toString());
-                //                a.shipModeText1.setText(hsl.getShipMode().getShipMode());
-                //                a.shipDateText.setText(hsl.getShipDate().toString());
-                //                a.custIDText.setText(hsl.getPelanggan().getCustomerID());
-                //                a.custNameText.setText(hsl.getPelanggan().getCustomerName());
-                //                a.kodePOSText.setText(hsl.getPostal().getPostalCode());
-                //                a.kotaText.setText(hsl.getPostal().getCity());
-                //                a.stateText.setText(hsl.getPostal().getState());
-                //                a.namaProdukText.setText(hsl.getProduct().getProductName());
-                //                a.kategoriText.setText(hsl.getProduct().getSubcategory().getSubKategori());
-                //                a.donationText.setText(hsl.getDonation().toString());
-                //                a.setVisible(true);
-                //            }else
-            //            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }

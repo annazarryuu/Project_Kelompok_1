@@ -132,7 +132,6 @@ public class TransaksiController extends ModelTransaksi{
     }
     
     public int searchObjectIndex(String id, String produkName) throws IOException{
-        ModelTransaksi trs = new ModelTransaksi();
         
         if(this.list.isEmpty()){
             getAllData();
@@ -156,6 +155,30 @@ public class TransaksiController extends ModelTransaksi{
         }else{
             return -1;
         }
+    }
+    
+    public void edit(String orderID, String Proname, ModelTransaksi newList) {
+        try {
+            int index = searchObjectIndex(orderID, Proname);
+            editListatIndex(index, newList);
+            editExcel(index, newList);
+        } catch (IOException ex) {
+            Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void editExcel(int index, ModelTransaksi newList) throws FileNotFoundException, IOException
+    {
+        FileInputStream excelFile = new FileInputStream(new File(super.FILE_NAME));
+        Workbook workbook = new XSSFWorkbook(excelFile);
+        Sheet sheet = workbook.getSheetAt(3);
+        Row row = sheet.getRow(index+1);
+        row.getCell(1).setCellValue(newList.getOrderID());
+        row.getCell(1).setCellValue(newList.getOrderID());
+        
+        FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+        workbook.write(outputStream);
+        workbook.close();
     }
     
     public void editListatIndex(int index, ModelTransaksi newList) {

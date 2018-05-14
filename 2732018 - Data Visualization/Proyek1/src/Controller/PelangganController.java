@@ -7,9 +7,11 @@ package Controller;
 
 import Model.ModelKategori;
 import Model.ModelPelanggan;
+import static Model.ModelPelanggan.FILE_NAME;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -94,6 +96,104 @@ public class PelangganController extends ModelPelanggan{
         
         
         return cus;
+    }
+    
+    public int searchObjectIndex(String id) throws IOException{
+        
+        if(this.list.isEmpty()){
+            getAllData();
+        }
+        
+        int i = 0;
+        boolean ketemu = false;
+        while(i<list.size() && !ketemu){
+            String ID = list.get(i).getCustomerID();
+
+            if(ID.equals(id)){
+                ketemu = true;
+            }
+
+            i += 1;
+        }
+        
+        if(ketemu){
+            return (i-1);
+        }else{
+            return -1;
+        }
+    }
+    
+    public void edit(String ID, ModelPelanggan newList) {
+        try {
+            int index = searchObjectIndex(ID);
+            editListatIndex(index, newList);
+            editExcel(index, newList);
+        } catch (IOException ex) {
+            Logger.getLogger(TransaksiController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void editExcel(int index, ModelPelanggan newList) throws FileNotFoundException, IOException
+    {
+        FileInputStream excelFile = new FileInputStream(new File(super.FILE_NAME));
+        Workbook workbook = new XSSFWorkbook(excelFile);
+        Sheet sheet = workbook.getSheetAt(2);
+        Row row = sheet.getRow(index+1);
+        row.getCell(0).setCellValue(newList.getCustomerID());
+        row.getCell(1).setCellValue(newList.getCustomerName());
+        row.getCell(2).setCellValue(newList.getSegment());
+        
+        FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+        workbook.write(outputStream);
+        workbook.close();
+    }
+    
+    public void editListatIndex(int index, ModelPelanggan newList) {
+        list.set(index, newList);
+    }
+    
+    public void delete(String ID) throws IOException {
+        this.deleteList(ID);
+        this.deleteExcel(ID);
+    }
+    
+    public void deleteList(String ID) throws IOException {
+        list.remove(searchObjectIndex(ID));
+    }
+    
+    public void deleteExcel(String ID) throws FileNotFoundException, IOException {
+        
+        FileInputStream excelFile = new FileInputStream(new File(super.FILE_NAME));
+        XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
+        Sheet sheet = workbook.getSheetAt(2);
+        int lastRowNum = sheet.getLastRowNum();
+        int rowIndex = 1;
+        boolean ketemu = false;
+        Iterator<Row> iterator = sheet.iterator();
+        Row row = iterator.next();
+        BarangController br = new BarangController();
+        
+        while(iterator.hasNext() && !ketemu) {
+            row = iterator.next();
+            if(row.getCell(0).getStringCellValue().equals(ID)){
+                ketemu = true;
+            }else{
+                rowIndex++;
+            }
+        }
+        
+        if(rowIndex >= 0 && rowIndex < lastRowNum){
+            sheet.shiftRows(rowIndex + 1, lastRowNum, -1);
+        }else if(rowIndex == lastRowNum){
+            Row removingRow = sheet.getRow(rowIndex);
+            if(removingRow != null){
+                sheet.removeRow(removingRow);
+            }
+        }
+        
+        FileOutputStream outputStream = new FileOutputStream(super.FILE_NAME);
+        workbook.write(outputStream);
+        workbook.close();
     }
     
     public void showTable(JTable table1, Object[] isi) throws IOException{

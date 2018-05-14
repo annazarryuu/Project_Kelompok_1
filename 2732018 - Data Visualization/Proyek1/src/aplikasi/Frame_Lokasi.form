@@ -127,6 +127,9 @@
               </Table>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="t_lokasiMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

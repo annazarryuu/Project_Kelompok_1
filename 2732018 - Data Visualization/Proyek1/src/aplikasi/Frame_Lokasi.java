@@ -5,6 +5,7 @@
  */
 package aplikasi;
 import Controller.DaerahController;
+import Model.ModelDaerah;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -82,6 +83,11 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        t_lokasi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_lokasiMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(t_lokasi);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -273,6 +279,45 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
             Logger.getLogger(Frame_Lokasi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jComboBox1ItemStateChanged
+
+    private void t_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_lokasiMouseClicked
+        try {
+            int row = t_lokasi.getSelectedRow();
+            String klik = (t_lokasi.getModel().getValueAt(row, 0).toString());
+            Boolean ketemu=false;
+            List<ModelDaerah> lis3 = new DaerahController().getList();
+            Iterator<ModelDaerah> iterator3 = lis3.iterator();
+            ModelDaerah hsl = iterator3.next();
+            Detail_Lokasi a = new Detail_Lokasi();
+            
+            while (!ketemu && iterator3.hasNext())
+            {
+                if(hsl.getPostalCode().equals(klik)){      
+                    ketemu=true;
+                    a.cardPanel.removeAll();
+                    a.cardPanel.add(a.mainPanel);
+                    a.kodePos.setText(hsl.getPostalCode());
+                    a.kodePos1.setText(hsl.getPostalCode());
+                    a.negara.setText(hsl.getState());
+                    a.negara1.setText(hsl.getState());
+                    a.wilayah.setText(hsl.getRegion());
+                    a.wilayah1.setText(hsl.getRegion());
+                    a.provinsi.setText(hsl.getCountry());
+                    a.provinsi1.setText(hsl.getCountry());
+                    a.kota.setText(hsl.getCity());
+                    a.kota1.setText(hsl.getCity());
+                    if(!true){  //cek admin
+                        a.EditButton.setVisible(false);
+                        a.DeleteButton.setVisible(false);
+                    }
+                    a.setVisible(true);
+                }
+                hsl = iterator3.next();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_t_lokasiMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

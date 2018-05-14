@@ -6,7 +6,10 @@
 package aplikasi;
 
 import Controller.BarangController;
+import Model.ModelBarang;
 import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -73,6 +76,11 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        t_barang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                t_barangMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(t_barang);
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -231,6 +239,43 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
             Logger.getLogger(Frame_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void t_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_barangMouseClicked
+        try {
+            int row = t_barang.getSelectedRow();
+            String klik = (t_barang.getModel().getValueAt(row, 0).toString());
+            Boolean ketemu=false;
+            List<ModelBarang> lis3 = new BarangController().getList();
+            Iterator<ModelBarang> iterator3 = lis3.iterator();
+            ModelBarang hsl = iterator3.next();
+            Detail_Barang a = new Detail_Barang();
+            
+            while (!ketemu && iterator3.hasNext())
+            {
+                if(hsl.getProductID().equals(klik)){      
+                    ketemu=true;
+                    a.cardPanel.removeAll();
+                    a.cardPanel.add(a.mainPanel);
+                    a.produkID.setText(hsl.getProductID());
+                    a.produkID1.setText(hsl.getProductID());
+                    a.produkName.setText(hsl.getProductName());
+                    a.produkName1.setText(hsl.getProductName());
+                    a.kategori.setText(hsl.getSubcategory().getKategori().getKategori());
+                    a.kategori1.setText(hsl.getSubcategory().getKategori().getKategori());
+                    a.subkategori.setText(hsl.getSubcategory().getSubKategori());
+                    a.subkategori1.setText(hsl.getSubcategory().getSubKategori());
+                    if(!true){  //cek admin
+                        a.EditButton.setVisible(false);
+                        a.DeleteButton.setVisible(false);
+                    }
+                    a.setVisible(true);
+                }
+                hsl = iterator3.next();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_t_barangMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

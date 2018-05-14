@@ -5,22 +5,21 @@
  */
 package aplikasi;
 
-import Controller.PelangganController;
-import Model.ModelPelanggan;
+import Controller.BarangController;
+import Model.ModelBarang;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 /**
  *
  * @author Tio
  */
-public class Detail_Pelanggan extends javax.swing.JFrame {
+public class Detail_Barang extends javax.swing.JFrame {
 
     /**
-     * Creates new form Detail_Pelanggan
+     * Creates new form Detail_Baran
      */
-    public Detail_Pelanggan() {
+    public Detail_Barang() {
         initComponents();
     }
 
@@ -40,13 +39,16 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         DatapanelEdit = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
         jLabel31 = new javax.swing.JLabel();
-        custID1 = new javax.swing.JTextField();
-        custName1 = new javax.swing.JTextField();
-        jLabel37 = new javax.swing.JLabel();
-        jLabel38 = new javax.swing.JLabel();
+        produkID1 = new javax.swing.JTextField();
+        produkName1 = new javax.swing.JTextField();
         jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
+        jLabel42 = new javax.swing.JLabel();
+        subkategori1 = new javax.swing.JTextField();
+        jLabel43 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        segment1 = new javax.swing.JTextField();
+        kategori1 = new javax.swing.JTextField();
         SaveButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
@@ -54,72 +56,90 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         DatapanelMain = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
-        custID = new javax.swing.JTextField();
-        custName = new javax.swing.JTextField();
+        produkID = new javax.swing.JTextField();
+        produkName = new javax.swing.JTextField();
         jLabel34 = new javax.swing.JLabel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        subkategori = new javax.swing.JTextField();
+        jLabel38 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
-        segment = new javax.swing.JTextField();
+        kategori = new javax.swing.JTextField();
         EditButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel3.setText("DETAIL Pelanggan");
+        jLabel3.setText("Detail Barang");
 
         cardPanel.setLayout(new java.awt.CardLayout());
 
-        editPanel.setPreferredSize(new java.awt.Dimension(382, 180));
+        editPanel.setPreferredSize(new java.awt.Dimension(380, 220));
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jScrollPane2.setPreferredSize(new java.awt.Dimension(362, 184));
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(360, 172));
 
-        DatapanelEdit.setPreferredSize(new java.awt.Dimension(291, 119));
+        DatapanelEdit.setPreferredSize(new java.awt.Dimension(305, 151));
 
         jLabel30.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel30.setText("ID Pelanggan");
+        jLabel30.setText("ID Produk");
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 20));
 
         jLabel31.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel31.setText(":");
 
-        custID1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        custID1.setPreferredSize(new java.awt.Dimension(250, 20));
-        custID1.addActionListener(new java.awt.event.ActionListener() {
+        produkID1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        produkID1.setPreferredSize(new java.awt.Dimension(250, 20));
+        produkID1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custID1ActionPerformed(evt);
+                produkID1ActionPerformed(evt);
             }
         });
 
-        custName1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        custName1.setPreferredSize(new java.awt.Dimension(250, 20));
-        custName1.addActionListener(new java.awt.event.ActionListener() {
+        produkName1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        produkName1.setPreferredSize(new java.awt.Dimension(250, 20));
+        produkName1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custName1ActionPerformed(evt);
+                produkName1ActionPerformed(evt);
             }
         });
-
-        jLabel37.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel37.setText(":");
-
-        jLabel38.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel38.setText("Nama Pelanggan");
-        jLabel38.setPreferredSize(new java.awt.Dimension(60, 20));
 
         jLabel39.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel39.setText("Segmen");
-        jLabel39.setPreferredSize(new java.awt.Dimension(60, 20));
+        jLabel39.setText(":");
+
+        jLabel40.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel40.setText("Nama Produk");
+        jLabel40.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        jLabel41.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel41.setText("Kategori");
+        jLabel41.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        jLabel42.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel42.setText("Sub-Kategori");
+        jLabel42.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        subkategori1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        subkategori1.setPreferredSize(new java.awt.Dimension(250, 20));
+        subkategori1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subkategori1ActionPerformed(evt);
+            }
+        });
+
+        jLabel43.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel43.setText(":");
 
         jLabel53.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel53.setText(":");
 
-        segment1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        segment1.setPreferredSize(new java.awt.Dimension(250, 20));
-        segment1.addActionListener(new java.awt.event.ActionListener() {
+        kategori1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        kategori1.setPreferredSize(new java.awt.Dimension(250, 20));
+        kategori1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                segment1ActionPerformed(evt);
+                kategori1ActionPerformed(evt);
             }
         });
 
@@ -129,24 +149,31 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
             DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatapanelEditLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel39, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel30, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DatapanelEditLayout.createSequentialGroup()
-                        .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custName1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
-                            .addComponent(custID1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                        .addComponent(produkID1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                     .addGroup(DatapanelEditLayout.createSequentialGroup()
+                        .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(subkategori1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                    .addGroup(DatapanelEditLayout.createSequentialGroup()
+                        .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(produkName1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addGroup(DatapanelEditLayout.createSequentialGroup()
+                        .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(segment1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                        .addComponent(kategori1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         DatapanelEditLayout.setVerticalGroup(
@@ -156,17 +183,22 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                 .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel31)
-                    .addComponent(custID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(produkID1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel37)
-                    .addComponent(custName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel39)
+                    .addComponent(produkName1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel53)
-                    .addComponent(segment1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel43)
+                    .addComponent(subkategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -187,6 +219,11 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         CancelButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 CancelButtonMouseClicked(evt);
+            }
+        });
+        CancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelButtonActionPerformed(evt);
             }
         });
 
@@ -213,39 +250,39 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                     .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         cardPanel.add(editPanel, "card3");
 
         jScrollPane3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        jScrollPane3.setPreferredSize(new java.awt.Dimension(362, 184));
+        jScrollPane3.setPreferredSize(new java.awt.Dimension(360, 172));
 
-        DatapanelMain.setPreferredSize(new java.awt.Dimension(291, 119));
+        DatapanelMain.setPreferredSize(new java.awt.Dimension(305, 151));
 
         jLabel28.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel28.setText("ID Pelanggan");
+        jLabel28.setText("ID Produk");
         jLabel28.setPreferredSize(new java.awt.Dimension(60, 20));
 
         jLabel29.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel29.setText(":");
 
-        custID.setEditable(false);
-        custID.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        custID.setPreferredSize(new java.awt.Dimension(250, 20));
-        custID.addActionListener(new java.awt.event.ActionListener() {
+        produkID.setEditable(false);
+        produkID.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        produkID.setPreferredSize(new java.awt.Dimension(250, 20));
+        produkID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custIDActionPerformed(evt);
+                produkIDActionPerformed(evt);
             }
         });
 
-        custName.setEditable(false);
-        custName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        custName.setPreferredSize(new java.awt.Dimension(250, 20));
-        custName.addActionListener(new java.awt.event.ActionListener() {
+        produkName.setEditable(false);
+        produkName.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        produkName.setPreferredSize(new java.awt.Dimension(250, 20));
+        produkName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                custNameActionPerformed(evt);
+                produkNameActionPerformed(evt);
             }
         });
 
@@ -253,22 +290,38 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         jLabel34.setText(":");
 
         jLabel35.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel35.setText("Nama Pelanggan");
+        jLabel35.setText("Nama Produk");
         jLabel35.setPreferredSize(new java.awt.Dimension(60, 20));
 
         jLabel36.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        jLabel36.setText("Segmen");
+        jLabel36.setText("Kategori");
         jLabel36.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        jLabel37.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel37.setText("Sub-Kategori");
+        jLabel37.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        subkategori.setEditable(false);
+        subkategori.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        subkategori.setPreferredSize(new java.awt.Dimension(250, 20));
+        subkategori.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subkategoriActionPerformed(evt);
+            }
+        });
+
+        jLabel38.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel38.setText(":");
 
         jLabel52.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel52.setText(":");
 
-        segment.setEditable(false);
-        segment.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        segment.setPreferredSize(new java.awt.Dimension(250, 20));
-        segment.addActionListener(new java.awt.event.ActionListener() {
+        kategori.setEditable(false);
+        kategori.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        kategori.setPreferredSize(new java.awt.Dimension(250, 20));
+        kategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                segmentActionPerformed(evt);
+                kategoriActionPerformed(evt);
             }
         });
 
@@ -278,24 +331,31 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
             DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(DatapanelMainLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
-                    .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(DatapanelMainLayout.createSequentialGroup()
+                        .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(produkID, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addGroup(DatapanelMainLayout.createSequentialGroup()
+                        .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(subkategori, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                    .addGroup(DatapanelMainLayout.createSequentialGroup()
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(produkName, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addGroup(DatapanelMainLayout.createSequentialGroup()
+                        .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(segment, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
-                    .addGroup(DatapanelMainLayout.createSequentialGroup()
-                        .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custID, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                            .addComponent(custName, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                        .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         DatapanelMainLayout.setVerticalGroup(
@@ -305,17 +365,22 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                 .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel29)
-                    .addComponent(custID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(produkID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel34)
-                    .addComponent(custName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(produkName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel52)
-                    .addComponent(segment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel38)
+                    .addComponent(subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -362,7 +427,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                     .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -377,9 +442,9 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                 .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(82, 82, 82))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(122, 122, 122))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,40 +452,54 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void custID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custID1ActionPerformed
+    private void produkID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produkID1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_custID1ActionPerformed
+    }//GEN-LAST:event_produkID1ActionPerformed
 
-    private void custName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custName1ActionPerformed
+    private void produkName1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produkName1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_custName1ActionPerformed
+    }//GEN-LAST:event_produkName1ActionPerformed
 
-    private void segment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segment1ActionPerformed
+    private void subkategori1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subkategori1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_segment1ActionPerformed
+    }//GEN-LAST:event_subkategori1ActionPerformed
+
+    private void kategori1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategori1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kategori1ActionPerformed
 
     private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
-        try {
-            ModelPelanggan a = new ModelPelanggan();
-            PelangganController b = new PelangganController();
-            a = b.searchObject(this.custID.getText());
-            a.setCustomerID(this.custID1.getText());
-            a.setCustomerName(this.custName1.getText());
-            a.setSegment(this.segment1.getText());
-            b.edit(this.custID.getText(), a);
-
-            this.cardPanel.removeAll();//1 2 q 3 5 q 6 q q
-            this.cardPanel.add(mainPanel);
-        } catch (IOException ex) {
-            Logger.getLogger(Detail_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ModelBarang a = new ModelBarang();
+        BarangController b = new BarangController();
+        //        a = b.searchObject(this.produkID.getText(), this.namaProdukText1.getText());
+        //        a.setOrderID(this.eOrderID.getText());
+        //        a.setOrderDate(this.eOrderDate.getDate());
+        //        switch(this.eShipMode.getSelectedIndex())//Standard Class, Second Class, First Class, Same Day
+        //        {
+            //            case 0: a.getShipMode().setShipMode("Standard Class");break;
+            //            case 1: a.getShipMode().setShipMode("Second Class");break;
+            //            case 2: a.getShipMode().setShipMode("First Class");break;
+            //            default: a.getShipMode().setShipMode("Same Day");break;
+            //        }
+        //        a.setShipDate(this.eShipDate.getDate());
+        //        a.getPelanggan().setCustomerID(this.eCustID.getText());
+        //        a.getPelanggan().setCustomerName(this.eCustName.getText());
+        //        a.getPostal().setPostalCode(this.eKodePOS.getText());
+        //        a.getPostal().setCity(this.eKota.getText());
+        //        a.getPostal().setState(this.eState.getText());
+        //        a.getProduct().setProductName(this.eNamaProduk.getText());
+        //        a.getProduct().getSubcategory().getKategori().setKategori(this.eKategori.getText());
+        //        a.setDonation(Double.parseDouble(this.eDonation.getText()));
+        //        b.edit(this.produkID.getText(), this.namaProdukText1.getText(), a);
+        this.cardPanel.removeAll();//1 2 q 3 5 q 6 q q
+        this.cardPanel.add(mainPanel);
     }//GEN-LAST:event_SaveButtonMouseClicked
 
     private void CancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelButtonMouseClicked
@@ -428,17 +507,25 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         this.cardPanel.add(mainPanel);
     }//GEN-LAST:event_CancelButtonMouseClicked
 
-    private void custIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custIDActionPerformed
+    private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_custIDActionPerformed
+    }//GEN-LAST:event_CancelButtonActionPerformed
 
-    private void custNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custNameActionPerformed
+    private void produkIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produkIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_custNameActionPerformed
+    }//GEN-LAST:event_produkIDActionPerformed
 
-    private void segmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segmentActionPerformed
+    private void produkNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produkNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_segmentActionPerformed
+    }//GEN-LAST:event_produkNameActionPerformed
+
+    private void subkategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subkategoriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_subkategoriActionPerformed
+
+    private void kategoriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategoriActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_kategoriActionPerformed
 
     private void EditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditButtonMouseClicked
         this.cardPanel.removeAll();
@@ -447,7 +534,9 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
 
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
         try {
-            new PelangganController().delete(this.custID.getText());
+            new BarangController().delete(this.produkID.getText());
+//            Object[] isi = {"Product ID","Category","Sub-Category","Product Name"};
+//            new BarangController().showTable(new Frame_Barang().t_barang, isi);
             this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(Detail_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
@@ -471,20 +560,21 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Detail_Pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Detail_Pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Detail_Pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Detail_Pelanggan.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Detail_Barang.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Detail_Pelanggan().setVisible(true);
+                new Detail_Barang().setVisible(true);
             }
         });
     }
@@ -497,10 +587,6 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
     public javax.swing.JButton EditButton;
     private javax.swing.JButton SaveButton;
     public javax.swing.JPanel cardPanel;
-    public javax.swing.JTextField custID;
-    public javax.swing.JTextField custID1;
-    public javax.swing.JTextField custName;
-    public javax.swing.JTextField custName1;
     public javax.swing.JPanel editPanel;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -513,12 +599,22 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
+    private javax.swing.JLabel jLabel42;
+    private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    public javax.swing.JTextField kategori;
+    public javax.swing.JTextField kategori1;
     public javax.swing.JPanel mainPanel;
-    public javax.swing.JTextField segment;
-    public javax.swing.JTextField segment1;
+    public javax.swing.JTextField produkID;
+    public javax.swing.JTextField produkID1;
+    public javax.swing.JTextField produkName;
+    public javax.swing.JTextField produkName1;
+    public javax.swing.JTextField subkategori;
+    public javax.swing.JTextField subkategori1;
     // End of variables declaration//GEN-END:variables
 }

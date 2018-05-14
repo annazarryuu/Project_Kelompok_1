@@ -6,6 +6,7 @@
 package aplikasi;
 
 import Controller.TransaksiController;
+import Model.ModelTransaksi;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -132,7 +133,7 @@ public class Detail_Transaksi extends javax.swing.JFrame {
         setTitle("Detail Data");
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel3.setText("DETAIL TRANSAKSI");
+        jLabel3.setText("DETAIL Pelanggan");
 
         cardPanel.setLayout(new java.awt.CardLayout());
 
@@ -1089,9 +1090,35 @@ public class Detail_Transaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_eShipModeActionPerformed
 
     private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
+        try {
+            ModelTransaksi a = new ModelTransaksi();
+            TransaksiController b = new TransaksiController();
+            a = b.searchObject(this.orderID.getText(), this.namaProdukText1.getText());
+            a.setOrderID(this.eOrderID.getText());
+            a.setOrderDate(this.eOrderDate.getDate());
+            switch(this.eShipMode.getSelectedIndex())//Standard Class, Second Class, First Class, Same Day
+            {
+                case 0: a.getShipMode().setShipMode("Standard Class");break;
+                case 1: a.getShipMode().setShipMode("Second Class");break;
+                case 2: a.getShipMode().setShipMode("First Class");break;
+                default: a.getShipMode().setShipMode("Same Day");break;
+            }
+            a.setShipDate(this.eShipDate.getDate());
+            a.getPelanggan().setCustomerID(this.eCustID.getText());
+            a.getPelanggan().setCustomerName(this.eCustName.getText());
+            a.getPostal().setPostalCode(this.eKodePOS.getText());
+            a.getPostal().setCity(this.eKota.getText());
+            a.getPostal().setState(this.eState.getText());
+            a.getProduct().setProductName(this.eNamaProduk.getText());
+            a.getProduct().getSubcategory().getKategori().setKategori(this.eKategori.getText());
+            a.setDonation(Double.parseDouble(this.eDonation.getText()));
+            b.edit(this.orderID.getText(), this.namaProdukText1.getText(), a);
 
-        this.cardPanel.removeAll();
-        this.cardPanel.add(mainPanel);
+            this.cardPanel.removeAll();//1 2 q 3 5 q 6 q q
+            this.cardPanel.add(mainPanel);
+        } catch (IOException ex) {
+            Logger.getLogger(Detail_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_SaveButtonMouseClicked
 
     private void CancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelButtonMouseClicked
@@ -1159,6 +1186,8 @@ public class Detail_Transaksi extends javax.swing.JFrame {
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
         try {
             new TransaksiController().delete(this.orderID.getText(), this.namaProdukText1.getText());
+//            Object[] isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer Name","Postal Code","Product Name","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+//            new TransaksiController().showTable(new Frame_Transaksi().t_transaksi, isi);
             this.dispose();
         } catch (IOException ex) {
             Logger.getLogger(Detail_Transaksi.class.getName()).log(Level.SEVERE, null, ex);

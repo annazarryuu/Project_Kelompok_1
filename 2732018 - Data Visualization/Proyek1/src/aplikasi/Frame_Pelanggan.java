@@ -6,9 +6,7 @@
 package aplikasi;
 
 import Controller.PelangganController;
-import Controller.TransaksiController;
 import Model.ModelPelanggan;
-import Model.ModelTransaksi;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
@@ -213,21 +211,28 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
             List<ModelPelanggan> lis3 = new PelangganController().getList();
             Iterator<ModelPelanggan> iterator3 = lis3.iterator();
             ModelPelanggan hsl = iterator3.next();
+            Detail_Pelanggan a = new Detail_Pelanggan();
             
             while (!ketemu && iterator3.hasNext())
             {
                 if(hsl.getCustomerID().equals(klik)){       
                     ketemu=true;
+                    a.cardPanel.removeAll();
+                    a.cardPanel.add(a.mainPanel);
+                    a.custID.setText(hsl.getCustomerID());
+                    a.custName.setText(hsl.getCustomerName());
+                    a.segment.setText(hsl.getSegment());
+                    a.custID1.setText(hsl.getCustomerID());
+                    a.custName1.setText(hsl.getCustomerName());
+                    a.segment1.setText(hsl.getSegment());
+                    if(!true){  //cek admin
+                        a.EditButton.setVisible(false);
+                        a.DeleteButton.setVisible(false);
+                    }
+                    a.setVisible(true);
                 }
+                hsl = iterator3.next();
             }
-            if(ketemu){
-                Detail_Pelanggan a = new Detail_Pelanggan();
-                a.textBoxCustomerID.setText(hsl.getCustomerID());
-                a.textBoxCustomerName.setText(hsl.getCustomerName());
-                a.textBoxCustomerSegment.setText(hsl.getSegment());
-                a.setVisible(true);
-            }else
-            JOptionPane.showMessageDialog(this, "Tidak Ketemu !");
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
