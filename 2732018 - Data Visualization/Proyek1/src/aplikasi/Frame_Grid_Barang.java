@@ -12,6 +12,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -123,13 +124,16 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         subList = sub.getList();
         this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
         int i = start;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
         while (i < end) {
             Grid panel = new Grid(); 
             panel.getjLabelNama().setText(subList.get(i).getProductName()); 
-            panel.getjLabelHarga().setText("Rp.");
-            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori()); 
-            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
+//            panel.getjLabelHarga().setText("Rp.");
+            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
+            panel.getjLabelHarga().setText("$" + decimalFormat.format(subList.get(i).getPrice()));
+            ImageIcon icon = new ImageIcon(subList.get(i).getImageSource());
+//            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
             panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
             panel.getjButtonAdd().addActionListener(new MyActionListener(
                     subList.get(i).getProductID()));

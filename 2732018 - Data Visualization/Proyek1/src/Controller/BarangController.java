@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -53,12 +54,16 @@ public class BarangController extends ModelBarang {
                 Cell id = currentRow.getCell(0);
                 Cell cat = currentRow.getCell(1);
                 Cell name = currentRow.getCell(2);
+                Cell price = currentRow.getCell(3);
+                Cell image = currentRow.getCell(4);
 
                 ModelBarang brg = new ModelBarang();
 
                 brg.setProductID(id.toString());
                 brg.setSubcategory(data.searchObject(cat.toString()));
                 brg.setProductName(name.toString());
+                brg.setPrice(price.getNumericCellValue());
+                brg.setImageSource(image.toString());
 
                 this.list.add(brg);
             }
@@ -200,6 +205,7 @@ public class BarangController extends ModelBarang {
         List<ModelBarang> subList;
         DefaultTableModel A = new DefaultTableModel(null, isi);
         table1.setModel(A);
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
 
         subList = sub.getList();
 
@@ -210,11 +216,12 @@ public class BarangController extends ModelBarang {
 
             A.addRow(isi);
 
-            for (int i = 1; i < size; i++) {
+            for (int i = 0; i < size; i++) {
                 isi[0] = subList.get(i).getProductID();
                 isi[1] = subList.get(i).getSubcategory().getKategori().getKategori();
                 isi[2] = subList.get(i).getSubcategory().getSubKategori();
                 isi[3] = subList.get(i).getProductName();
+                isi[4] = "$" + decimalFormat.format(subList.get(i).getPrice());
 
                 A.addRow(isi);
             }

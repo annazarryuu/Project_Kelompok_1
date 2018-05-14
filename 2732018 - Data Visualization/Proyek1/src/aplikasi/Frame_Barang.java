@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class Frame_Barang extends javax.swing.JInternalFrame {
 
     TabelOpr A = new TabelOpr();
-    Object[] isi = {"Product ID","Category","Sub-Category","Product Name"};
+    Object[] isi = {"Product ID","Category","Sub-Category","Product Name","Product Price"};
     Controller.BarangController Brg = new BarangController();
     public Frame_Barang() {
         try {

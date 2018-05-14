@@ -50,10 +50,40 @@ public class ModelBarang {
     public void setProductName(String productName) {
         this.productName = productName;
     }
+
+    /**
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
+     * @return the imageSource
+     */
+    public String getImageSource() {
+        return imageSource;
+    }
+
+    /**
+     * @param imageSource the imageSource to set
+     */
+    public void setImageSource(String imageSource) {
+        this.imageSource = imageSource;
+    }
     
     public static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";
     
     private String productID;
     private ModelSubKategori subcategory;
     private String productName;
+    private double price;
+    private String imageSource;
 }
