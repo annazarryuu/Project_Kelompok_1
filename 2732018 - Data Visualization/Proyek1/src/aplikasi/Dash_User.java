@@ -5,9 +5,13 @@
  */
 package aplikasi;
 
+import Controller.KeranjangController;
+import Model.ModelKeranjang;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,12 +22,32 @@ public class Dash_User extends javax.swing.JFrame {
     int start;
     int end;
     int max = 0;
+    
+    List<ModelKeranjang> shopCart = new KeranjangController().getList();
+    double jambleh = new KeranjangController().getTotal();
 
     /**
      * Creates new form Dash_User
      */
     public Dash_User() {
         initComponents();
+//        userLabel.setText(username);
+//        start = 0;
+//        end = 15;
+//        Frame_Grid_Barang grid = new Frame_Grid_Barang();
+//
+//        max = max == 0 ? grid.getMax() : max;
+//
+//        konten.removeAll();
+//        konten.add(grid);
+//        grid.setVisible(true);
+//        
+//        btnPrev.setEnabled(this.start > 0);
+    }
+    
+    public Dash_User(String username) {
+        initComponents();
+        userLabel.setText(username);
         start = 0;
         end = 15;
         Frame_Grid_Barang grid = new Frame_Grid_Barang();
@@ -57,7 +81,8 @@ public class Dash_User extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         a_login = new javax.swing.JLabel();
-        next = new javax.swing.JLabel();
+        userLabel = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         btnPrev = new javax.swing.JButton();
@@ -72,7 +97,7 @@ public class Dash_User extends javax.swing.JFrame {
         a_transaksi.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         a_transaksi.setForeground(new java.awt.Color(0, 0, 51));
         a_transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/transaction.png"))); // NOI18N
-        a_transaksi.setText("Transaksi");
+        a_transaksi.setText("Keranjang");
         a_transaksi.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         a_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -157,7 +182,7 @@ public class Dash_User extends javax.swing.JFrame {
         a_login.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         a_login.setForeground(new java.awt.Color(0, 0, 51));
         a_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/login.png"))); // NOI18N
-        a_login.setText("Login");
+        a_login.setText("Logout");
         a_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         a_login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -165,12 +190,11 @@ public class Dash_User extends javax.swing.JFrame {
             }
         });
 
-        next.setText("Next");
-        next.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                nextMouseClicked(evt);
-            }
-        });
+        userLabel.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        userLabel.setForeground(new java.awt.Color(0, 0, 51));
+        userLabel.setText("Hallo Username !");
+
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mansmall.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -180,17 +204,20 @@ public class Dash_User extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(a_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel1)
-                    .addComponent(a_pelanggan)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(next)
-                        .addComponent(a_login)))
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(a_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1)
+                        .addComponent(a_pelanggan)
+                        .addComponent(a_login))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -198,19 +225,21 @@ public class Dash_User extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 263, Short.MAX_VALUE)
-                .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_pelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(a_login)
-                .addGap(18, 18, 18)
-                .addComponent(next)
-                .addGap(109, 109, 109)
+                .addGap(141, 141, 141)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -221,7 +250,7 @@ public class Dash_User extends javax.swing.JFrame {
         konten.setLayout(kontenLayout);
         kontenLayout.setHorizontalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 1200, Short.MAX_VALUE)
         );
         kontenLayout.setVerticalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,6 +263,11 @@ public class Dash_User extends javax.swing.JFrame {
         btnPrev.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPrevMouseClicked(evt);
+            }
+        });
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
             }
         });
 
@@ -276,7 +310,7 @@ public class Dash_User extends javax.swing.JFrame {
                     .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 18, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,17 +322,31 @@ public class Dash_User extends javax.swing.JFrame {
                         .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                        .addContainerGap(33, Short.MAX_VALUE))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void a_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksiMouseClicked
-        Frame_Transaksi ft = new Frame_Transaksi();
-        konten.removeAll();
-        konten.add(ft);
-        ft.setVisible(true);
+//        Frame_Transaksi ft = new Frame_Transaksi();
+//        konten.removeAll();
+//        konten.add(ft);
+//        ft.setVisible(true);
+//          = cart.getList();
+         JOptionPane.showMessageDialog(null, "Jumlah Data di Cart : " + shopCart.size());
+         int i = 0;
+         double jml = 0;
+         while(i < shopCart.size()){
+             System.out.println("ID Barang : " + shopCart.get(i).getBarang().getProductID());
+             System.out.println("Nama Barang : " + shopCart.get(i).getBarang().getProductName());
+             System.out.println("Total : " + shopCart.get(i).getTotal() + "\n");
+             
+             jml += shopCart.get(i).getTotal();
+             i += 1;
+         }
+         
+         System.out.println("Total yang harus dibayar : Rp"+jml);
     }//GEN-LAST:event_a_transaksiMouseClicked
 
     private void a_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barangMouseClicked
@@ -328,29 +376,12 @@ public class Dash_User extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_a_loginMouseClicked
 
-    private void nextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nextMouseClicked
-        this.start = this.end + 10000;
-        this.end = this.start + 15;
-
-        a_login.setText(String.valueOf(this.start));
-
-        if (this.start < this.max) {
-            Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
-            konten.removeAll();
-            konten.add(grid);
-            grid.setVisible(true);
-        } else {
-            a_login.setText("Halaman Habis");
-        }
-    }//GEN-LAST:event_nextMouseClicked
-
     private void btnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseClicked
         if (this.end + 15 <= this.max) {
 
             this.start = this.end;
             this.end = this.end + 15 > this.max ? this.max : this.end + 15;
 
-            a_login.setText(String.valueOf(this.start));
             Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
             konten.removeAll();
             konten.add(grid);
@@ -359,7 +390,6 @@ public class Dash_User extends javax.swing.JFrame {
             btnPrev.setEnabled(true);
         } else {
             btnNext.setEnabled(false);
-            a_login.setText("Halaman Habis");
         }
     }//GEN-LAST:event_btnNextMouseClicked
 
@@ -369,7 +399,6 @@ public class Dash_User extends javax.swing.JFrame {
             this.end = this.start;
             this.start = this.start - 15 < 0 ? 0 : this.start - 15;
 
-            a_login.setText(String.valueOf(this.start));
             Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
             konten.removeAll();
             konten.add(grid);
@@ -378,9 +407,12 @@ public class Dash_User extends javax.swing.JFrame {
             btnPrev.setEnabled(this.start > 0);
         } else {
             btnPrev.setEnabled(false);
-            a_login.setText("Halaman Habis");
         }
     }//GEN-LAST:event_btnPrevMouseClicked
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrevActionPerformed
 
     /**
      * @param args the command line arguments
@@ -429,10 +461,11 @@ public class Dash_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel konten;
-    private javax.swing.JLabel next;
+    private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }

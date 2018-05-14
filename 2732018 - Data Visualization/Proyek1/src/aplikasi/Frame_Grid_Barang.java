@@ -6,30 +6,24 @@
 package aplikasi;
 
 import Controller.BarangController;
+import Controller.KeranjangController;
 import Model.ModelBarang;
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author Gibran
  */
 public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
-
+    KeranjangController cart = new KeranjangController();
     /**
      * @return the max
      */
@@ -133,10 +127,12 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         while (i < end) {
             Grid panel = new Grid(); 
             panel.getjLabelNama().setText(subList.get(i).getProductName()); 
-            panel.getjLabelHarga().setText("Rp."); 
+            panel.getjLabelHarga().setText("Rp.");
             panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori()); 
             ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
             panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
+            panel.getjButtonAdd().addActionListener(new MyActionListener(
+                    subList.get(i).getProductID()));
 
             this.add(panel);
             i++;
@@ -145,7 +141,6 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     }
 
     private class MyActionListener implements ActionListener {
-
         String text;
 
         public MyActionListener(String text) {
@@ -153,7 +148,9 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         }
 
         public void actionPerformed(ActionEvent e) {
-            System.out.println(text);
+            String jml = JOptionPane.showInputDialog("Masukan Jumlah Barang");
+            cart.tambahBarang(text, Integer.parseInt(jml));
+            System.out.println("Total : " + cart.getTotal());
         }
     }
 

@@ -285,6 +285,9 @@ public class Login extends javax.swing.JFrame {
                 da.setVisible(true);
             }else if(masuk(un,pass,"USER")){
                 notifLabel.setText(un+", Anda Bukan Admin : D");
+                Dash_User du = new Dash_User("Hallo, " + un);
+                this.hide();
+                du.setVisible(true);
             }else{
                 notifLabel.setText("Maaf, anda gagal login");
                 usernameField.setText("");
