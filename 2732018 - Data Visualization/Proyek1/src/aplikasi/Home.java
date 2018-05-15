@@ -5,19 +5,31 @@
  */
 package aplikasi;
 
+import Controller.GrafikController;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ACER Z3-451
  */
 public class Home extends javax.swing.JInternalFrame {
-
+    
+    GrafikController gc = new GrafikController();
     /**
      * Creates new form Home
      */
     public Home() {
         initComponents();
     }
-
+    
+    JPanel displayPie() {
+        return gc.displayPieChart();
+    }
+    
+    JPanel displayLine(){
+        
+        return gc.displayLineChart();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,8 +39,8 @@ public class Home extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = displayPie();
+        jPanel2 = displayLine();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
