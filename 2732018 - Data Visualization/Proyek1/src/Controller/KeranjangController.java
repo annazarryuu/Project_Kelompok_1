@@ -49,7 +49,7 @@ public class KeranjangController {
             if (shoppingCart.isEmpty()) {
                 ModelKeranjang cart = new ModelKeranjang();
 
-                cart.setTotal(Jumlah * 25000);
+                cart.setTotal(Jumlah * b.getPrice());
                 cart.setQty(Jumlah);
                 cart.setBarang(b);
                 this.setTotal(cart.getTotal());
@@ -60,7 +60,7 @@ public class KeranjangController {
                     if (shoppingCart.get(i).getBarang().getProductID().equals(b.getProductID())) {
                         ModelKeranjang cart = new ModelKeranjang();
 
-                        cart.setTotal(cart.getTotal() + (Jumlah * 25000));
+                        cart.setTotal(cart.getTotal() + (Jumlah * shoppingCart.get(i).getBarang().getPrice()));
                         cart.setQty(cart.getQty() + Jumlah);
                         cart.setBarang(b);
                         this.setTotal(this.getTotal() + cart.getTotal());
@@ -74,7 +74,7 @@ public class KeranjangController {
                 if (!ketemu) {
                     ModelKeranjang cart = new ModelKeranjang();
 
-                    cart.setTotal(Jumlah * 25000);
+                    cart.setTotal(Jumlah * b.getPrice());
                     cart.setQty(Jumlah);
                     cart.setBarang(b);
                     this.setTotal(this.getTotal() + cart.getTotal());
