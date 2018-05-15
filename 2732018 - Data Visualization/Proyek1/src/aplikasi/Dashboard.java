@@ -49,8 +49,10 @@ public class Dashboard extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Cartrity");
+        setPreferredSize(new java.awt.Dimension(1380, 717));
 
         jPanel1.setBackground(new java.awt.Color(218, 238, 224));
+        jPanel1.setPreferredSize(new java.awt.Dimension(147, 300));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
 
@@ -217,12 +219,12 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    public void immove(JInternalFrame a){
+    void immove(JInternalFrame a){
         BasicInternalFrameUI ui = (BasicInternalFrameUI)a.getUI();
         Component north = ui.getNorthPane();
         MouseMotionListener[] actions =

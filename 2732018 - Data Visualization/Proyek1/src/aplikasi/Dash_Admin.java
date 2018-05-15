@@ -5,13 +5,27 @@
  */
 package aplikasi;
 
+import java.awt.Component;
+import java.awt.event.MouseMotionListener;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
+
 /**
  *
  * @author Gibran
  */
 public class Dash_Admin extends javax.swing.JFrame {
     private String username = "";
-    
+    void immove(JInternalFrame a){
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)a.getUI();
+        Component north = ui.getNorthPane();
+        MouseMotionListener[] actions =
+        (MouseMotionListener[])north.getListeners(MouseMotionListener.class);
+
+        for (int i = 0; i < actions.length; i++)
+        north.removeMouseMotionListener( actions[i] ); 
+    }
     public void setUsername(String un){
         this.username = un;
     }
@@ -28,6 +42,7 @@ public class Dash_Admin extends javax.swing.JFrame {
     
     public Dash_Admin(String username) {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUsername(username);
         userLabel.setText(getUsername());
     }
@@ -59,9 +74,10 @@ public class Dash_Admin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Admin");
-        setResizable(false);
+        setPreferredSize(new java.awt.Dimension(1367, 717));
 
         jPanel1.setBackground(new java.awt.Color(218, 238, 224));
+        jPanel1.setPreferredSize(new java.awt.Dimension(147, 508));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
 
@@ -185,7 +201,7 @@ public class Dash_Admin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 198, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +252,7 @@ public class Dash_Admin extends javax.swing.JFrame {
         kontenLayout.setHorizontalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kontenLayout.createSequentialGroup()
-                .addGap(0, 1072, Short.MAX_VALUE)
+                .addGap(0, 1073, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         kontenLayout.setVerticalGroup(
@@ -253,22 +269,25 @@ public class Dash_Admin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 1219, Short.MAX_VALUE))
+                .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 1220, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)))
         );
+
+        konten.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void a_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksiMouseClicked
         Frame_Transaksi ft = new Frame_Transaksi();
+        immove(ft);
         konten.removeAll();
         konten.add(ft);
         ft.setVisible(true);
@@ -276,6 +295,7 @@ public class Dash_Admin extends javax.swing.JFrame {
 
     private void a_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barangMouseClicked
         Frame_Barang fb = new Frame_Barang();
+        immove(fb);
         konten.removeAll();
         konten.add(fb);
         fb.setVisible(true);
@@ -283,6 +303,7 @@ public class Dash_Admin extends javax.swing.JFrame {
 
     private void a_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_lokasiMouseClicked
         Frame_Lokasi fl = new Frame_Lokasi();
+        immove(fl);
         konten.removeAll();
         konten.add(fl);
         fl.setVisible(true);
@@ -290,6 +311,7 @@ public class Dash_Admin extends javax.swing.JFrame {
 
     private void a_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_pelangganMouseClicked
         Frame_Pelanggan fp = new Frame_Pelanggan();
+        immove(fp);
         konten.removeAll();
         konten.add(fp);
         fp.setVisible(true);

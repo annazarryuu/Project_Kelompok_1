@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,6 +32,7 @@ public class Dash_User extends javax.swing.JFrame {
      */
     public Dash_User() {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 //        userLabel.setText(username);
 //        start = 0;
 //        end = 15;
@@ -47,6 +49,7 @@ public class Dash_User extends javax.swing.JFrame {
     
     public Dash_User(String username) {
         initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         userLabel.setText(username);
         start = 0;
         end = 15;
@@ -89,8 +92,10 @@ public class Dash_User extends javax.swing.JFrame {
         btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1380, 717));
 
         jPanel1.setBackground(new java.awt.Color(218, 238, 224));
+        jPanel1.setPreferredSize(new java.awt.Dimension(147, 300));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
 
@@ -250,11 +255,11 @@ public class Dash_User extends javax.swing.JFrame {
         konten.setLayout(kontenLayout);
         kontenLayout.setHorizontalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1200, Short.MAX_VALUE)
+            .addGap(0, 1220, Short.MAX_VALUE)
         );
         kontenLayout.setVerticalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 684, Short.MAX_VALUE)
+            .addGap(0, 717, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(218, 238, 224));
@@ -305,24 +310,24 @@ public class Dash_User extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 1200, Short.MAX_VALUE)
+                    .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 1220, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 18, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(33, Short.MAX_VALUE))))
+                        .addContainerGap())))
         );
 
         pack();
