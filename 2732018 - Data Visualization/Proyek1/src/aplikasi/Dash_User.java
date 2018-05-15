@@ -287,9 +287,10 @@ public class Dash_User extends javax.swing.JFrame {
 //        konten.add(ft);
 //        ft.setVisible(true);
 //          = cart.getList();
-         JOptionPane.showMessageDialog(null, "Jumlah Data di Cart : " + shopCart.size());
          int i = 0;
          double jml = 0;
+         int inCart = 0;
+         
          while(i < shopCart.size()){
              System.out.println("ID Barang : " + shopCart.get(i).getBarang().getProductID());
              System.out.println("Nama Barang : " + shopCart.get(i).getBarang().getProductName());
@@ -298,9 +299,11 @@ public class Dash_User extends javax.swing.JFrame {
              System.out.println("Total : $" + shopCart.get(i).getTotal() + "\n");
              
              jml += shopCart.get(i).getTotal();
+             inCart += shopCart.get(i).getQty();
              i += 1;
          }
          
+         JOptionPane.showMessageDialog(null, "Jumlah Data di Cart : " + inCart);
          System.out.println("Total yang harus dibayar : $"+jml);
     }//GEN-LAST:event_a_transaksiMouseClicked
 
