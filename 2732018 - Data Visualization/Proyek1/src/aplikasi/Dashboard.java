@@ -22,6 +22,11 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
+        Home h = new Home();
+        immove(h); 
+        konten.removeAll();
+        konten.add(h);
+        h.setVisible(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -45,6 +50,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         a_login = new javax.swing.JLabel();
+        a_transaksi1 = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -152,6 +158,17 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
+        a_transaksi1.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        a_transaksi1.setForeground(new java.awt.Color(0, 0, 51));
+        a_transaksi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/transaction.png"))); // NOI18N
+        a_transaksi1.setText("Home");
+        a_transaksi1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        a_transaksi1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_transaksi1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,7 +183,8 @@ public class Dashboard extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(a_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(a_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(a_transaksi1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1)
                     .addComponent(a_pelanggan))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -177,6 +195,8 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(a_transaksi1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -272,6 +292,14 @@ public class Dashboard extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_a_loginMouseClicked
 
+    private void a_transaksi1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksi1MouseClicked
+        Home h = new Home();
+        immove(h); 
+        konten.removeAll();
+        konten.add(h);
+        h.setVisible(true);
+    }//GEN-LAST:event_a_transaksi1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -313,6 +341,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JLabel a_lokasi;
     private javax.swing.JLabel a_pelanggan;
     private javax.swing.JLabel a_transaksi;
+    private javax.swing.JLabel a_transaksi1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

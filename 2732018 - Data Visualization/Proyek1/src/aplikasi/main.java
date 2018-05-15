@@ -30,5 +30,6 @@ public class main {
        new BarangController().getAllData();
        Dashboard a= new Dashboard();
        a.setVisible(true);
+
     }
 }
