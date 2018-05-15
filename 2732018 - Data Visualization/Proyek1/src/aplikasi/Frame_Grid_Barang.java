@@ -18,13 +18,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
+import javax.swing.SpinnerModel;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 /**
  *
  * @author Gibran
  */
 public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
+
     KeranjangController cart = new KeranjangController();
+
     /**
      * @return the max
      */
@@ -70,7 +77,8 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     private int start = 0;
     private int end = 15;
     private int max = 0;
-    
+    int jml;
+
     /**
      * Creates new form Frame_Grid_Barang
      */
@@ -125,36 +133,48 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
         int i = start;
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
-
+        
         while (i < end) {
-            Grid panel = new Grid(); 
-            panel.getjLabelNama().setText(subList.get(i).getProductName()); 
+            Grid panel = new Grid();           
+            panel.getjLabelNama().setText(subList.get(i).getProductName());
 //            panel.getjLabelHarga().setText("Rp.");
             panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
             panel.getjLabelHarga().setText("$" + decimalFormat.format(subList.get(i).getPrice()));
             ImageIcon icon = new ImageIcon(subList.get(i).getImageSource());
 //            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
             panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
-            panel.getjButtonAdd().addActionListener(new MyActionListener(
-                    subList.get(i).getProductID()));
-
+            panel.getjButtonAdd().addActionListener(new MyActionListener(subList.get(i).getProductID(),panel));
+            panel.getJSpinnerJml().addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    JSpinner s = (JSpinner) e.getSource();
+                    int val = (int) s.getValue();
+                    if (val < 1) {
+                        s.setValue(1);
+                    }
+                    jml = val;
+                }
+            });
+            
             this.add(panel);
             i++;
         }
-
+        
     }
-
+    
     private class MyActionListener implements ActionListener {
         String text;
-
-        public MyActionListener(String text) {
+        Grid g;
+        
+        public MyActionListener(String text, Grid panel) {
             this.text = text;
+            g = panel;
         }
-
+        
         public void actionPerformed(ActionEvent e) {
-            String jml = JOptionPane.showInputDialog("Masukan Jumlah Barang");
-            cart.tambahBarang(text, Integer.parseInt(jml));
+            cart.tambahBarang(text, jml);
             System.out.println("Total : " + cart.getTotal());
+            g.getJSpinnerJml().setValue(1);
         }
     }
 
