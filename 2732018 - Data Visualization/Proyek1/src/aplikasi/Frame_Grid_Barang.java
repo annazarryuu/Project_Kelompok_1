@@ -109,25 +109,136 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        btnPrev = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
+
+        setPreferredSize(new java.awt.Dimension(1200, 717));
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel2.setMaximumSize(new java.awt.Dimension(1200, 600));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1200, 600));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1200, 600));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1201, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 600, Short.MAX_VALUE)
+        );
+
+        jPanel3.setBackground(new java.awt.Color(218, 238, 224));
+
+        btnPrev.setText("Previous");
+        btnPrev.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnPrevMouseClicked(evt);
+            }
+        });
+        btnPrev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrevActionPerformed(evt);
+            }
+        });
+
+        btnNext.setText("Next");
+        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnNextMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(440, 440, 440)
+                .addComponent(btnPrev)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPrev)
+                    .addComponent(btnNext))
+                .addContainerGap(84, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1184, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1201, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 650, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseClicked
+        if (this.start - 15 >= 0) {
+
+            this.end = this.start;
+            this.start = this.start - 15 < 0 ? 0 : this.start - 15;
+
+            Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
+            jPanel2.removeAll();
+            jPanel2.add(grid);
+            grid.setVisible(true);
+            btnNext.setEnabled(true);
+            btnPrev.setEnabled(this.start > 0);
+        } else {
+            btnPrev.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnPrevMouseClicked
+
+    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrevActionPerformed
+
+    private void btnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseClicked
+        if (this.end + 15 <= this.max) {
+
+            this.start = this.end;
+            this.end = this.end + 15 > this.max ? this.max : this.end + 15;
+
+            Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
+            jPanel2.removeAll();
+            jPanel2.add(grid);
+            grid.setVisible(true);
+            btnNext.setEnabled(this.end < this.max);
+            btnPrev.setEnabled(true);
+        } else {
+            btnNext.setEnabled(false);
+        }
+    }//GEN-LAST:event_btnNextMouseClicked
+
     public void showGrid(int start, int end) throws IOException {
         BarangController sub = new BarangController();
         List<ModelBarang> subList;
         
-        this.setLayout(new GridLayout(5, 3));
+        jPanel2.setLayout(new GridLayout(5, 3));
         
         subList = sub.getList();
         this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
@@ -135,7 +246,8 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
         
         while (i < end) {
-            Grid panel = new Grid();           
+            Grid panel = new Grid(); 
+            panel.setSize(400, 100);
             panel.getjLabelNama().setText(subList.get(i).getProductName());
 //            panel.getjLabelHarga().setText("Rp.");
             panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
@@ -156,7 +268,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
                 }
             });
             
-            this.add(panel);
+            jPanel2.add(panel);
             i++;
         }
         
@@ -179,5 +291,9 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnNext;
+    private javax.swing.JButton btnPrev;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

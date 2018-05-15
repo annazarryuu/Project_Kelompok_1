@@ -61,7 +61,7 @@ public class Dash_User extends javax.swing.JFrame {
         konten.add(grid);
         grid.setVisible(true);
         
-        btnPrev.setEnabled(this.start > 0);
+//        btnPrev.setEnabled(this.start > 0);
     }
 
     /**
@@ -87,9 +87,6 @@ public class Dash_User extends javax.swing.JFrame {
         userLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        btnPrev = new javax.swing.JButton();
-        btnNext = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1380, 717));
@@ -249,7 +246,7 @@ public class Dash_User extends javax.swing.JFrame {
         );
 
         konten.setBackground(new java.awt.Color(250, 250, 250));
-        konten.setPreferredSize(new java.awt.Dimension(930, 300));
+        konten.setPreferredSize(new java.awt.Dimension(1220, 367));
 
         javax.swing.GroupLayout kontenLayout = new javax.swing.GroupLayout(konten);
         konten.setLayout(kontenLayout);
@@ -262,48 +259,6 @@ public class Dash_User extends javax.swing.JFrame {
             .addGap(0, 717, Short.MAX_VALUE)
         );
 
-        jPanel3.setBackground(new java.awt.Color(218, 238, 224));
-
-        btnPrev.setText("Previous");
-        btnPrev.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnPrevMouseClicked(evt);
-            }
-        });
-        btnPrev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPrevActionPerformed(evt);
-            }
-        });
-
-        btnNext.setText("Next");
-        btnNext.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnNextMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(440, 440, 440)
-                .addComponent(btnPrev)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(589, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrev)
-                    .addComponent(btnNext))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -311,23 +266,16 @@ public class Dash_User extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 1220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 779, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
+                    .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
@@ -383,44 +331,6 @@ public class Dash_User extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_a_loginMouseClicked
 
-    private void btnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNextMouseClicked
-        if (this.end + 15 <= this.max) {
-
-            this.start = this.end;
-            this.end = this.end + 15 > this.max ? this.max : this.end + 15;
-
-            Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
-            konten.removeAll();
-            konten.add(grid);
-            grid.setVisible(true);
-            btnNext.setEnabled(this.end < this.max);
-            btnPrev.setEnabled(true);
-        } else {
-            btnNext.setEnabled(false);
-        }
-    }//GEN-LAST:event_btnNextMouseClicked
-
-    private void btnPrevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPrevMouseClicked
-        if (this.start - 15 >= 0) {
-            
-            this.end = this.start;
-            this.start = this.start - 15 < 0 ? 0 : this.start - 15;
-
-            Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
-            konten.removeAll();
-            konten.add(grid);
-            grid.setVisible(true);
-            btnNext.setEnabled(true);
-            btnPrev.setEnabled(this.start > 0);
-        } else {
-            btnPrev.setEnabled(false);
-        }
-    }//GEN-LAST:event_btnPrevMouseClicked
-
-    private void btnPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPrevActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -462,8 +372,6 @@ public class Dash_User extends javax.swing.JFrame {
     private javax.swing.JLabel a_lokasi;
     private javax.swing.JLabel a_pelanggan;
     private javax.swing.JLabel a_transaksi;
-    private javax.swing.JButton btnNext;
-    private javax.swing.JButton btnPrev;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -471,7 +379,6 @@ public class Dash_User extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel konten;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
