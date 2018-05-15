@@ -7,6 +7,8 @@ package aplikasi;
 
 import Controller.TransaksiController;
 import Model.ModelTransaksi;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +24,8 @@ public class Detail_Transaksi extends javax.swing.JFrame {
      */
     public Detail_Transaksi() {
         initComponents();
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
     }
     /**
      * This method is called from within the constructor to initialize the form.
