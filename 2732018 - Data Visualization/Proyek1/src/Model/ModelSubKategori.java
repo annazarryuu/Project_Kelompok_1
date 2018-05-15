@@ -53,9 +53,24 @@ public class ModelSubKategori {
         this.subKategori = subKategori;
     }
     
+    /**
+     * @return the imageSource
+     */
+    public String getImageSource() {
+        return imageSource;
+    }
+
+    /**
+     * @param imageSource the imageSource to set
+     */
+    public void setImageSource(String imageSource) {
+        this.imageSource = imageSource;
+    }
+    
     public static final String FILE_NAME = "*/../src/Excel/DataTransaksi.xlsx";
     
     private String id_sub;
     private ModelKategori kategori;
     private String subKategori;
+    private String imageSource;
 }

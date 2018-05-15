@@ -48,11 +48,13 @@ public class SubKategoriController extends ModelSubKategori{
                 Cell idsub = currentRow.getCell(0);
                 Cell cat = currentRow.getCell(1);
                 Cell subcat = currentRow.getCell(2);
+                Cell image = currentRow.getCell(3);
                 
                 ModelSubKategori sub = new ModelSubKategori();
                 sub.setId_sub(idsub.toString());
                 sub.setKategori(kat.searchObject(cat.toString()));
                 sub.setSubKategori(subcat.toString());
+                sub.setImageSource(image.toString());
                 
                 this.list.add(sub);
             }

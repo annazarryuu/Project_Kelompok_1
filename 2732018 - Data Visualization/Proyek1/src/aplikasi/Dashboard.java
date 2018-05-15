@@ -22,11 +22,11 @@ public class Dashboard extends javax.swing.JFrame {
      */
     public Dashboard() {
         initComponents();
-        Home h = new Home();
-        immove(h); 
-        konten.removeAll();
-        konten.add(h);
-        h.setVisible(true);
+//        Home h = new Home();
+//        immove(h); 
+//        konten.removeAll();
+//        konten.add(h);
+//        h.setVisible(true);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 

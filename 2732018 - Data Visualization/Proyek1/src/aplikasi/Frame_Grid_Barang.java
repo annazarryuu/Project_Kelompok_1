@@ -252,7 +252,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
 //            panel.getjLabelHarga().setText("Rp.");
             panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
             panel.getjLabelHarga().setText("$" + decimalFormat.format(subList.get(i).getPrice()));
-            ImageIcon icon = new ImageIcon(subList.get(i).getImageSource());
+            ImageIcon icon = new ImageIcon(subList.get(i).getSubcategory().getImageSource());
 //            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
             panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
             panel.getjButtonAdd().addActionListener(new MyActionListener(subList.get(i).getProductID(),panel));
