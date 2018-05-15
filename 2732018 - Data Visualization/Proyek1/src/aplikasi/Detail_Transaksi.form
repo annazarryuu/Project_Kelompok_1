@@ -29,10 +29,10 @@
               <Component id="cardPanel" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-              <Component id="jLabel3" max="32767" attributes="0"/>
-              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
+              <Component id="jLabel3" min="-2" pref="180" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -54,7 +54,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Roboto" size="24" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="DETAIL Pelanggan"/>
+        <Property name="text" type="java.lang.String" value="Detail Transaksi"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JPanel" name="cardPanel">
@@ -89,7 +89,10 @@
                       <Component id="CancelButton" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace pref="127" max="32767" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane2" alignment="0" pref="405" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jScrollPane2" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
@@ -159,7 +162,7 @@
                                           </Group>
                                           <Component id="eDonation" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="42" max="32767" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
@@ -167,7 +170,7 @@
                                           <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
                                           <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="57" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>

@@ -58,6 +58,8 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1217, 715));
+
         searchOn.setBackground(new java.awt.Color(0, 0, 51));
         searchOn.setForeground(new java.awt.Color(255, 255, 255));
         searchOn.setText("Search");

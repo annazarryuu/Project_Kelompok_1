@@ -5,7 +5,11 @@
  */
 package aplikasi;
 
+import java.awt.Component;
+import java.awt.event.MouseMotionListener;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 /**
  *
@@ -170,7 +174,7 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,11 +195,11 @@ public class Dashboard extends javax.swing.JFrame {
         konten.setLayout(kontenLayout);
         kontenLayout.setHorizontalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1073, Short.MAX_VALUE)
+            .addGap(0, 1220, Short.MAX_VALUE)
         );
         kontenLayout.setVerticalGroup(
             kontenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 717, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,22 +209,32 @@ public class Dashboard extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 1073, Short.MAX_VALUE))
+                .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 1220, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(konten, javax.swing.GroupLayout.DEFAULT_SIZE, 683, Short.MAX_VALUE)
+                    .addComponent(konten, javax.swing.GroupLayout.PREFERRED_SIZE, 717, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    public void immove(JInternalFrame a){
+        BasicInternalFrameUI ui = (BasicInternalFrameUI)a.getUI();
+        Component north = ui.getNorthPane();
+        MouseMotionListener[] actions =
+        (MouseMotionListener[])north.getListeners(MouseMotionListener.class);
 
+        for (int i = 0; i < actions.length; i++)
+        north.removeMouseMotionListener( actions[i] ); 
+    }
+    
     private void a_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksiMouseClicked
         Frame_Transaksi ft = new Frame_Transaksi();
+        immove(ft);
         konten.removeAll();
         konten.add(ft);
         ft.setVisible(true);
@@ -228,6 +242,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void a_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barangMouseClicked
         Frame_Barang fb = new Frame_Barang();
+        immove(fb);
         konten.removeAll();
         konten.add(fb);
         fb.setVisible(true);
@@ -235,6 +250,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void a_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_lokasiMouseClicked
         Frame_Lokasi fl = new Frame_Lokasi();
+        immove(fl);
         konten.removeAll();
         konten.add(fl);
         fl.setVisible(true);
@@ -242,6 +258,7 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void a_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_pelangganMouseClicked
         Frame_Pelanggan fp = new Frame_Pelanggan();
+        immove(fp); 
         konten.removeAll();
         konten.add(fp);
         fp.setVisible(true);

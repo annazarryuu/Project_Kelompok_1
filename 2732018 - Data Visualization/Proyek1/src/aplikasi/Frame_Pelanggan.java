@@ -49,6 +49,8 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1217, 715));
+
         searchBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer ID", "Name", "Segment" }));
 
         searchOn.setBackground(new java.awt.Color(0, 0, 51));

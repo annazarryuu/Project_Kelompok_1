@@ -51,6 +51,8 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
+        setPreferredSize(new java.awt.Dimension(1217, 715));
+
         searchBy.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product ID", "Category", "Sub-Category", "Product Name" }));
 
         searchOn.setBackground(new java.awt.Color(0, 0, 51));
