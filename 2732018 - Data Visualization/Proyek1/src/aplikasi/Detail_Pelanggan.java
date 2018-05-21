@@ -50,7 +50,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        segment1 = new javax.swing.JTextField();
+        Segment = new javax.swing.JComboBox<>();
         SaveButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
@@ -89,6 +89,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         jLabel31.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel31.setText(":");
 
+        custID1.setEditable(false);
         custID1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         custID1.setPreferredSize(new java.awt.Dimension(250, 20));
         custID1.addActionListener(new java.awt.event.ActionListener() {
@@ -119,13 +120,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         jLabel53.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel53.setText(":");
 
-        segment1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        segment1.setPreferredSize(new java.awt.Dimension(250, 20));
-        segment1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                segment1ActionPerformed(evt);
-            }
-        });
+        Segment.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Home Office", "Consumer", "Corporate" }));
 
         javax.swing.GroupLayout DatapanelEditLayout = new javax.swing.GroupLayout(DatapanelEdit);
         DatapanelEdit.setLayout(DatapanelEditLayout);
@@ -145,12 +140,12 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                             .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(custName1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                            .addComponent(custName1, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
                             .addComponent(custID1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                     .addGroup(DatapanelEditLayout.createSequentialGroup()
                         .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(segment1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                        .addComponent(Segment, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         DatapanelEditLayout.setVerticalGroup(
@@ -170,8 +165,8 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                 .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel53)
-                    .addComponent(segment1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Segment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(DatapanelEdit);
@@ -217,7 +212,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                     .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -291,7 +286,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                     .addGroup(DatapanelMainLayout.createSequentialGroup()
                         .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(segment, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE))
+                        .addComponent(segment, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                     .addGroup(DatapanelMainLayout.createSequentialGroup()
                         .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -366,7 +361,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                     .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -391,7 +386,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
                 .addGap(16, 16, 16)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+                .addComponent(cardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -406,30 +401,20 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_custName1ActionPerformed
 
-    private void segment1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_segment1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_segment1ActionPerformed
-
     private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
-        try {
-            ModelPelanggan a = new ModelPelanggan();
-            PelangganController b = new PelangganController();
-            a = b.searchObject(this.custID.getText());
-            a.setCustomerID(this.custID1.getText());
-            a.setCustomerName(this.custName1.getText());
-            a.setSegment(this.segment1.getText());
-            b.edit(this.custID.getText(), a);
-
-            this.cardPanel.removeAll();//1 2 q 3 5 q 6 q q
-            this.cardPanel.add(mainPanel);
-        } catch (IOException ex) {
-            Logger.getLogger(Detail_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ModelPelanggan a = new ModelPelanggan();
+        a.setCustomerID(this.custID1.getText());
+        a.setCustomerName(this.custName1.getText());
+        a.setSegment(this.Segment.getSelectedItem().toString());
+        new PelangganController().edit(this.custID.getText(), a);
+        this.dispose();
     }//GEN-LAST:event_SaveButtonMouseClicked
 
     private void CancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(mainPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_CancelButtonMouseClicked
 
     private void custIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custIDActionPerformed
@@ -447,6 +432,8 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
     private void EditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(this.editPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_EditButtonMouseClicked
 
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
@@ -500,6 +487,7 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
     public javax.swing.JButton DeleteButton;
     public javax.swing.JButton EditButton;
     private javax.swing.JButton SaveButton;
+    private javax.swing.JComboBox<String> Segment;
     public javax.swing.JPanel cardPanel;
     public javax.swing.JTextField custID;
     public javax.swing.JTextField custID1;
@@ -523,6 +511,5 @@ public class Detail_Pelanggan extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JPanel mainPanel;
     public javax.swing.JTextField segment;
-    public javax.swing.JTextField segment1;
     // End of variables declaration//GEN-END:variables
 }

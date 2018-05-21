@@ -527,8 +527,6 @@ public class Detail_Lokasi extends javax.swing.JFrame {
 
     private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
         ModelDaerah a = new ModelDaerah();
-        DaerahController b = new DaerahController();
-        //        a = b.searchObject(this.produkID.getText(), this.namaProdukText1.getText());
         //        a.setOrderID(this.eOrderID.getText());
         //        a.setOrderDate(this.eOrderDate.getDate());
         //        switch(this.eShipMode.getSelectedIndex())//Standard Class, Second Class, First Class, Same Day
@@ -548,13 +546,14 @@ public class Detail_Lokasi extends javax.swing.JFrame {
         //        a.getProduct().getSubcategory().getKategori().setKategori(this.eKategori.getText());
         //        a.setDonation(Double.parseDouble(this.eDonation.getText()));
         //        b.edit(this.produkID.getText(), this.namaProdukText1.getText(), a);
-        this.cardPanel.removeAll();//1 2 q 3 5 q 6 q q
-        this.cardPanel.add(mainPanel);
+        this.dispose();
     }//GEN-LAST:event_SaveButtonMouseClicked
 
     private void CancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(mainPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_CancelButtonMouseClicked
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
@@ -580,6 +579,8 @@ public class Detail_Lokasi extends javax.swing.JFrame {
     private void EditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(this.editPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_EditButtonMouseClicked
 
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
