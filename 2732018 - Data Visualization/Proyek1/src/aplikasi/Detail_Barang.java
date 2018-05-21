@@ -9,13 +9,13 @@ import Controller.BarangController;
 import Controller.KategoriController;
 import Controller.SubKategoriController;
 import Model.ModelBarang;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 import java.awt.Dimension;
 import java.awt.Toolkit;
-=======
+//=======
 import Model.ModelKategori;
 import Model.ModelSubKategori;
->>>>>>> parasut
+//>>>>>>> parasut
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,10 +33,10 @@ public class Detail_Barang extends javax.swing.JFrame {
      */
     public Detail_Barang() {
         initComponents();
-<<<<<<< HEAD
+//<<<<<<< HEAD
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
-=======
+//=======
         setKategori();
     }
     
@@ -57,7 +57,7 @@ public class Detail_Barang extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(Detail_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
->>>>>>> parasut
+//>>>>>>> parasut
     }
     /**
      * This method is called from within the constructor to initialize the form.
