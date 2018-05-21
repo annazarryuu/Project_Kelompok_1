@@ -25,13 +25,19 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
     TabelOpr A = new TabelOpr();
     DaerahController d = new DaerahController();
     Object[] isi = {"Postal Code", "Region", "Country", "City", "State"};
-    public Frame_Lokasi() {
+    boolean admin;
+    public Frame_Lokasi(boolean admin) {
         try {
             initComponents();
+            setAdmin(admin);
             d.showTable(t_lokasi, isi);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Lokasi.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     /**
@@ -308,7 +314,7 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
                     a.provinsi1.setText(hsl.getCountry());
                     a.kota.setText(hsl.getCity());
                     a.kota1.setText(hsl.getCity());
-                    if(!true){  //cek admin
+                    if(!admin){  //cek admin
                         a.EditButton.setVisible(false);
                         a.DeleteButton.setVisible(false);
                     }

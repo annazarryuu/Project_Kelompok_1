@@ -93,4 +93,28 @@ public class SubKategoriController extends ModelSubKategori{
         
         return kat;
     }
+    
+    public String getID(String kategori) throws IOException {
+        
+        String id = null;
+        if(this.list.isEmpty()){
+            getAllData();
+        }
+        
+        int i = 0;
+        boolean ketemu = false;
+        while(i<list.size() && !ketemu){
+            String kat = list.get(i).getSubKategori();
+
+            id = list.get(i).getId_sub();
+
+            if(kat.equals(kategori)){
+                ketemu = true;
+            }
+
+            i += 1;
+        }
+        
+        return id;
+    }
 }

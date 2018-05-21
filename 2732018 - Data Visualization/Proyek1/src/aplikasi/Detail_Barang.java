@@ -6,8 +6,15 @@
 package aplikasi;
 
 import Controller.BarangController;
+import Controller.KategoriController;
+import Controller.SubKategoriController;
 import Model.ModelBarang;
+import Model.ModelKategori;
+import Model.ModelSubKategori;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
@@ -21,8 +28,27 @@ public class Detail_Barang extends javax.swing.JFrame {
      */
     public Detail_Barang() {
         initComponents();
+        setKategori();
     }
-
+    
+    private void setKategori() 
+    {
+        try {
+            int i = 0;
+//            System.out.println(new KategoriController().getList().size());
+            String[] aModel = new String[new KategoriController().getList().size()];
+            Iterator<ModelKategori> kateg = new KategoriController().getList().iterator();
+//            kateg.next();
+            while(kateg.hasNext())
+            {
+//                System.out.println(i);
+                aModel[i++] = kateg.next().getKategori();
+            }
+            this.kategori1.setModel(new javax.swing.DefaultComboBoxModel<>(aModel));
+        } catch (IOException ex) {
+            Logger.getLogger(Detail_Barang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,10 +71,13 @@ public class Detail_Barang extends javax.swing.JFrame {
         jLabel40 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
-        subkategori1 = new javax.swing.JTextField();
         jLabel43 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
-        kategori1 = new javax.swing.JTextField();
+        kategori1 = new javax.swing.JComboBox<>();
+        subkategori1 = new javax.swing.JComboBox<>();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
+        produkPrice = new javax.swing.JTextField();
         SaveButton = new javax.swing.JButton();
         CancelButton = new javax.swing.JButton();
         mainPanel = new javax.swing.JPanel();
@@ -121,25 +150,43 @@ public class Detail_Barang extends javax.swing.JFrame {
         jLabel42.setText("Sub-Kategori");
         jLabel42.setPreferredSize(new java.awt.Dimension(60, 20));
 
-        subkategori1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        subkategori1.setPreferredSize(new java.awt.Dimension(250, 20));
-        subkategori1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                subkategori1ActionPerformed(evt);
-            }
-        });
-
         jLabel43.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel43.setText(":");
 
         jLabel53.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel53.setText(":");
 
-        kategori1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        kategori1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         kategori1.setPreferredSize(new java.awt.Dimension(250, 20));
+        kategori1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                kategori1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         kategori1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 kategori1ActionPerformed(evt);
+            }
+        });
+
+        subkategori1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel32.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel32.setText("Harga");
+        jLabel32.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        jLabel44.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel44.setText(":");
+
+        produkPrice.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        produkPrice.setPreferredSize(new java.awt.Dimension(250, 20));
+        produkPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                produkPriceActionPerformed(evt);
             }
         });
 
@@ -155,13 +202,13 @@ public class Detail_Barang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(produkID1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                        .addComponent(produkID1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
                     .addGroup(DatapanelEditLayout.createSequentialGroup()
                         .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(subkategori1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE))
+                        .addComponent(subkategori1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(DatapanelEditLayout.createSequentialGroup()
                         .addComponent(jLabel40, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -173,7 +220,13 @@ public class Detail_Barang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel53, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(kategori1, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                        .addComponent(kategori1, 0, 1, Short.MAX_VALUE))
+                    .addGroup(DatapanelEditLayout.createSequentialGroup()
+                        .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(produkPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         DatapanelEditLayout.setVerticalGroup(
@@ -199,7 +252,12 @@ public class Detail_Barang extends javax.swing.JFrame {
                     .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel43)
                     .addComponent(subkategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(DatapanelEditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel44)
+                    .addComponent(produkPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jScrollPane2.setViewportView(DatapanelEdit);
@@ -467,44 +525,32 @@ public class Detail_Barang extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_produkName1ActionPerformed
 
-    private void subkategori1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subkategori1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_subkategori1ActionPerformed
-
-    private void kategori1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategori1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kategori1ActionPerformed
-
     private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
-        ModelBarang a = new ModelBarang();
-        BarangController b = new BarangController();
-        //        a = b.searchObject(this.produkID.getText(), this.namaProdukText1.getText());
-        //        a.setOrderID(this.eOrderID.getText());
-        //        a.setOrderDate(this.eOrderDate.getDate());
-        //        switch(this.eShipMode.getSelectedIndex())//Standard Class, Second Class, First Class, Same Day
-        //        {
-            //            case 0: a.getShipMode().setShipMode("Standard Class");break;
-            //            case 1: a.getShipMode().setShipMode("Second Class");break;
-            //            case 2: a.getShipMode().setShipMode("First Class");break;
-            //            default: a.getShipMode().setShipMode("Same Day");break;
-            //        }
-        //        a.setShipDate(this.eShipDate.getDate());
-        //        a.getPelanggan().setCustomerID(this.eCustID.getText());
-        //        a.getPelanggan().setCustomerName(this.eCustName.getText());
-        //        a.getPostal().setPostalCode(this.eKodePOS.getText());
-        //        a.getPostal().setCity(this.eKota.getText());
-        //        a.getPostal().setState(this.eState.getText());
-        //        a.getProduct().setProductName(this.eNamaProduk.getText());
-        //        a.getProduct().getSubcategory().getKategori().setKategori(this.eKategori.getText());
-        //        a.setDonation(Double.parseDouble(this.eDonation.getText()));
-        //        b.edit(this.produkID.getText(), this.namaProdukText1.getText(), a);
-        this.cardPanel.removeAll();//1 2 q 3 5 q 6 q q
-        this.cardPanel.add(mainPanel);
+        try {
+            ModelBarang a = new ModelBarang();
+            a.setProductID(this.produkID1.getText());
+            a.setProductName(this.produkName1.getText());
+            Model.ModelKategori kateg = new Model.ModelKategori();
+            kateg.setKategori(this.kategori1.getSelectedItem().toString());
+            kateg.setId_kategori(new KategoriController().getID(this.kategori1.getSelectedItem().toString()));
+            Model.ModelSubKategori subkateg = new Model.ModelSubKategori();
+            subkateg.setKategori(kateg);
+            subkateg.setSubKategori(this.subkategori1.getSelectedItem().toString());
+            subkateg.setId_sub(new SubKategoriController().getID(this.subkategori1.getSelectedItem().toString()));
+            a.setSubcategory(subkateg);
+            a.setPrice(Double.parseDouble(this.produkPrice.getText()));
+            new BarangController().edit(this.produkID.getText(), a);
+            this.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Detail_Barang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_SaveButtonMouseClicked
 
     private void CancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(mainPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_CancelButtonMouseClicked
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
@@ -530,6 +576,8 @@ public class Detail_Barang extends javax.swing.JFrame {
     private void EditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(this.editPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_EditButtonMouseClicked
 
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
@@ -542,6 +590,45 @@ public class Detail_Barang extends javax.swing.JFrame {
             Logger.getLogger(Detail_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_DeleteButtonMouseClicked
+
+    private void kategori1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_kategori1ActionPerformed
+        // empty
+    }//GEN-LAST:event_kategori1ActionPerformed
+
+    private void produkPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produkPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_produkPriceActionPerformed
+
+    private void kategori1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_kategori1PopupMenuWillBecomeInvisible
+        try {
+            List<String> temp = new ArrayList();
+            int i = 0;
+            Iterator<ModelSubKategori> a = new SubKategoriController().getList().iterator();
+//            a.next();
+            String Id = new KategoriController().getID(kategori1.getSelectedItem().toString());
+            while(a.hasNext()){
+                ModelSubKategori cek = a.next();
+                if(cek.getKategori().getId_kategori().equals(Id)){
+                    temp.add(cek.getSubKategori());
+                    i++;
+                }
+            }
+            String[] bModel = new String[i];
+            while(i>0){
+                i--;
+                bModel[i]=temp.get(i).toString();
+            }
+//            Iterator<ModelSubKategori> skateg = new SubKategoriController().getList().iterator();
+//            skateg.next();
+//            while(skateg.hasNext())
+//            {
+//                bModel[i++] = skateg.next().getSubKategori();
+//            }
+            this.subkategori1.setModel(new javax.swing.DefaultComboBoxModel<>(bModel));
+        } catch (IOException ex) {
+            Logger.getLogger(Detail_Barang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_kategori1PopupMenuWillBecomeInvisible
 
     /**
      * @param args the command line arguments
@@ -593,6 +680,7 @@ public class Detail_Barang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -603,18 +691,20 @@ public class Detail_Barang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     public javax.swing.JTextField kategori;
-    public javax.swing.JTextField kategori1;
+    private javax.swing.JComboBox<String> kategori1;
     public javax.swing.JPanel mainPanel;
     public javax.swing.JTextField produkID;
     public javax.swing.JTextField produkID1;
     public javax.swing.JTextField produkName;
     public javax.swing.JTextField produkName1;
+    public javax.swing.JTextField produkPrice;
     public javax.swing.JTextField subkategori;
-    public javax.swing.JTextField subkategori1;
+    private javax.swing.JComboBox<String> subkategori1;
     // End of variables declaration//GEN-END:variables
 }

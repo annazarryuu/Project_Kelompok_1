@@ -268,28 +268,28 @@ public class Dash_Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void a_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksiMouseClicked
-        Frame_Transaksi ft = new Frame_Transaksi();
+        Frame_Transaksi ft = new Frame_Transaksi(true);
         konten.removeAll();
         konten.add(ft);
         ft.setVisible(true);
     }//GEN-LAST:event_a_transaksiMouseClicked
 
     private void a_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barangMouseClicked
-        Frame_Barang fb = new Frame_Barang();
+        Frame_Barang fb = new Frame_Barang(true);
         konten.removeAll();
         konten.add(fb);
         fb.setVisible(true);
     }//GEN-LAST:event_a_barangMouseClicked
 
     private void a_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_lokasiMouseClicked
-        Frame_Lokasi fl = new Frame_Lokasi();
+        Frame_Lokasi fl = new Frame_Lokasi(true);
         konten.removeAll();
         konten.add(fl);
         fl.setVisible(true);
     }//GEN-LAST:event_a_lokasiMouseClicked
 
     private void a_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_pelangganMouseClicked
-        Frame_Pelanggan fp = new Frame_Pelanggan();
+        Frame_Pelanggan fp = new Frame_Pelanggan(true);
         konten.removeAll();
         konten.add(fp);
         fp.setVisible(true);

@@ -19,13 +19,19 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
     TabelOpr A = new TabelOpr();
     PelangganController p = new PelangganController();
     Object[] isi = {"Customer ID", "Name", "Segment"};
-    public Frame_Pelanggan() {
+    boolean admin;
+    public Frame_Pelanggan(boolean admin) {
         try {
             initComponents();
+            setAdmin(admin);
             p.showTable(t_pelanggan, isi);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     /**
@@ -47,6 +53,7 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
         jComboBox4 = new javax.swing.JComboBox<>();
         jLabel14 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
+        addPelanggan = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1217, 715));
@@ -103,6 +110,8 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
             }
         });
 
+        addPelanggan.setText("Add Pelanggan");
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -116,18 +125,21 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(107, 107, 107)
+                        .addComponent(addPelanggan)))
                 .addContainerGap(49, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addGap(32, 32, 32)
+                    .addComponent(jLabel14)
+                    .addComponent(addPelanggan))
+                .addGap(29, 29, 29)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -226,8 +238,7 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
                     a.segment.setText(hsl.getSegment());
                     a.custID1.setText(hsl.getCustomerID());
                     a.custName1.setText(hsl.getCustomerName());
-                    a.segment1.setText(hsl.getSegment());
-                    if(!true){  //cek admin
+                    if(!admin){  //cek admin
                         a.EditButton.setVisible(false);
                         a.DeleteButton.setVisible(false);
                     }
@@ -242,6 +253,7 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addPelanggan;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
