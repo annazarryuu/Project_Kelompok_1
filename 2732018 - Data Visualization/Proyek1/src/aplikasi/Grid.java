@@ -67,7 +67,7 @@ public class Grid extends javax.swing.JPanel {
 
         jLabelImage.setToolTipText("");
 
-        jmlBarang.setValue(1);
+        jmlBarang.setValue(new Integer(9));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

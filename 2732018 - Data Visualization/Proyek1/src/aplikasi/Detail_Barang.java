@@ -105,6 +105,9 @@ public class Detail_Barang extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jLabel52 = new javax.swing.JLabel();
         kategori = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
+        produkHarga = new javax.swing.JTextField();
         EditButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
 
@@ -393,6 +396,22 @@ public class Detail_Barang extends javax.swing.JFrame {
             }
         });
 
+        jLabel33.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel33.setText("Harga");
+        jLabel33.setPreferredSize(new java.awt.Dimension(60, 20));
+
+        jLabel45.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        jLabel45.setText(":");
+
+        produkHarga.setEditable(false);
+        produkHarga.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        produkHarga.setPreferredSize(new java.awt.Dimension(250, 20));
+        produkHarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                produkHargaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DatapanelMainLayout = new javax.swing.GroupLayout(DatapanelMain);
         DatapanelMain.setLayout(DatapanelMainLayout);
         DatapanelMainLayout.setHorizontalGroup(
@@ -423,7 +442,13 @@ public class Detail_Barang extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel52, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))
+                        .addComponent(kategori, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                    .addGroup(DatapanelMainLayout.createSequentialGroup()
+                        .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(produkHarga, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         DatapanelMainLayout.setVerticalGroup(
@@ -449,6 +474,11 @@ public class Detail_Barang extends javax.swing.JFrame {
                     .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel38)
                     .addComponent(subkategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(DatapanelMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel45)
+                    .addComponent(produkHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -640,6 +670,10 @@ public class Detail_Barang extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_kategori1PopupMenuWillBecomeInvisible
 
+    private void produkHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produkHargaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_produkHargaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -691,6 +725,7 @@ public class Detail_Barang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
@@ -702,6 +737,7 @@ public class Detail_Barang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
     private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JScrollPane jScrollPane2;
@@ -709,6 +745,7 @@ public class Detail_Barang extends javax.swing.JFrame {
     public javax.swing.JTextField kategori;
     private javax.swing.JComboBox<String> kategori1;
     public javax.swing.JPanel mainPanel;
+    public javax.swing.JTextField produkHarga;
     public javax.swing.JTextField produkID;
     public javax.swing.JTextField produkID1;
     public javax.swing.JTextField produkName;

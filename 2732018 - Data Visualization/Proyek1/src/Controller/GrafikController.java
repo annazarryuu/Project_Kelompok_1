@@ -27,8 +27,8 @@ public class GrafikController {
     BarangController bc = new BarangController();
     TransaksiController tc = new TransaksiController();
 
-    public JPanel displayPieChart() {
-        DefaultPieDataset objDataset = new DefaultPieDataset();
+    public JPanel displayPieChart(DefaultPieDataset objDataset) {
+//        DefaultPieDataset objDataset = new DefaultPieDataset();
 
         ChartPanel chartPanel = new ChartPanel(createPieChart(objDataset));
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 500));
@@ -36,10 +36,10 @@ public class GrafikController {
         return chartPanel;
     }
 
-    public JPanel displayLineChart() {
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+    public JPanel displayLineChart(DefaultCategoryDataset dataset, int idx) {
+//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 
-        ChartPanel chartPanel = new ChartPanel(createLineChart(dataset));
+        ChartPanel chartPanel = new ChartPanel(createLineChart(dataset, idx));
         chartPanel.setPreferredSize(new java.awt.Dimension(500, 500));
 
         return chartPanel;
@@ -48,14 +48,23 @@ public class GrafikController {
     JFreeChart createPieChart(DefaultPieDataset objDataset) {
         objDataset = createPieDataset(objDataset);
 
-        JFreeChart chart = ChartFactory.createPieChart("Pie Chart for Sub-Category", objDataset);
+        JFreeChart chart = ChartFactory.createPieChart("Sub-Category Available", objDataset);
         return chart;
     }
 
-    JFreeChart createLineChart(DefaultCategoryDataset dataset) {
-        dataset = createLineDataset(dataset);
+    JFreeChart createLineChart(DefaultCategoryDataset dataset, int idx) {
+        String Thn = "";
+        
+        dataset = createLineDataset(dataset, idx);
 
-        JFreeChart chart = ChartFactory.createLineChart("Line Chart For Transaction 2017", "Value", "Number", dataset);
+        switch (idx) {
+            case 0 : Thn = "2014"; break;
+            case 1 : Thn = "2015"; break;
+            case 2 : Thn = "2016"; break;
+            case 3 : Thn = "2017"; break;
+        }
+        
+        JFreeChart chart = ChartFactory.createLineChart("Transaction in "+Thn, "Month", "Quantity", dataset);
         CategoryPlot plot = chart.getCategoryPlot();
         LineAndShapeRenderer renderer = new LineAndShapeRenderer();
         plot.setRenderer(renderer);
@@ -69,7 +78,7 @@ public class GrafikController {
         int bo = 0, ch = 0, fu = 0, ta = 0;
         int ap = 0, ar = 0, bi = 0, en = 0, fa = 0, la = 0;
         int pa = 0, st = 0, su = 0, ac = 0, co = 0, ma = 0, ph = 0;
-
+        
         try {
             size = bc.getList().size();
             System.err.println("Size Sub-Category : " + size);
@@ -153,13 +162,21 @@ public class GrafikController {
         return objDataset;
     }
 
-    DefaultCategoryDataset createLineDataset(DefaultCategoryDataset dataset) {
+    DefaultCategoryDataset createLineDataset(DefaultCategoryDataset dataset, int idx) {
         int size;
         int i = 0;
         int bo = 0, ch = 0, fu = 0, ta = 0;
         int ap = 0, ar = 0, bi = 0, en = 0, fa = 0, la = 0;
         int pa = 0, st = 0, su = 0, ac = 0, co = 0, ma = 0, ph = 0;
         String blnTemp = "";
+        String PilihThn = "";
+        
+        switch (idx) {
+            case 0 : PilihThn = "2014"; break;
+            case 1 : PilihThn = "2015"; break;
+            case 2 : PilihThn = "2016"; break;
+            case 3 : PilihThn = "2017"; break;
+        }
         
         try {
             size = tc.getList().size();
@@ -176,12 +193,11 @@ public class GrafikController {
                 System.out.println("Tahun : " + Thn);
                 if (!blnTemp.equals(bln)) {
                     blnTemp = bln;
-                    
                     bo = 0; ch = 0; fu = 0; ta = 0;
                     ap = 0; ar = 0; bi = 0; en = 0; fa = 0; la = 0;
                     pa = 0; st = 0; su = 0; ac = 0; co = 0; ma = 0; ph = 0;
                 }
-                if (Thn.equals("2017")) {
+                if (Thn.equals(PilihThn)) {
 //                objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), bo++);
                     switch (idSub) {
                         case "BO":

@@ -343,6 +343,7 @@ public class Dash_User extends javax.swing.JFrame {
          System.out.println("Total yang harus dibayar : $"+jml);
     }//GEN-LAST:event_a_transaksiMouseClicked
 
+<<<<<<< Updated upstream
     private void SearchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonMouseClicked
         Search search = new Search(this);
         search.setLocationRelativeTo(null);
@@ -350,6 +351,15 @@ public class Dash_User extends javax.swing.JFrame {
         search.setAlwaysOnTop(true);
 //        search.reveal();
     }//GEN-LAST:event_SearchButtonMouseClicked
+=======
+    private void a_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barangMouseClicked
+        //Frame_Barang fb = new Frame_Barang(false);
+        Frame_Grid_Barang grid = new Frame_Grid_Barang();
+        konten.removeAll();
+        konten.add(grid);
+        grid.setVisible(true);
+    }//GEN-LAST:event_a_barangMouseClicked
+>>>>>>> Stashed changes
 
     private void a_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_lokasiMouseClicked
         Frame_Lokasi fl = new Frame_Lokasi(false);

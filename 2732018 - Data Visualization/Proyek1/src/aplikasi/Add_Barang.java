@@ -46,6 +46,7 @@ public class Add_Barang extends javax.swing.JFrame {
                 aModel[i++] = kateg.next().getKategori();
             }
             this.kategori.setModel(new javax.swing.DefaultComboBoxModel<>(aModel));
+            
         } catch (IOException ex) {
             Logger.getLogger(Detail_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -408,7 +409,8 @@ public class Add_Barang extends javax.swing.JFrame {
                     .addComponent(jLabel42)
                     .addComponent(produkHarga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(cardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -551,9 +553,9 @@ public class Add_Barang extends javax.swing.JFrame {
     private javax.swing.JButton CreateButton;
     private javax.swing.JTextField IDcategory;
     private javax.swing.JTextField IDsubcategory;
-    private javax.swing.JPanel cardPanel;
+    public javax.swing.JPanel cardPanel;
     private javax.swing.JTextField category;
-    private javax.swing.JPanel createPanel;
+    public javax.swing.JPanel createPanel;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
@@ -574,7 +576,7 @@ public class Add_Barang extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JComboBox<String> kategori;
-    private javax.swing.JPanel mainPanel;
+    public javax.swing.JPanel mainPanel;
     private javax.swing.JButton newCategory;
     private javax.swing.JButton notnewCategory;
     public javax.swing.JTextField produkHarga;
