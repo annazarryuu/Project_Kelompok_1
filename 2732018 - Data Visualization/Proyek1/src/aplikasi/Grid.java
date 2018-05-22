@@ -5,9 +5,6 @@
  */
 package aplikasi;
 
-import javax.swing.JButton;
-import javax.swing.JSpinner;
-
 /**
  *
  * @author Annazar

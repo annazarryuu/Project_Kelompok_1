@@ -8,13 +8,9 @@ package aplikasi;
 import Controller.KeranjangController;
 import Model.ModelKeranjang;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
@@ -30,7 +26,7 @@ public class Dash_User extends javax.swing.JFrame {
     int start;
     int end;
     int max = 0;
-    
+
     List<ModelKeranjang> shopCart = new KeranjangController().getList();
     double jambleh = new KeranjangController().getTotal();
 
@@ -53,15 +49,18 @@ public class Dash_User extends javax.swing.JFrame {
 //        
 //        btnPrev.setEnabled(this.start > 0);
     }
-    void immove(JInternalFrame a){
-        BasicInternalFrameUI ui = (BasicInternalFrameUI)a.getUI();
-        Component north = ui.getNorthPane();
-        MouseMotionListener[] actions =
-        (MouseMotionListener[])north.getListeners(MouseMotionListener.class);
 
-        for (int i = 0; i < actions.length; i++)
-        north.removeMouseMotionListener( actions[i] ); 
+    void immove(JInternalFrame a) {
+        BasicInternalFrameUI ui = (BasicInternalFrameUI) a.getUI();
+        Component north = ui.getNorthPane();
+        MouseMotionListener[] actions
+                = (MouseMotionListener[]) north.getListeners(MouseMotionListener.class);
+
+        for (int i = 0; i < actions.length; i++) {
+            north.removeMouseMotionListener(actions[i]);
+        }
     }
+
     public Dash_User(String username) throws IOException {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -75,10 +74,10 @@ public class Dash_User extends javax.swing.JFrame {
         konten.removeAll();
         konten.add(grid);
         grid.setVisible(true);
-        
+
 //        btnPrev.setEnabled(this.start > 0);
     }
-    
+
     public JPanel getKonten() {
         return this.konten;
     }
@@ -309,15 +308,15 @@ public class Dash_User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void a_keranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_keranjangMouseClicked
-        Frame_Keranjang fk = new Frame_Keranjang();
+        int i = 0;
+        double jml = 0;
+        int inCart = 0;
+
+        Frame_Keranjang fk = new Frame_Keranjang(shopCart);
         immove(fk);
         konten.removeAll();
         konten.add(fk);
         fk.setVisible(true);
-
-//         int i = 0;
-//         double jml = 0;
-//         int inCart = 0;
 //         
 //         while(i < shopCart.size()){
 //             System.out.println("ID Barang : " + shopCart.get(i).getBarang().getProductID());
@@ -335,6 +334,31 @@ public class Dash_User extends javax.swing.JFrame {
 //         System.out.println("Total yang harus dibayar : $"+jml);
     }//GEN-LAST:event_a_keranjangMouseClicked
 
+    private void a_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksiMouseClicked
+//        Frame_Transaksi ft = new Frame_Transaksi();
+//        konten.removeAll();
+//        konten.add(ft);
+//        ft.setVisible(true);
+//          = cart.getList();
+        int i = 0;
+        double jml = 0;
+        int inCart = 0;
+
+        while (i < shopCart.size()) {
+            System.out.println("ID Barang : " + shopCart.get(i).getBarang().getProductID());
+            System.out.println("Nama Barang : " + shopCart.get(i).getBarang().getProductName());
+            System.out.println("Harga satuan : $" + shopCart.get(i).getBarang().getPrice());
+            System.out.println("Jumlah Barang : " + shopCart.get(i).getQty());
+            System.out.println("Total : $" + shopCart.get(i).getTotal() + "\n");
+
+            jml += shopCart.get(i).getTotal();
+            inCart += shopCart.get(i).getQty();
+            i += 1;
+        }
+
+        JOptionPane.showMessageDialog(null, "Jumlah Data di Cart : " + inCart);
+        System.out.println("Total yang harus dibayar : $" + jml);
+    }//GEN-LAST:event_a_transaksiMouseClicked
 
     private void SearchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonMouseClicked
         Search search = new Search(this);
@@ -352,6 +376,19 @@ public class Dash_User extends javax.swing.JFrame {
         grid.setVisible(true);
     }//GEN-LAST:event_a_barangMouseClicked
 
+    private void a_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_lokasiMouseClicked
+        Frame_Lokasi fl = new Frame_Lokasi(false);
+        konten.removeAll();
+        konten.add(fl);
+        fl.setVisible(true);
+    }//GEN-LAST:event_a_lokasiMouseClicked
+
+    private void a_pelangganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_pelangganMouseClicked
+        Frame_Pelanggan fp = new Frame_Pelanggan(false);
+        konten.removeAll();
+        konten.add(fp);
+        fp.setVisible(true);
+    }//GEN-LAST:event_a_pelangganMouseClicked
     private void a_loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_loginMouseClicked
         Login l = new Login();
         this.hide();

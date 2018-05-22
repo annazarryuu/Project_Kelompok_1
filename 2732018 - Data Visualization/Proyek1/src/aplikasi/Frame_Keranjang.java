@@ -5,6 +5,13 @@
  */
 package aplikasi;
 
+import Model.ModelKeranjang;
+import java.awt.GridLayout;
+import java.text.DecimalFormat;
+import java.util.Iterator;
+import java.util.List;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author ACER
@@ -16,6 +23,11 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
      */
     public Frame_Keranjang() {
         initComponents();
+    }
+    
+    public Frame_Keranjang(List<ModelKeranjang> shopCart) {
+        initComponents();
+        this.showGrid(shopCart);
     }
 
     /**
@@ -220,7 +232,32 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    void showGrid(List<ModelKeranjang> shopCart){
+        int i = 0;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        jPanel2.setLayout(new GridLayout(5, 1));
+//        jPanel2.setSize(1200,600);
+        
+        
+        while(i < shopCart.size()){
+            Grid_Keranjang grid = new Grid_Keranjang();
+            
+            grid.getLabelHarga().setText("$" + shopCart.get(i).getBarang().getPrice());
+            grid.getLabelKategori().setText(shopCart.get(i).getBarang().getSubcategory().getKategori().getKategori());
+            grid.getLabelNama().setText(shopCart.get(i).getBarang().getProductName());
+            grid.getLabelSubKategori().setText(shopCart.get(i).getBarang().getSubcategory().getSubKategori());
+            grid.getLabelTotal().setText("$" + shopCart.get(i).getTotal());
+            String qty = String.valueOf(shopCart.get(i).getQty());
+            grid.getFieldQty().setText(qty);
+            grid.getFieldQty().enable(false);
+            
+            ImageIcon icon = new ImageIcon(shopCart.get(i).getBarang().getSubcategory().getImageSource());
+            grid.getLabelImage().setIcon(icon);
+            
+            jPanel2.add(grid);
+            i++;
+        }
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
