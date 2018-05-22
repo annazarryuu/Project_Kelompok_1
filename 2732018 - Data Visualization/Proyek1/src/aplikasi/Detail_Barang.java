@@ -551,6 +551,12 @@ public class Detail_Barang extends javax.swing.JFrame {
             a.setPrice(Double.parseDouble(this.produkPrice.getText()));
             new BarangController().edit(this.produkID.getText(), a);
             this.dispose();
+            Frame_Barang fb = new Frame_Barang(true);
+            Dash_Admin da = new Dash_Admin();
+            da.konten.removeAll();
+            da.immove(fb);
+            da.konten.add(fb);
+            fb.setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(Detail_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }

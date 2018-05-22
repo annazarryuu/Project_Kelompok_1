@@ -74,7 +74,6 @@ public class Dash_Admin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Dashboard Admin");
-        setPreferredSize(new java.awt.Dimension(1367, 717));
 
         jPanel1.setBackground(new java.awt.Color(218, 238, 224));
         jPanel1.setPreferredSize(new java.awt.Dimension(147, 508));
@@ -388,7 +387,7 @@ public class Dash_Admin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel konten;
+    public javax.swing.JPanel konten;
     private javax.swing.JLabel userLabel;
     // End of variables declaration//GEN-END:variables
 }
