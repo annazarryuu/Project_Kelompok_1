@@ -79,6 +79,10 @@ public class BarangController extends ModelBarang {
         }
         return this.list;
     }
+    
+    public void setList(List<ModelBarang> e) {
+        this.list = e;
+    }
 
     public ModelBarang searchObject(String id) throws IOException {
         ModelBarang brg = new ModelBarang();

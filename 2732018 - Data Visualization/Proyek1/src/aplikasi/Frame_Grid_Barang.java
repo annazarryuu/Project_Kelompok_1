@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,6 +32,8 @@ import javax.swing.event.ChangeListener;
 public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
 
     KeranjangController cart = new KeranjangController();
+    static List<ModelBarang> spareList;
+    static List<ModelBarang> list;
 
     /**
      * @return the max
@@ -85,6 +88,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     public Frame_Grid_Barang() {
         try {
             initComponents();
+            this.list = new BarangController().getList();
             this.showGrid(start, end);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Grid_Barang.class.getName()).log(Level.SEVERE, null, ex);
@@ -95,6 +99,17 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         try {
             initComponents();
             this.showGrid(mulai, akhir);
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Grid_Barang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public Frame_Grid_Barang(String searched) {
+        try {
+            initComponents();
+            this.list = new BarangController().getList();
+            this.makeSearchedList(searched);
+            this.showGrid(start, end);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Grid_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -241,13 +256,69 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnNextMouseClicked
 
     public void showGrid(int start, int end) throws IOException {
-        BarangController sub = new BarangController();
+//        BarangController sub = new BarangController();
         List<ModelBarang> subList;
         
         jPanel2.setLayout(new GridLayout(5, 3));
         jPanel2.setSize(1200,600);
         
-        subList = sub.getList();
+//        subList = sub.getList();
+        subList = this.list;
+        this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
+        int i = start;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+        
+        while (i < end && i < subList.size()) {
+            Grid panel = new Grid(); 
+            panel.getjLabelNama().setText(subList.get(i).getProductName());
+//            panel.getjLabelHarga().setText("Rp.");
+            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
+            panel.getjLabelHarga().setText("$" + decimalFormat.format(subList.get(i).getPrice()));
+            ImageIcon icon = new ImageIcon(subList.get(i).getSubcategory().getImageSource());
+//            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
+            panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
+            panel.getjButtonAdd().addActionListener(new MyActionListener(subList.get(i).getProductID(),panel));
+            panel.getJSpinnerJml().addChangeListener(new ChangeListener() {
+                @Override
+                public void stateChanged(ChangeEvent e) {
+                    JSpinner s = (JSpinner) e.getSource();
+                    int val = (int) s.getValue();
+                    if (val < 1) {
+                        s.setValue(1);
+                    }
+                    jml = val;
+                }
+            });
+            
+            jPanel2.add(panel);
+            i++;
+        }
+        
+    }
+    
+    public void makeSearchedList(String searched) {
+        this.spareList = this.list;
+        this.list = new ArrayList<>();
+        for(ModelBarang e : spareList) {
+            if(e.getProductName().contains(searched)) {
+                this.list.add(e);
+            }
+        }
+    }
+    
+    public void showSearchedGrid(int start, int end, String searched) throws IOException {
+        BarangController sub = new BarangController();
+        List<ModelBarang> subList = new ArrayList<>();
+        
+        for(ModelBarang temp : sub.getList()) {
+            if(temp.getProductName().contains(searched)) {
+                subList.add(temp);
+            }
+        }
+        
+        jPanel2.setLayout(new GridLayout(5, 3));
+        jPanel2.setSize(1200,600);
+        
         this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
         int i = start;
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
@@ -277,7 +348,6 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             jPanel2.add(panel);
             i++;
         }
-        
     }
     
     private class MyActionListener implements ActionListener {

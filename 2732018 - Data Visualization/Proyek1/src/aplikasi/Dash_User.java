@@ -7,12 +7,15 @@ package aplikasi;
 
 import Controller.KeranjangController;
 import Model.ModelKeranjang;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -47,7 +50,7 @@ public class Dash_User extends javax.swing.JFrame {
 //        btnPrev.setEnabled(this.start > 0);
     }
     
-    public Dash_User(String username) {
+    public Dash_User(String username) throws IOException {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         userLabel.setText(username);
@@ -63,6 +66,10 @@ public class Dash_User extends javax.swing.JFrame {
         
 //        btnPrev.setEnabled(this.start > 0);
     }
+    
+    public JPanel getKonten() {
+        return this.konten;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,7 +83,7 @@ public class Dash_User extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         a_transaksi = new javax.swing.JLabel();
-        a_barang = new javax.swing.JLabel();
+        SearchButton = new javax.swing.JLabel();
         a_lokasi = new javax.swing.JLabel();
         a_pelanggan = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -86,10 +93,11 @@ public class Dash_User extends javax.swing.JFrame {
         a_login = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        FilterButton = new javax.swing.JLabel();
+        a_barang2 = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1380, 717));
 
         jPanel1.setBackground(new java.awt.Color(218, 238, 224));
         jPanel1.setPreferredSize(new java.awt.Dimension(147, 300));
@@ -107,14 +115,14 @@ public class Dash_User extends javax.swing.JFrame {
             }
         });
 
-        a_barang.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
-        a_barang.setForeground(new java.awt.Color(0, 0, 51));
-        a_barang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/barang.png"))); // NOI18N
-        a_barang.setText("Barang");
-        a_barang.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        a_barang.addMouseListener(new java.awt.event.MouseAdapter() {
+        SearchButton.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        SearchButton.setForeground(new java.awt.Color(0, 0, 51));
+        SearchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/barang.png"))); // NOI18N
+        SearchButton.setText("Search");
+        SearchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        SearchButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                a_barangMouseClicked(evt);
+                SearchButtonMouseClicked(evt);
             }
         });
 
@@ -198,6 +206,28 @@ public class Dash_User extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/mansmall.png"))); // NOI18N
 
+        FilterButton.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        FilterButton.setForeground(new java.awt.Color(0, 0, 51));
+        FilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/barang.png"))); // NOI18N
+        FilterButton.setText("Filter");
+        FilterButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FilterButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FilterButtonMouseClicked(evt);
+            }
+        });
+
+        a_barang2.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        a_barang2.setForeground(new java.awt.Color(0, 0, 51));
+        a_barang2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/barang.png"))); // NOI18N
+        a_barang2.setText("Barang");
+        a_barang2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        a_barang2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_barang2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -206,19 +236,21 @@ public class Dash_User extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(14, 14, 14)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(a_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(a_lokasi, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(a_barang2, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel1)
                         .addComponent(a_pelanggan)
-                        .addComponent(a_login))
+                        .addComponent(a_login)
+                        .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -228,11 +260,15 @@ public class Dash_User extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(userLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addComponent(a_barang2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_transaksi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -307,12 +343,13 @@ public class Dash_User extends javax.swing.JFrame {
          System.out.println("Total yang harus dibayar : $"+jml);
     }//GEN-LAST:event_a_transaksiMouseClicked
 
-    private void a_barangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barangMouseClicked
-        Frame_Barang fb = new Frame_Barang(false);
-        konten.removeAll();
-        konten.add(fb);
-        fb.setVisible(true);
-    }//GEN-LAST:event_a_barangMouseClicked
+    private void SearchButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SearchButtonMouseClicked
+        Search search = new Search(this);
+        search.setLocationRelativeTo(null);
+        search.setVisible(true);
+        search.setAlwaysOnTop(true);
+//        search.reveal();
+    }//GEN-LAST:event_SearchButtonMouseClicked
 
     private void a_lokasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_lokasiMouseClicked
         Frame_Lokasi fl = new Frame_Lokasi(false);
@@ -333,6 +370,14 @@ public class Dash_User extends javax.swing.JFrame {
         this.hide();
         l.setVisible(true);
     }//GEN-LAST:event_a_loginMouseClicked
+
+    private void FilterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FilterButtonMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FilterButtonMouseClicked
+
+    private void a_barang2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_barang2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_a_barang2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -370,7 +415,9 @@ public class Dash_User extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel a_barang;
+    private javax.swing.JLabel FilterButton;
+    private javax.swing.JLabel SearchButton;
+    private javax.swing.JLabel a_barang2;
     private javax.swing.JLabel a_login;
     private javax.swing.JLabel a_lokasi;
     private javax.swing.JLabel a_pelanggan;
