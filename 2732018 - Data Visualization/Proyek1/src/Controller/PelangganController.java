@@ -5,6 +5,8 @@
  */
 package Controller;
 
+import Model.ModelBarang;
+import static Model.ModelBarang.FILE_NAME;
 import Model.ModelKategori;
 import Model.ModelPelanggan;
 import static Model.ModelPelanggan.FILE_NAME;
@@ -120,6 +122,27 @@ public class PelangganController extends ModelPelanggan{
             return (i-1);
         }else{
             return -1;
+        }
+    }
+    
+    public void add(ModelPelanggan newList) throws FileNotFoundException, IOException {
+        FileInputStream excelFile = new FileInputStream(new File(super.FILE_NAME));
+        Workbook workbook = new XSSFWorkbook(excelFile);
+        Sheet sheet = workbook.getSheet("Pelanggan");
+        
+        Row row = sheet.createRow(sheet.getLastRowNum()+1);
+        row.createCell(0).setCellValue(newList.getCustomerID());
+        row.createCell(1).setCellValue(newList.getCustomerName());
+        row.createCell(2).setCellValue(newList.getSegment());
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+            workbook.write(outputStream);
+            workbook.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     

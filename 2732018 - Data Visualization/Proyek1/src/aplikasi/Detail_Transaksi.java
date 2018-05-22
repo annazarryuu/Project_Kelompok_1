@@ -160,6 +160,7 @@ public class Detail_Transaksi extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel10.setText(":");
 
+        eCustID.setEditable(false);
         eCustID.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         eCustID.setPreferredSize(new java.awt.Dimension(160, 20));
         eCustID.addActionListener(new java.awt.event.ActionListener() {
@@ -1096,40 +1097,34 @@ public class Detail_Transaksi extends javax.swing.JFrame {
     }//GEN-LAST:event_eShipModeActionPerformed
 
     private void SaveButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_SaveButtonMouseClicked
-        try {
-            ModelTransaksi a = new ModelTransaksi();
-            TransaksiController b = new TransaksiController();
-            a = b.searchObject(this.orderID.getText(), this.namaProdukText1.getText());
-            a.setOrderID(this.eOrderID.getText());
-            a.setOrderDate(this.eOrderDate.getDate());
-            switch(this.eShipMode.getSelectedIndex())//Standard Class, Second Class, First Class, Same Day
-            {
-                case 0: a.getShipMode().setShipMode("Standard Class");break;
-                case 1: a.getShipMode().setShipMode("Second Class");break;
-                case 2: a.getShipMode().setShipMode("First Class");break;
-                default: a.getShipMode().setShipMode("Same Day");break;
-            }
-            a.setShipDate(this.eShipDate.getDate());
-            a.getPelanggan().setCustomerID(this.eCustID.getText());
-            a.getPelanggan().setCustomerName(this.eCustName.getText());
-            a.getPostal().setPostalCode(this.eKodePOS.getText());
-            a.getPostal().setCity(this.eKota.getText());
-            a.getPostal().setState(this.eState.getText());
-            a.getProduct().setProductName(this.eNamaProduk.getText());
-            a.getProduct().getSubcategory().getKategori().setKategori(this.eKategori.getText());
-            a.setDonation(Double.parseDouble(this.eDonation.getText()));
-            b.edit(this.orderID.getText(), this.namaProdukText1.getText(), a);
-
-            this.cardPanel.removeAll();//1 2 q 3 5 q 6 q q
-            this.cardPanel.add(mainPanel);
-        } catch (IOException ex) {
-            Logger.getLogger(Detail_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        ModelTransaksi a = new ModelTransaksi();
+        a.setOrderID(this.eOrderID.getText());
+        a.setOrderDate(this.eOrderDate.getDate());
+        switch(this.eShipMode.getSelectedIndex())//Standard Class, Second Class, First Class, Same Day
+        {
+            case 0: a.getShipMode().setShipMode("Standard Class");break;
+            case 1: a.getShipMode().setShipMode("Second Class");break;
+            case 2: a.getShipMode().setShipMode("First Class");break;
+            default: a.getShipMode().setShipMode("Same Day");break;
         }
+        a.setShipDate(this.eShipDate.getDate());
+        a.getPelanggan().setCustomerID(this.eCustID.getText());
+        a.getPelanggan().setCustomerName(this.eCustName.getText());
+        a.getPostal().setPostalCode(this.eKodePOS.getText());
+        a.getPostal().setCity(this.eKota.getText());
+        a.getPostal().setState(this.eState.getText());
+        a.getProduct().setProductName(this.eNamaProduk.getText());
+        a.getProduct().getSubcategory().getKategori().setKategori(this.eKategori.getText());
+        a.setDonation(Double.parseDouble(this.eDonation.getText()));
+        new TransaksiController().edit(this.orderID.getText(), this.namaProdukText1.getText(), a);
+        this.dispose();
     }//GEN-LAST:event_SaveButtonMouseClicked
 
     private void CancelButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CancelButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(mainPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_CancelButtonMouseClicked
 
     private void custIDText1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_custIDText1ActionPerformed
@@ -1187,6 +1182,8 @@ public class Detail_Transaksi extends javax.swing.JFrame {
     private void EditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditButtonMouseClicked
         this.cardPanel.removeAll();
         this.cardPanel.add(this.editPanel);
+        this.repaint();
+        this.revalidate();
     }//GEN-LAST:event_EditButtonMouseClicked
 
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked

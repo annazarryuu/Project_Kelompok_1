@@ -203,9 +203,12 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             this.start = this.start - 15 < 0 ? 0 : this.start - 15;
 
             Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
+            
             jPanel2.removeAll();
-            jPanel2.add(grid);
-            grid.setVisible(true);
+            jPanel2.setLayout(new GridLayout(1, 3));
+            jPanel2.add(grid.jPanel2);
+            
+            grid.jPanel2.setVisible(true);
             btnNext.setEnabled(true);
             btnPrev.setEnabled(this.start > 0);
         } else {
@@ -224,8 +227,11 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             this.end = this.end + 15 > this.max ? this.max : this.end + 15;
 
             Frame_Grid_Barang grid = new Frame_Grid_Barang(start, end);
+//            grid.removeAll();
             jPanel2.removeAll();
-            jPanel2.add(grid);
+            jPanel2.setLayout(new GridLayout(1, 3));
+            jPanel2.add(grid.jPanel2);
+//            jPanel3.add(grid.jPanel3);
             grid.setVisible(true);
             btnNext.setEnabled(this.end < this.max);
             btnPrev.setEnabled(true);
@@ -239,6 +245,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         List<ModelBarang> subList;
         
         jPanel2.setLayout(new GridLayout(5, 3));
+        jPanel2.setSize(1200,600);
         
         subList = sub.getList();
         this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
@@ -247,7 +254,6 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         
         while (i < end) {
             Grid panel = new Grid(); 
-            panel.setSize(400, 100);
             panel.getjLabelNama().setText(subList.get(i).getProductName());
 //            panel.getjLabelHarga().setText("Rp.");
             panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());

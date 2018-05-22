@@ -129,6 +129,40 @@ public class BarangController extends ModelBarang {
         }
     }
     
+    public void add(ModelBarang newList, boolean newCat) throws FileNotFoundException, IOException {
+        FileInputStream excelFile = new FileInputStream(new File(super.FILE_NAME));
+        Workbook workbook = new XSSFWorkbook(excelFile);
+        Sheet sheet = workbook.getSheetAt(0);
+        
+        Row row = sheet.createRow(sheet.getLastRowNum()+1);
+        row.createCell(0).setCellValue(newList.getProductID().toString());
+        row.createCell(1).setCellValue(newList.getSubcategory().getId_sub());
+        row.createCell(2).setCellValue(newList.getProductName());
+        row.createCell(3).setCellValue(newList.getPrice());
+        
+        if(newCat){
+            sheet = workbook.getSheet("Subkategori");
+            row = sheet.createRow(sheet.getLastRowNum()+1);
+            row.createCell(0).setCellValue(newList.getSubcategory().getId_sub());
+            row.createCell(1).setCellValue(newList.getSubcategory().getKategori().getId_kategori());
+            row.createCell(2).setCellValue(newList.getSubcategory().getSubKategori());
+            sheet = workbook.getSheet("Kategori");
+            row = sheet.createRow(sheet.getLastRowNum()+1);
+            row.createCell(0).setCellValue(newList.getSubcategory().getKategori().getId_kategori());
+            row.createCell(1).setCellValue(newList.getSubcategory().getKategori().getKategori());
+        }
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
+            workbook.write(outputStream);
+            workbook.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void edit(String ID, ModelBarang newList) {
         try {
             int index = searchObjectIndex(ID);
@@ -145,7 +179,10 @@ public class BarangController extends ModelBarang {
         Workbook workbook = new XSSFWorkbook(excelFile);
         Sheet sheet = workbook.getSheetAt(0);
         Row row = sheet.getRow(index+1);
-        row.getCell(1).setCellValue(newList.getProductID());
+        row.getCell(0).setCellValue(newList.getProductID());
+        row.getCell(1).setCellValue(newList.getSubcategory().getId_sub());
+        row.getCell(2).setCellValue(newList.getProductName());
+        row.getCell(3).setCellValue(newList.getPrice());
         
         FileOutputStream outputStream = new FileOutputStream(FILE_NAME);
         workbook.write(outputStream);
@@ -153,7 +190,7 @@ public class BarangController extends ModelBarang {
     }
     
     public void editListatIndex(int index, ModelBarang newList) {
-        list.set(index, newList);
+        this.list.set(index, newList);
     }
     
     public void delete(String Id) throws IOException {
@@ -214,7 +251,7 @@ public class BarangController extends ModelBarang {
 
             size = subList.size();
 
-            A.addRow(isi);
+//            A.addRow(isi);
 
             for (int i = 0; i < size; i++) {
                 isi[0] = subList.get(i).getProductID();

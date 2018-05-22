@@ -160,6 +160,7 @@ public class TransaksiController extends ModelTransaksi{
     public void edit(String orderID, String Proname, ModelTransaksi newList) {
         try {
             int index = searchObjectIndex(orderID, Proname);
+            System.out.println("index = "+index);
             editListatIndex(index, newList);
             editExcel(index, newList);
         } catch (IOException ex) {
@@ -182,7 +183,7 @@ public class TransaksiController extends ModelTransaksi{
     }
     
     public void editListatIndex(int index, ModelTransaksi newList) {
-        list.set(index, newList);
+        this.list.set(index, newList);
     }
     
     public void delete(String orderId, String Proname) throws IOException {

@@ -25,15 +25,21 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
     TabelOpr A = new TabelOpr();
     final Object[] isi = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
     TransaksiController trs = new TransaksiController();
-    public Frame_Transaksi() {
+    boolean admin;
+    public Frame_Transaksi(boolean admin) {
         try {
             initComponents();
+            setAdmin(admin);
             trs.showTable(t_transaksi, isi);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    
+    private void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -422,7 +428,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                     a.eKategori.setText(hsl.getProduct().getSubcategory().getSubKategori());
                     a.donationText1.setText(hsl.getDonation().toString());
                     a.eDonation.setText(hsl.getDonation().toString());
-                    if(!true){  //cek admin
+                    if(!admin){  //cek admin
                         a.EditButton.setVisible(false);
                         a.DeleteButton.setVisible(false);
                     }
