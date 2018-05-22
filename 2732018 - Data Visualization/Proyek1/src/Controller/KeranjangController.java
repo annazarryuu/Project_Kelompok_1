@@ -60,8 +60,9 @@ public class KeranjangController {
                     if (shoppingCart.get(i).getBarang().getProductID().equals(b.getProductID())) {
                         ModelKeranjang cart = new ModelKeranjang();
 
-                        cart.setTotal(cart.getTotal() + (Jumlah * shoppingCart.get(i).getBarang().getPrice()));
-                        cart.setQty(cart.getQty() + Jumlah);
+                        cart.setTotal(shoppingCart.get(i).getTotal()
+                                + (Jumlah * shoppingCart.get(i).getBarang().getPrice()));
+                        cart.setQty(shoppingCart.get(i).getQty() + Jumlah);
                         cart.setBarang(b);
                         this.setTotal(this.getTotal() + cart.getTotal());
 
@@ -82,7 +83,7 @@ public class KeranjangController {
                     shoppingCart.add(cart);
                 }
                 
-                System.out.println("Total : Rp"+getTotal());
+//                System.out.println("Total : Rp"+getTotal());
             }
         } catch (IOException ex) {
             Logger.getLogger(KeranjangController.class.getName()).log(Level.SEVERE, null, ex);

@@ -160,7 +160,7 @@
     <Component class="javax.swing.JSpinner" name="jmlBarang">
       <Properties>
         <Property name="value" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="1" type="code"/>
+          <Connection code="new Integer(9)" type="code"/>
         </Property>
       </Properties>
     </Component>

@@ -289,6 +289,8 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
                     a.produkName1.setText(hsl.getProductName());
                     a.kategori.setText(hsl.getSubcategory().getKategori().getKategori());
                     a.subkategori.setText(hsl.getSubcategory().getSubKategori());
+                    a.produkPrice.setText(String.valueOf(hsl.getPrice()));
+                    a.produkHarga.setText(String.valueOf(hsl.getPrice()));
                     if(!admin){  //cek admin
                         a.EditButton.setVisible(false);
                         a.DeleteButton.setVisible(false);
@@ -304,6 +306,10 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
 
     private void addBarangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addBarangMouseClicked
         Add_Barang a = new Add_Barang();
+        a.cardPanel.removeAll();
+        a.cardPanel.add(a.mainPanel);
+        a.repaint();
+        a.revalidate();
         a.setVisible(true);
     }//GEN-LAST:event_addBarangMouseClicked
 
