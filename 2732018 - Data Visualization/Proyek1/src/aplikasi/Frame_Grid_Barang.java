@@ -373,6 +373,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             cart.tambahBarang(text, jml);
             System.out.println("Total : " + cart.getTotal());
             g.getJSpinnerJml().setValue(new Integer(1));
+            JOptionPane.showMessageDialog(null, "Pesanan anda sudah masuk ke keranjang belanjaan :D");
         }
     }
 

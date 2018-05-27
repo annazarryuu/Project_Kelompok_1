@@ -7,27 +7,31 @@ package aplikasi;
 
 import Model.ModelKeranjang;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.Iterator;
 import java.util.List;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author ACER
  */
 public class Frame_Keranjang extends javax.swing.JInternalFrame {
-
+    List<ModelKeranjang> keranjang;
     /**
      * Creates new form Frame_Keranjang
      */
     public Frame_Keranjang() {
         initComponents();
     }
-    
-    public Frame_Keranjang(List<ModelKeranjang> shopCart) {
+
+    public Frame_Keranjang(List<ModelKeranjang> shopCart, int start, int end) {
         initComponents();
-        this.showGrid(shopCart);
+        keranjang = shopCart;
+        this.showGrid(shopCart, start, end);
     }
 
     /**
@@ -44,19 +48,19 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabelQty = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelSubTotal = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jButtonProses = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLabelShipping = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
+        jLabelTotal = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1220, 717));
 
@@ -95,15 +99,15 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Jumlah Item : ");
 
-        jLabel3.setText("Jmlh");
+        jLabelQty.setText("Jmlh");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Ringkasan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 14))); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel5.setText("Sub Total");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setText("Rp. 1.000.000");
+        jLabelSubTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelSubTotal.setText("Rp. 1.000.000");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel6.setText("( XX Iitem )");
@@ -113,21 +117,21 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jButton1.setText("Proceed To Transaction");
+        jButtonProses.setText("Proceed To Transaction");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel4.setText("Biaya Shipping");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("Rp. 1.000.000");
+        jLabelShipping.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelShipping.setText("Rp. 1.000.000");
 
         jLabel10.setText("_____________________________________");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("TOTAL");
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setText("Rp. 1.000.000");
+        jLabelTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelTotal.setText("Rp. 1.000.000");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -139,11 +143,11 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel12))
+                        .addComponent(jLabelTotal))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonProses, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel4)
@@ -152,9 +156,9 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel8))
                                     .addGap(46, 46, 46)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel7)
+                                        .addComponent(jLabelSubTotal)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel9))))
+                                        .addComponent(jLabelShipping))))
                             .addComponent(jLabel10))
                         .addGap(0, 4, Short.MAX_VALUE)))
                 .addContainerGap(14, Short.MAX_VALUE))
@@ -164,7 +168,7 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelSubTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(0, 0, 0)
@@ -176,15 +180,15 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelShipping, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonProses, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -200,7 +204,7 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
+                        .addComponent(jLabelQty))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(421, 421, 421)
                         .addComponent(jButton3)
@@ -218,7 +222,7 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabelQty))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,16 +236,20 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    void showGrid(List<ModelKeranjang> shopCart){
-        int i = 0;
+
+    void showGrid(List<ModelKeranjang> shopCart, int start, int end) {
+        int i = start - 1;
+        double jml = 0;
+        int inCart = 0;
+
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
         jPanel2.setLayout(new GridLayout(5, 1));
-//        jPanel2.setSize(1200,600);
-        
-        
-        while(i < shopCart.size()){
+
+        while (i < shopCart.size() && i < end) {
             Grid_Keranjang grid = new Grid_Keranjang();
             
+            jml += shopCart.get(i).getTotal();
+            inCart += shopCart.get(i).getQty();
             grid.getLabelHarga().setText("$" + shopCart.get(i).getBarang().getPrice());
             grid.getLabelKategori().setText(shopCart.get(i).getBarang().getSubcategory().getKategori().getKategori());
             grid.getLabelNama().setText(shopCart.get(i).getBarang().getProductName());
@@ -249,15 +257,87 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
             grid.getLabelTotal().setText("$" + shopCart.get(i).getTotal());
             String qty = String.valueOf(shopCart.get(i).getQty());
             grid.getFieldQty().setText(qty);
+            grid.setEdit(false);
             grid.getFieldQty().enable(false);
-            
+
             ImageIcon icon = new ImageIcon(shopCart.get(i).getBarang().getSubcategory().getImageSource());
             grid.getLabelImage().setIcon(icon);
-            
+
+            grid.getButtonEdit().addActionListener(new EditListener(this, grid, shopCart, i));
+            grid.getButtonDelete().addActionListener(new DeleteListener(this, shopCart, i));
+
             jPanel2.add(grid);
             i++;
         }
+        
+        jLabelQty.setText(String.valueOf(inCart) );
+        jLabelSubTotal.setText("$"+String.valueOf(jml));
+        jLabelTotal.setText("$"+String.valueOf(jml));
     }
+
+    private static class EditListener implements ActionListener {
+        Frame_Keranjang frame;
+        Grid_Keranjang panel;
+        List<ModelKeranjang> cart;
+        ModelKeranjang keranjang;
+        int qty = 0;
+
+        public EditListener(Frame_Keranjang frame, Grid_Keranjang panel, List<ModelKeranjang> shopCart, int i) {
+            this.frame = frame;
+            this.panel = panel;
+            this.keranjang = shopCart.get(i);
+            this.cart = shopCart;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (panel.isEdit()) {
+                panel.setEdit(false);
+                panel.getButtonEdit().setText("Edit Qty");
+                panel.getFieldQty().enable(false);
+                qty = Integer.parseInt(panel.getFieldQty().getText());
+                keranjang.setQty(qty);
+                keranjang.setTotal(qty * (keranjang.getBarang().getPrice()));
+                frame.jPanel2.removeAll();
+                frame.showGrid(cart, 1, 5);
+                frame.setVisible(false);
+                frame.setVisible(true);
+            } else {
+                panel.getButtonEdit().setText("Selesai Edit");
+                panel.setEdit(true);
+                panel.getFieldQty().enable(true);
+            }
+        }
+    }
+
+    private static class DeleteListener implements ActionListener {
+
+        Frame_Keranjang frame;
+        List<ModelKeranjang> keranjang;
+        int id;
+
+        public DeleteListener(Frame_Keranjang frame, List<ModelKeranjang> shopCart, int i) {
+            this.frame = frame;
+            this.keranjang = shopCart;
+            this.id = i;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            int valid = JOptionPane.showConfirmDialog(frame, "Yakin ingin menghapus ? ");
+            if (JOptionPane.YES_OPTION == valid) {
+                keranjang.remove(id);
+                frame.jPanel2.removeAll();
+                frame.showGrid(keranjang, 1, 5);
+                frame.setVisible(false);
+                frame.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(frame, "Gak Jadi");
+            }
+
+        }
+    }
+
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -268,22 +348,22 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonProses;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelQty;
+    private javax.swing.JLabel jLabelShipping;
+    private javax.swing.JLabel jLabelSubTotal;
+    private javax.swing.JLabel jLabelTotal;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
