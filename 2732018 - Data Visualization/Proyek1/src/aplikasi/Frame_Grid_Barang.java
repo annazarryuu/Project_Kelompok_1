@@ -90,6 +90,8 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             initComponents();
             this.list = new BarangController().getList();
             this.showGrid(start, end);
+            this.hideFilterLabel();
+            this.hideSearchLabel();
         } catch (IOException ex) {
             Logger.getLogger(Frame_Grid_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,7 +100,10 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     public Frame_Grid_Barang(int mulai, int akhir) {
         try {
             initComponents();
+            this.list = new BarangController().getList();
             this.showGrid(mulai, akhir);
+            this.hideFilterLabel();
+            this.hideSearchLabel();
         } catch (IOException ex) {
             Logger.getLogger(Frame_Grid_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,10 +115,79 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             this.list = new BarangController().getList();
             this.makeSearchedList(searched);
             this.showGrid(start, end);
+            this.hideFilterLabel();
+            this.setSearchLabel(searched);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Grid_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Frame_Grid_Barang(String category, String subCategory) {
+        try {
+            initComponents();
+            this.list = new BarangController().getList();
+            this.makeFilteredList(category, subCategory);
+            this.showGrid(start, end);
+            this.hideFilterLabel();
+            this.setFilterLabel(category, subCategory);
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Grid_Barang.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    private void hideSearchLabel() {
+        this.jLabelSearch.setVisible(false);
+        this.jLabelSearchItem.setVisible(false);
+    }
+    
+    private void hideFilterLabel() {
+        this.jLabelFilter.setVisible(false);
+        this.jLabelFilterItem.setVisible(false);
+    }
+    
+    private void setFilterLabel(String category, String subCategory) {
+        if(subCategory != null) {
+            jLabelSearchItem.setText(subCategory + " in " + category);
+        } else if(category != null) {
+            jLabelSearchItem.setText(category);
+        }
+    }
+    
+    private void setSearchLabel(String searched) {
+        if(searched != null) {
+            jLabelSearchItem.setText(searched);
+        }
+    }
+    
+//    private void hideSearchLabel() {
+//        this.jLabelSearch.setVisible(false);
+//        this.jLabelSearchItem.setVisible(false);
+//    }
+//    
+//    private void hideFilterLabel() {
+//        this.jLabelFilter.setVisible(false);
+//        this.jLabelFilterItem.setVisible(false);
+//    }
+//    
+//    private void setFilterLabel(String category, String subCategory) {
+//        if(subCategory != null) {
+//            jLabelFilterItem.setText(subCategory + " in " + category);
+//            jLabelFilter.setVisible(true);
+//            jLabelFilterItem.setVisible(true);
+//        } else if(category != null) {
+//            jLabelFilterItem.setText(category);
+//            jLabelFilter.setVisible(true);
+//            jLabelFilterItem.setVisible(true);
+//        }
+//    }
+//    
+//    private void setSearchLabel(String searched) {
+//        if(searched != null) {
+//            jLabelSearchItem.setText(searched);
+//            jLabelSearch.setVisible(true);
+//            jLabelSearchItem.setVisible(true);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -128,6 +202,10 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         jPanel3 = new javax.swing.JPanel();
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
+        jLabelSearch = new javax.swing.JLabel();
+        jLabelFilter = new javax.swing.JLabel();
+        jLabelSearchItem = new javax.swing.JLabel();
+        jLabelFilterItem = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1200, 717));
 
@@ -140,7 +218,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1201, Short.MAX_VALUE)
+            .addGap(0, 1238, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,12 +246,34 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabelSearch.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelSearch.setText("In Search for");
+
+        jLabelFilter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelFilter.setText("In Filter for");
+
+        jLabelSearchItem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelSearchItem.setText("Empty");
+
+        jLabelFilterItem.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabelFilterItem.setText("Empty");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(440, 440, 440)
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelFilter)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelFilterItem))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabelSearch)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelSearchItem)))
+                .addGap(387, 387, 387)
                 .addComponent(btnPrev)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -183,10 +283,19 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrev)
-                    .addComponent(btnNext))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnPrev)
+                        .addComponent(btnNext))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelSearch)
+                            .addComponent(jLabelSearchItem))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelFilter)
+                            .addComponent(jLabelFilterItem))))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,7 +304,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1201, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1238, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -313,49 +422,78 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         }
     }
     
-    public void showSearchedGrid(int start, int end, String searched) throws IOException {
-        BarangController sub = new BarangController();
-        List<ModelBarang> subList = new ArrayList<>();
-        
-        for(ModelBarang temp : sub.getList()) {
-            if(temp.getProductName().contains(searched)) {
-                subList.add(temp);
+    public void makeFilteredList(String category, String subCategory) {
+        this.spareList = this.list;
+        this.list = new ArrayList<>();
+        for(ModelBarang e : spareList) {
+            
+            boolean add = true;
+            if(category != null) {
+//                System.out.println("Cat OK");
+                if(!(e.getSubcategory().getKategori().getKategori().equals(category))) {
+                    add = false;
+//                    System.out.println("Dont add cat");
+                }
+            }
+            
+            if(subCategory != null) {
+//                System.out.println("Sub Cat OK");
+                if(!(e.getSubcategory().getSubKategori().equals(subCategory))) {
+                    add = false;
+//                    System.out.println("Dont add Sub cat");
+                }
+            }
+            
+            if(add) {
+                this.list.add(e);
+//                System.out.println("add");
             }
         }
-        
-        jPanel2.setLayout(new GridLayout(5, 3));
-        jPanel2.setSize(1200,600);
-        
-        this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
-        int i = start;
-        DecimalFormat decimalFormat = new DecimalFormat("#.00");
-        
-        while (i < end) {
-            Grid panel = new Grid(); 
-            panel.getjLabelNama().setText(subList.get(i).getProductName());
-//            panel.getjLabelHarga().setText("Rp.");
-            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
-            panel.getjLabelHarga().setText("$" + decimalFormat.format(subList.get(i).getPrice()));
-            ImageIcon icon = new ImageIcon(subList.get(i).getSubcategory().getImageSource());
-//            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
-            panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
-            panel.getjButtonAdd().addActionListener(new MyActionListener(subList.get(i).getProductID(),panel));
-            panel.getJSpinnerJml().addChangeListener(new ChangeListener() {
-                @Override
-                public void stateChanged(ChangeEvent e) {
-                    JSpinner s = (JSpinner) e.getSource();
-                    int val = (int) s.getValue();
-                    if (val < 1) {
-                        s.setValue(1);
-                    }
-                    jml = val;
-                }
-            });
-            
-            jPanel2.add(panel);
-            i++;
-        }
     }
+    
+//    public void showSearchedGrid(int start, int end, String searched) throws IOException {
+//        BarangController sub = new BarangController();
+//        List<ModelBarang> subList = new ArrayList<>();
+//        
+//        for(ModelBarang temp : sub.getList()) {
+//            if(temp.getProductName().contains(searched)) {
+//                subList.add(temp);
+//            }
+//        }
+//        
+//        jPanel2.setLayout(new GridLayout(5, 3));
+//        jPanel2.setSize(1200,600);
+//        
+//        this.setMax(this.getMax() == 0 ? subList.size() : this.getMax());
+//        int i = start;
+//        DecimalFormat decimalFormat = new DecimalFormat("#.00");
+//        
+//        while (i < end) {
+//            Grid panel = new Grid(); 
+//            panel.getjLabelNama().setText(subList.get(i).getProductName());
+////            panel.getjLabelHarga().setText("Rp.");
+//            panel.getjLabelKategori().setText(subList.get(i).getSubcategory().getKategori().getKategori());
+//            panel.getjLabelHarga().setText("$" + decimalFormat.format(subList.get(i).getPrice()));
+//            ImageIcon icon = new ImageIcon(subList.get(i).getSubcategory().getImageSource());
+////            ImageIcon icon = new ImageIcon(".\\src\\image\\product.png");
+//            panel.getjLabelImage().setIcon(new ImageIcon(icon.getImage()));
+//            panel.getjButtonAdd().addActionListener(new MyActionListener(subList.get(i).getProductID(),panel));
+//            panel.getJSpinnerJml().addChangeListener(new ChangeListener() {
+//                @Override
+//                public void stateChanged(ChangeEvent e) {
+//                    JSpinner s = (JSpinner) e.getSource();
+//                    int val = (int) s.getValue();
+//                    if (val < 1) {
+//                        s.setValue(1);
+//                    }
+//                    jml = val;
+//                }
+//            });
+//            
+//            jPanel2.add(panel);
+//            i++;
+//        }
+//    }
     
     private class MyActionListener implements ActionListener {
         String text;
@@ -380,6 +518,10 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrev;
+    private javax.swing.JLabel jLabelFilter;
+    private javax.swing.JLabel jLabelFilterItem;
+    private javax.swing.JLabel jLabelSearch;
+    private javax.swing.JLabel jLabelSearchItem;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
