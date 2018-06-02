@@ -47,10 +47,12 @@ public class ShipController extends ModelShipMode{
                 
                 Cell idShip = currentRow.getCell(0);
                 Cell shipMode = currentRow.getCell(1);
+                Cell price = currentRow.getCell(2);
                 
                 ModelShipMode sh = new ModelShipMode();
                 sh.setShipID(idShip.getStringCellValue());
                 sh.setShipMode(shipMode.getStringCellValue());
+                sh.setPrice(price.getNumericCellValue());
                 
                 this.list.add(sh);
             }

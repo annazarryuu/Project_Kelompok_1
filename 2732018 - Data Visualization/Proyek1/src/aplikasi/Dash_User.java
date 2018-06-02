@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -31,6 +32,7 @@ public class Dash_User extends javax.swing.JFrame {
     int end;
     int max = 0;
     
+    String user;
     List<ModelKeranjang> shopCart = new KeranjangController().getList();
     double jambleh = new KeranjangController().getTotal();
 
@@ -65,6 +67,7 @@ public class Dash_User extends javax.swing.JFrame {
     public Dash_User(String username) throws IOException {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.user = username;
         userLabel.setText(username);
         start = 0;
         end = 15;
@@ -81,6 +84,10 @@ public class Dash_User extends javax.swing.JFrame {
     
     public JPanel getKonten() {
         return this.konten;
+    }
+    
+    public JLabel getUserLabel(){
+        return this.userLabel;
     }
 
     /**
@@ -324,30 +331,11 @@ public class Dash_User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void a_keranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_keranjangMouseClicked
-        Frame_Keranjang fk = new Frame_Keranjang(shopCart,1,5);
+        Frame_Keranjang fk = new Frame_Keranjang(shopCart,1,5,user);
         immove(fk);
         konten.removeAll();
         konten.add(fk);
         fk.setVisible(true);
-
-//         int i = 0;
-//         double jml = 0;
-//         int inCart = 0;
-//         
-//         while(i < shopCart.size()){
-//             System.out.println("ID Barang : " + shopCart.get(i).getBarang().getProductID());
-//             System.out.println("Nama Barang : " + shopCart.get(i).getBarang().getProductName());
-//             System.out.println("Harga satuan : $" + shopCart.get(i).getBarang().getPrice());
-//             System.out.println("Jumlah Barang : " + shopCart.get(i).getQty());
-//             System.out.println("Total : $" + shopCart.get(i).getTotal() + "\n");
-//             
-//             jml += shopCart.get(i).getTotal();
-//             inCart += shopCart.get(i).getQty();
-//             i += 1;
-//         }
-//         
-//         JOptionPane.showMessageDialog(null, "Jumlah Data di Cart : " + inCart);
-//         System.out.println("Total yang harus dibayar : $"+jml);
     }//GEN-LAST:event_a_keranjangMouseClicked
 
 

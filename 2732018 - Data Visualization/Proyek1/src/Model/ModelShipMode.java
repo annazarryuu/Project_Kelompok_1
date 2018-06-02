@@ -12,6 +12,20 @@ package Model;
 public class ModelShipMode {
 
     /**
+     * @return the price
+     */
+    public double getPrice() {
+        return price;
+    }
+
+    /**
+     * @param price the price to set
+     */
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    /**
      * @return the shipID
      */
     public String getShipID() {
@@ -42,4 +56,5 @@ public class ModelShipMode {
     
     private String shipID;
     private String shipMode;
+    private double price;
 }
