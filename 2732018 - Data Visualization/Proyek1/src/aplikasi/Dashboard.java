@@ -160,7 +160,7 @@ public class Dashboard extends javax.swing.JFrame {
 
         a_transaksi1.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         a_transaksi1.setForeground(new java.awt.Color(0, 0, 51));
-        a_transaksi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/transaction.png"))); // NOI18N
+        a_transaksi1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/home.png"))); // NOI18N
         a_transaksi1.setText("Home");
         a_transaksi1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         a_transaksi1.addMouseListener(new java.awt.event.MouseAdapter() {
