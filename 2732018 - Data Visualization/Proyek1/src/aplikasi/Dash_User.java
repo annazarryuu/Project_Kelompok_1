@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -31,6 +32,7 @@ public class Dash_User extends javax.swing.JFrame {
     int end;
     int max = 0;
     
+    String user;
     List<ModelKeranjang> shopCart = new KeranjangController().getList();
     double jambleh = new KeranjangController().getTotal();
 
@@ -65,6 +67,7 @@ public class Dash_User extends javax.swing.JFrame {
     public Dash_User(String username) throws IOException {
         initComponents();
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.user = username;
         userLabel.setText(username);
         start = 0;
         end = 15;
@@ -81,6 +84,10 @@ public class Dash_User extends javax.swing.JFrame {
     
     public JPanel getKonten() {
         return this.konten;
+    }
+    
+    public JLabel getUserLabel(){
+        return this.userLabel;
     }
 
     /**
@@ -106,6 +113,7 @@ public class Dash_User extends javax.swing.JFrame {
         FilterButton = new javax.swing.JLabel();
         a_shop = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        FilterButton1 = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,7 +136,7 @@ public class Dash_User extends javax.swing.JFrame {
 
         SearchButton.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         SearchButton.setForeground(new java.awt.Color(0, 0, 51));
-        SearchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/barang.png"))); // NOI18N
+        SearchButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/magnifier.png"))); // NOI18N
         SearchButton.setText("Search");
         SearchButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         SearchButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -197,7 +205,7 @@ public class Dash_User extends javax.swing.JFrame {
 
         FilterButton.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         FilterButton.setForeground(new java.awt.Color(0, 0, 51));
-        FilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/barang.png"))); // NOI18N
+        FilterButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/filter.png"))); // NOI18N
         FilterButton.setText("Filter");
         FilterButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         FilterButton.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -221,6 +229,17 @@ public class Dash_User extends javax.swing.JFrame {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/transaction.png"))); // NOI18N
         jLabel6.setText("Transaction");
 
+        FilterButton1.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        FilterButton1.setForeground(new java.awt.Color(0, 0, 51));
+        FilterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/filter.png"))); // NOI18N
+        FilterButton1.setText("Refresh");
+        FilterButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FilterButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FilterButton1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -239,7 +258,8 @@ public class Dash_User extends javax.swing.JFrame {
                                 .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(a_login)
-                                .addComponent(jLabel6)))
+                                .addComponent(jLabel6)
+                                .addComponent(FilterButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
@@ -266,9 +286,11 @@ public class Dash_User extends javax.swing.JFrame {
                 .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FilterButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(a_login)
-                .addGap(109, 109, 109)
+                .addGap(74, 74, 74)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -309,30 +331,11 @@ public class Dash_User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void a_keranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_keranjangMouseClicked
-        Frame_Keranjang fk = new Frame_Keranjang();
+        Frame_Keranjang fk = new Frame_Keranjang(shopCart,1,5,user);
         immove(fk);
         konten.removeAll();
         konten.add(fk);
         fk.setVisible(true);
-
-//         int i = 0;
-//         double jml = 0;
-//         int inCart = 0;
-//         
-//         while(i < shopCart.size()){
-//             System.out.println("ID Barang : " + shopCart.get(i).getBarang().getProductID());
-//             System.out.println("Nama Barang : " + shopCart.get(i).getBarang().getProductName());
-//             System.out.println("Harga satuan : $" + shopCart.get(i).getBarang().getPrice());
-//             System.out.println("Jumlah Barang : " + shopCart.get(i).getQty());
-//             System.out.println("Total : $" + shopCart.get(i).getTotal() + "\n");
-//             
-//             jml += shopCart.get(i).getTotal();
-//             inCart += shopCart.get(i).getQty();
-//             i += 1;
-//         }
-//         
-//         JOptionPane.showMessageDialog(null, "Jumlah Data di Cart : " + inCart);
-//         System.out.println("Total yang harus dibayar : $"+jml);
     }//GEN-LAST:event_a_keranjangMouseClicked
 
 
@@ -359,7 +362,10 @@ public class Dash_User extends javax.swing.JFrame {
     }//GEN-LAST:event_a_loginMouseClicked
 
     private void FilterButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FilterButtonMouseClicked
-        // TODO add your handling code here:
+        Filter filter = new Filter(this);
+        filter.setLocationRelativeTo(null);
+        filter.setVisible(true);
+        filter.setAlwaysOnTop(true);
     }//GEN-LAST:event_FilterButtonMouseClicked
 
     private void a_shopMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_shopMouseClicked
@@ -368,6 +374,19 @@ public class Dash_User extends javax.swing.JFrame {
         konten.add(grid);
         grid.setVisible(true);
     }//GEN-LAST:event_a_shopMouseClicked
+
+    private void FilterButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FilterButton1MouseClicked
+        // TODO add your handling code here:
+        start = 0;
+        end = 15;
+        Frame_Grid_Barang grid = new Frame_Grid_Barang();
+
+        max = max == 0 ? grid.getMax() : max;
+
+        konten.removeAll();
+        konten.add(grid);
+        grid.setVisible(true);
+    }//GEN-LAST:event_FilterButton1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -406,6 +425,7 @@ public class Dash_User extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel FilterButton;
+    private javax.swing.JLabel FilterButton1;
     private javax.swing.JLabel SearchButton;
     private javax.swing.JLabel a_keranjang;
     private javax.swing.JLabel a_login;

@@ -18,6 +18,7 @@ public class Filter extends javax.swing.JFrame {
     public Filter(Dash_User dash_user) {
         initComponents();
         this.dash_user = dash_user;
+        this.jComboBoxSubKat.setEnabled(false);
     }
 
     /**
@@ -55,7 +56,7 @@ public class Filter extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Furniture", "Office Supplies", "Technology" }));
+        jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" }));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Sub-Kategori");
@@ -70,6 +71,11 @@ public class Filter extends javax.swing.JFrame {
         jLabel4.setText(" : ");
 
         jButton1.setText("Filter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,9 +112,9 @@ public class Filter extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBoxKat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -145,10 +151,10 @@ public class Filter extends javax.swing.JFrame {
         int state = jComboBoxKat.getSelectedIndex();
         
         switch(state){
-            case 0 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" })); break;
-            case 1 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Bookcases", "Chairs", "Furnishings", "Tables" })); break;
-            case 2 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Appliances", "Art", "Binders", "Envelopes", "Fasteners", "Labels", "Paper", "Storage", "Supplies" })); break;
-            case 3 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Copiers", "Machines", "Phones" })); break;
+            case 0 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "" })); this.jComboBoxSubKat.setEnabled(false); break;
+            case 1 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Bookcases", "Chairs", "Furnishings", "Tables" })); this.jComboBoxSubKat.setEnabled(true); break;
+            case 2 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Appliances", "Art", "Binders", "Envelopes", "Fasteners", "Labels", "Paper", "Storage", "Supplies" })); this.jComboBoxSubKat.setEnabled(true); break;
+            case 3 : jComboBoxSubKat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "", "Copiers", "Machines", "Phones" })); this.jComboBoxSubKat.setEnabled(true); break;
         }
     }//GEN-LAST:event_jComboBoxKatItemStateChanged
 
@@ -156,6 +162,29 @@ public class Filter extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String category = (String) jComboBoxKat.getSelectedItem();
+        String subCategory = (String) jComboBoxSubKat.getSelectedItem();
+        
+        if(category.length() == 0) {
+            category = null;
+        }
+        
+        if(subCategory.length() == 0) {
+            subCategory = null;
+        }
+        
+        if(category != null || subCategory != null) {
+            Frame_Grid_Barang grid = new Frame_Grid_Barang(category, subCategory);
+            this.dash_user.getKonten().removeAll();
+            this.dash_user.getKonten().add(grid);
+            grid.setVisible(true);
+        }
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

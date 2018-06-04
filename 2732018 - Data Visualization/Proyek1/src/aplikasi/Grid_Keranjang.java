@@ -5,14 +5,32 @@
  */
 package aplikasi;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
  * @author ACER
  */
 public class Grid_Keranjang extends javax.swing.JPanel {
+    private boolean edit = false;
+    /**
+     * @return the edit
+     */
+    public boolean isEdit() {
+        return edit;
+    }
 
+    /**
+     * @param edit the edit to set
+     */
+    public void setEdit(boolean edit) {
+        this.edit = edit;
+    }
+    
+    
     /**
      * Creates new form Grid_Keranjang
      */
@@ -32,19 +50,20 @@ public class Grid_Keranjang extends javax.swing.JPanel {
         jLabelImage = new javax.swing.JLabel();
         jLabelNama = new javax.swing.JLabel();
         jLabelKategori = new javax.swing.JLabel();
-        jLabelKategori1 = new javax.swing.JLabel();
+        jLabelSubKategori = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelHarga = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jLabelTotal = new javax.swing.JLabel();
+        jButtonDelete = new javax.swing.JButton();
+        jButtonEdit = new javax.swing.JButton();
+        jTextFieldQTY = new javax.swing.JTextField();
 
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setMaximumSize(new java.awt.Dimension(900, 100));
         setMinimumSize(new java.awt.Dimension(900, 100));
         setPreferredSize(new java.awt.Dimension(900, 100));
@@ -64,17 +83,14 @@ public class Grid_Keranjang extends javax.swing.JPanel {
         jLabelKategori.setMinimumSize(new java.awt.Dimension(220, 10));
         jLabelKategori.setPreferredSize(new java.awt.Dimension(220, 10));
 
-        jLabelKategori1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jLabelKategori1.setText("SUB KATEGORI BARANG");
-        jLabelKategori1.setMaximumSize(new java.awt.Dimension(220, 10));
-        jLabelKategori1.setMinimumSize(new java.awt.Dimension(220, 10));
-        jLabelKategori1.setPreferredSize(new java.awt.Dimension(220, 10));
+        jLabelSubKategori.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
+        jLabelSubKategori.setText("SUB KATEGORI BARANG");
+        jLabelSubKategori.setMaximumSize(new java.awt.Dimension(220, 10));
+        jLabelSubKategori.setMinimumSize(new java.awt.Dimension(220, 10));
+        jLabelSubKategori.setPreferredSize(new java.awt.Dimension(220, 10));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Quantity");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("VALUE OF QUANTITY");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Harga Eceran");
@@ -85,8 +101,8 @@ public class Grid_Keranjang extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setText(":");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setText("VALUE OF QUANTITY");
+        jLabelHarga.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelHarga.setText("VALUE OF QUANTITY");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel7.setText("Total");
@@ -94,25 +110,25 @@ public class Grid_Keranjang extends javax.swing.JPanel {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText(":");
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setText("VALUE OF QUANTITY");
+        jLabelTotal.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabelTotal.setText("VALUE OF QUANTITY");
 
-        jButton1.setText("Delete");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jButtonDelete.setText("Delete");
+        jButtonDelete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                jButtonDeleteMouseClicked(evt);
             }
         });
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonDeleteActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Edit Qty");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonEdit.setText("Edit Qty");
+        jButtonEdit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonEditActionPerformed(evt);
             }
         });
 
@@ -128,7 +144,7 @@ public class Grid_Keranjang extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelKategori1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelSubKategori, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabelNama, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(36, 36, 36)
@@ -138,7 +154,7 @@ public class Grid_Keranjang extends javax.swing.JPanel {
                         .addGap(35, 35, 35)
                         .addComponent(jLabel5)
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
+                        .addComponent(jTextFieldQTY, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
@@ -151,12 +167,12 @@ public class Grid_Keranjang extends javax.swing.JPanel {
                                 .addComponent(jLabel4)))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel9))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                            .addComponent(jLabelHarga)
+                            .addComponent(jLabelTotal))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButtonDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEdit))
                 .addGap(29, 29, 29))
         );
         layout.setVerticalGroup(
@@ -167,70 +183,104 @@ public class Grid_Keranjang extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel1)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel5))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jTextFieldQTY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel3)
                                     .addComponent(jLabel4)
-                                    .addComponent(jLabel6))
+                                    .addComponent(jLabelHarga))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel7)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel8)
-                                        .addComponent(jLabel9))))
+                                        .addComponent(jLabelTotal))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(jLabelNama, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabelNama, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabelKategori1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 8, Short.MAX_VALUE)))
+                                .addComponent(jLabelSubKategori, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jButton1)
+                .addComponent(jButtonDelete)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(jButtonEdit)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+        public JLabel getLabelNama(){
+        return this.jLabelNama;
+    }
+    
+    public JLabel getLabelKategori(){
+        return this.jLabelKategori;
+    }
+    
+    public JLabel getLabelSubKategori(){
+        return this.jLabelSubKategori;
+    }
+    
+    public JLabel getLabelImage(){
+        return this.jLabelImage;
+    }
+    
+    public JTextField getFieldQty(){
+        return this.jTextFieldQTY;
+    }
+    
+    public JLabel getLabelHarga(){
+        return this.jLabelHarga;
+    }
+    
+    public JLabel getLabelTotal(){
+        return this.jLabelTotal;
+    }
+    
+    public JButton getButtonDelete(){
+        return this.jButtonDelete;
+    }
+    
+    public JButton getButtonEdit(){
+        return this.jButtonEdit;
+    }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButtonDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDeleteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jButtonDeleteActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButtonEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jButtonEditActionPerformed
 
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
-        JOptionPane.showConfirmDialog(this, "Yakin ingin menghapus ? ");
-    }//GEN-LAST:event_jButton1MouseClicked
+    private void jButtonDeleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonDeleteMouseClicked
+
+    }//GEN-LAST:event_jButtonDeleteMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonDelete;
+    private javax.swing.JButton jButtonEdit;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelHarga;
     private javax.swing.JLabel jLabelImage;
     private javax.swing.JLabel jLabelKategori;
-    private javax.swing.JLabel jLabelKategori1;
     private javax.swing.JLabel jLabelNama;
+    private javax.swing.JLabel jLabelSubKategori;
+    private javax.swing.JLabel jLabelTotal;
+    private javax.swing.JTextField jTextFieldQTY;
     // End of variables declaration//GEN-END:variables
 }
