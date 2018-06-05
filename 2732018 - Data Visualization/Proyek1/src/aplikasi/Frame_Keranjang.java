@@ -26,10 +26,55 @@ import javax.swing.JOptionPane;
  */
 public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
+    /**
+     * @return the start
+     */
+    public int getStart() {
+        return start;
+    }
+
+    /**
+     * @param start the start to set
+     */
+    public void setStart(int start) {
+        this.start = start;
+    }
+
+    /**
+     * @return the end
+     */
+    public int getEnd() {
+        return end;
+    }
+
+    /**
+     * @param end the end to set
+     */
+    public void setEnd(int end) {
+        this.end = end;
+    }
+
+    /**
+     * @return the max
+     */
+    public int getMax() {
+        return max;
+    }
+
+    /**
+     * @param max the max to set
+     */
+    public void setMax(int max) {
+        this.max = max;
+    }
+
     List<ModelKeranjang> keranjang;
     ShipController ship = new ShipController();
     List<ModelShipMode> list;
-    String user; 
+    String user;
+    private int start = 0;
+    private int end = 5;
+    private int max = 0;
 
     /**
      * Creates new form Frame_Keranjang
@@ -46,6 +91,13 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
         this.showShipmode();
     }
 
+    public Frame_Keranjang(List<ModelKeranjang> shopCart, int start, int end) {
+        initComponents();
+        this.keranjang = shopCart;
+        this.showGrid(shopCart, start, end);
+        this.showShipmode();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,8 +109,8 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonNext = new javax.swing.JButton();
+        jButtonPrev = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabelQty = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -95,17 +147,18 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Your Cart");
 
-        jButton2.setText(">");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNext.setText(">");
+        jButtonNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonNextActionPerformed(evt);
             }
         });
 
-        jButton3.setText("<");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jButtonPrev.setText("<");
+        jButtonPrev.setEnabled(false);
+        jButtonPrev.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jButtonPrevActionPerformed(evt);
             }
         });
 
@@ -229,9 +282,9 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
                         .addComponent(jLabelQty))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(421, 421, 421)
-                        .addComponent(jButton3)
+                        .addComponent(jButtonPrev)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
+                        .addComponent(jButtonNext))
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(19, 19, 19)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -251,8 +304,8 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButtonNext)
+                    .addComponent(jButtonPrev))
                 .addContainerGap())
         );
 
@@ -273,20 +326,41 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
             Logger.getLogger(Frame_Keranjang.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    private void countInCart(List<ModelKeranjang> shopCart, int inCart, double total){
+//        int inCart = 0;
+        int i = 0;
+        
+        while(i < shopCart.size()){
+            total += shopCart.get(i).getTotal();
+            inCart += shopCart.get(i).getQty();
+            
+            i++;
+        }
+    }
 
     private void showGrid(List<ModelKeranjang> shopCart, int start, int end) {
         int i = start - 1;
+        int j = 0;
         double jml = 0;
         int inCart = 0;
 
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
         jPanel2.setLayout(new GridLayout(5, 1));
-
+        this.setMax(this.getMax() == 0 ? shopCart.size() : this.getMax());
+        
+        while(j < shopCart.size()){
+            jml += shopCart.get(j).getTotal();
+            inCart += shopCart.get(j).getQty();
+            
+            j++;
+        }
+        
         while (i < shopCart.size() && i < end) {
             Grid_Keranjang grid = new Grid_Keranjang();
 
-            jml += shopCart.get(i).getTotal();
-            inCart += shopCart.get(i).getQty();
+//            jml += shopCart.get(i).getTotal();
+//            inCart += shopCart.get(i).getQty();
             grid.getLabelHarga().setText("$" + shopCart.get(i).getBarang().getPrice());
             grid.getLabelKategori().setText(shopCart.get(i).getBarang().getSubcategory().getKategori().getKategori());
             grid.getLabelNama().setText(shopCart.get(i).getBarang().getProductName());
@@ -304,6 +378,9 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
             grid.getButtonDelete().addActionListener(new DeleteListener(this, shopCart, i));
 
             jPanel2.add(grid);
+            jButtonNext.setEnabled(this.getMax() > 5);
+            jButtonPrev.setEnabled(this.getStart() - 5 >= 0);
+
             i++;
         }
 
@@ -392,13 +469,39 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
         }
     }
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNextActionPerformed
+        if (this.getMax() > getEnd()) {
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+            this.setStart(this.getEnd()+1);
+            this.setEnd(this.getEnd() + 5 >= this.getMax() ? this.getMax() : this.getEnd() + 5);
+
+            this.jPanel2.removeAll();
+            this.showGrid(this.keranjang, getStart(), getEnd());
+            this.setVisible(false);
+            this.setVisible(true);
+            jButtonNext.setEnabled(this.end < this.getMax());
+            jButtonPrev.setEnabled(true);
+        } else {
+            jButtonNext.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButtonNextActionPerformed
+
+    private void jButtonPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPrevActionPerformed
+        if (this.getStart() - 5 >= 0) {
+
+            this.setEnd(this.getStart()-1);
+            this.setStart(this.getStart()-5 < 1 ? 1 : this.getStart()-5);
+
+            this.jPanel2.removeAll();
+            this.showGrid(this.keranjang, getStart(), getEnd());
+            this.setVisible(false);
+            this.setVisible(true);
+            jButtonNext.setEnabled(true);
+            jButtonPrev.setEnabled(this.getStart() > 0);
+        } else {
+            jButtonPrev.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButtonPrevActionPerformed
 
     private void jComboBoxShippingItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxShippingItemStateChanged
         if (jComboBoxShipping.getSelectedIndex() >= 0) {
@@ -419,8 +522,8 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButtonNext;
+    private javax.swing.JButton jButtonPrev;
     private javax.swing.JButton jButtonProses;
     private javax.swing.JComboBox<String> jComboBoxShipping;
     private javax.swing.JLabel jLabel1;
