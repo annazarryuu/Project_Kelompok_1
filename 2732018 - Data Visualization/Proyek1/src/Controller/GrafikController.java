@@ -84,78 +84,63 @@ public class GrafikController {
             System.err.println("Size Sub-Category : " + size);
             while (i < size) {
                 String idSub = bc.getList().get(i).getSubcategory().getId_sub();
-                objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), bo++);
+//                objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), bo++);
                 switch (idSub) {
                     case "BO":
 //                        System.out.println("case");
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), bo++);
-                        break;
+                        bo++; break;
                     case "CH":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), ch++);
-                        break;
+                        ch++; break;
                     case "FU":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), fu++);
-                        ;
-                        break;
+                        fu++; break;
                     case "TA":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), ta++);
-                        ;
-                        break;
+                        ta++; break;
                     case "AP":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), ap++);
-                        ;
-                        break;
+                        ap++; break;
                     case "AR":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), ar++);
-                        ;
-                        break;
+                        ar++; break;
                     case "BI":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), bi++);
-                        ;
-                        break;
+                        bi++; break;
                     case "EN":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), en++);
-                        ;
-                        break;
+                        en++; break;
                     case "FA":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), fa++);
-                        ;
-                        break;
+                        fa++; break;
                     case "LA":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), la++);
-                        ;
-                        break;
+                        la++; break;
                     case "PA":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), pa++);
-                        ;
-                        break;
+                        pa++; break;
                     case "ST":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), st++);
-                        ;
-                        break;
+                        st++; break;
                     case "SU":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), su++);
-                        ;
-                        break;
+                        su++; break;
                     case "AC":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), ac++);
-                        ;
-                        break;
+                        ac++; break;
                     case "CO":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), co++);
-                        ;
-                        break;
+                        co++; break;
                     case "MA":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), ma++);
-                        ;
-                        break;
+                        ma++; break;
                     case "PH":
-                        objDataset.setValue(bc.getList().get(i).getSubcategory().getSubKategori(), ph++);
-                        ;
-                        break;
+                        ph++; break;
                 }
                 i++;
             }
+            objDataset.setValue("Bookcases"+" "+String.valueOf(bo), bo);
+            objDataset.setValue("Chairs"+" "+String.valueOf(ch), ch);
+            objDataset.setValue("Furnishings"+" "+String.valueOf(fu), fu);
+            objDataset.setValue("Tables"+" "+String.valueOf(ta), ta);
+            objDataset.setValue("Appliances"+" "+String.valueOf(ap), ap);
+            objDataset.setValue("Art"+" "+String.valueOf(ar), ar);
+            objDataset.setValue("Binders"+" "+String.valueOf(bi), bi);
+            objDataset.setValue("Envelopes"+" "+String.valueOf(en), en);
+            objDataset.setValue("Fasteners"+" "+String.valueOf(fa), fa);
+            objDataset.setValue("Labels"+" "+String.valueOf(la), la);
+            objDataset.setValue("Paper"+" "+String.valueOf(pa), pa);
+            objDataset.setValue("Storage"+" "+String.valueOf(st), st);
+            objDataset.setValue("Supplies"+" "+String.valueOf(su), su);
+            objDataset.setValue("Accessories"+" "+String.valueOf(ac), ac);
+            objDataset.setValue("Copiers"+" "+String.valueOf(co), co);
+            objDataset.setValue("Machines"+" "+String.valueOf(ma), ma);
+            objDataset.setValue("Phones"+" "+String.valueOf(ph), ph);
         } catch (IOException ex) {
             Logger.getLogger(GrafikController.class.getName()).log(Level.SEVERE, null, ex);
         }
