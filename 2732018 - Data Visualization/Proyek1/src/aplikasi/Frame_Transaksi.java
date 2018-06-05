@@ -566,7 +566,8 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         try {
-            trs.showTable(t_transaksi, isi);
+            Object[] isei = {"Order ID","Order Date","Ship Date","Ship Mode","Customer ID","Postal Code","Product ID","Sales","Quantity","Discount","Profit", "Donation", "Total"};
+            trs.showTable(t_transaksi, isei);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
