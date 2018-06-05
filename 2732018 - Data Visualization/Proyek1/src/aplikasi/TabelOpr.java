@@ -19,6 +19,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -291,11 +292,12 @@ public class TabelOpr {
                         }
                         break;
                  
-                case 4: Object[] isi4 = {"Product ID","Category","Sub-Category","Product Name"};
+                case 4: Object[] isi4 = {"Product ID","Category","Sub-Category","Product Name","Product Price"};
                         A = new DefaultTableModel(null,isi4);
                         table1.setModel(A);
                         List<ModelBarang> lis4 = new BarangController().getList();
                         Iterator<ModelBarang> iterator4 = lis4.iterator();
+                        DecimalFormat decimalFormat = new DecimalFormat("#.00");
                         while (iterator4.hasNext()) 
                         {
                             ModelBarang hsl = iterator4.next();
@@ -303,6 +305,7 @@ public class TabelOpr {
                             isi4[1] = hsl.getSubcategory().getKategori().getKategori();
                             isi4[2] = hsl.getSubcategory().getSubKategori();
                             isi4[3] = hsl.getProductName();
+                            isi4[4] = "$" + decimalFormat.format(hsl.getPrice());
                             if(isi4[cell].toString().contains(searched) ){
                                 A.addRow(isi4);
                             }

@@ -168,7 +168,7 @@ public class Dash_Admin extends javax.swing.JFrame {
         a_login.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         a_login.setForeground(new java.awt.Color(0, 0, 51));
         a_login.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/login.png"))); // NOI18N
-        a_login.setText("Login");
+        a_login.setText("Logout");
         a_login.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         a_login.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

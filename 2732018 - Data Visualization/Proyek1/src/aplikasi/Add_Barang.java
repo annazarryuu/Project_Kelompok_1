@@ -95,7 +95,7 @@ public class Add_Barang extends javax.swing.JFrame {
         jLabel42 = new javax.swing.JLabel();
         produkHarga = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
 
         jLabel30.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
@@ -335,6 +335,11 @@ public class Add_Barang extends javax.swing.JFrame {
                 CreateButtonMouseClicked(evt);
             }
         });
+        CreateButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateButtonActionPerformed(evt);
+            }
+        });
 
         jLabel41.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         jLabel41.setText("Harga");
@@ -492,12 +497,15 @@ public class Add_Barang extends javax.swing.JFrame {
                 model.getSubcategory().setId_sub(this.IDsubcategory.getText());
             }else{
                 try {
+                    ModelKategori modelK = new ModelKategori();
+                    ModelSubKategori modelS = new ModelSubKategori();
                     String kategori = this.kategori.getSelectedItem().toString();
                     String subkategori = this.subkategori.getSelectedItem().toString();
-                    model.getSubcategory().getKategori().setKategori(kategori);
-                    model.getSubcategory().setSubKategori(subkategori);
-                    model.getSubcategory().getKategori().setId_kategori(new KategoriController().getID(kategori));
-                    model.getSubcategory().setId_sub(new SubKategoriController().getID(subkategori));
+                    modelK.setKategori(kategori);
+                    modelK.setId_kategori(new KategoriController().getID(kategori));
+                    modelS.setKategori(modelK);
+                    modelS.setSubKategori(subkategori);
+                    modelS.setId_sub(new SubKategoriController().getID(subkategori));
                 } catch (IOException ex) {
                     Logger.getLogger(Add_Barang.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -513,6 +521,10 @@ public class Add_Barang extends javax.swing.JFrame {
     private void produkHargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_produkHargaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_produkHargaActionPerformed
+
+    private void CreateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CreateButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -10,12 +10,14 @@ import Model.ModelTransaksi;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.NumberFormatter;
@@ -71,6 +73,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1217, 715));
 
@@ -112,6 +115,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             }
         });
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 102), 2), "Filtering"));
 
         jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -268,10 +272,8 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(20, 20, 20)
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel3Layout.createSequentialGroup()
-                                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGap(49, 49, 49))
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -303,8 +305,8 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                            .addComponent(jFormattedTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addContainerGap(26, Short.MAX_VALUE))
                         );
                         jPanel3Layout.setVerticalGroup(
                             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,6 +347,17 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
                         jLabel1.setText("List Transaksi");
 
+                        jButton2.setBackground(new java.awt.Color(0, 0, 51));
+                        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+                        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+                        jButton2.setText("Refresh");
+                        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
+                        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+                            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                                jButton2MouseClicked(evt);
+                            }
+                        });
+
                         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
                         getContentPane().setLayout(layout);
                         layout.setHorizontalGroup(
@@ -359,12 +372,17 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                                             .addComponent(searchBy, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(searchOn, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1184, Short.MAX_VALUE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1181, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel1)
                                         .addGap(0, 0, Short.MAX_VALUE)))
                                 .addContainerGap())
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(56, 56, 56)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         );
                         layout.setVerticalGroup(
                             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,13 +394,19 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                                         .addComponent(searchBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(searchBy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(35, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addContainerGap(33, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(146, 146, 146))))
                         );
 
                         pack();
@@ -398,6 +422,7 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             Iterator<ModelTransaksi> iterator3 = lis3.iterator();
             ModelTransaksi hsl = iterator3.next();
             Detail_Transaksi a = new Detail_Transaksi();
+            DateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy",Locale.US);
             
             while (!ketemu && iterator3.hasNext())
             {
@@ -407,11 +432,12 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                     a.cardPanel.add(a.mainPanel);
                     a.orderID.setText(hsl.getOrderID());
                     a.eOrderID.setText(hsl.getOrderDate().toString());
-                    a.orderDateText.setText(hsl.getOrderDate().toString());
-                    a.eOrderDate.setDate(hsl.getOrderDate());
+                    a.orderDateText.setText(dateFormat.format(hsl.getOrderDate()));
+                    a.eOrderDate.setDate(dateFormat.parse(dateFormat.format(hsl.getOrderDate())));
+                    System.out.println();
                     a.shipModeText2.setText(hsl.getShipMode().getShipMode());
-                    a.shipDateText.setText(hsl.getShipDate().toString());
-                    a.eShipDate.setDate(hsl.getShipDate());
+                    a.shipDateText.setText(dateFormat.format(hsl.getShipDate()));
+                    a.eShipDate.setDate(dateFormat.parse(dateFormat.format(hsl.getShipDate())));
                     a.custIDText1.setText(hsl.getPelanggan().getCustomerID());
                     a.eCustID.setText(hsl.getPelanggan().getCustomerID());
                     a.custNameText1.setText(hsl.getPelanggan().getCustomerName());
@@ -429,7 +455,6 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
                     a.donationText1.setText(hsl.getDonation().toString());
                     a.eDonation.setText(hsl.getDonation().toString());
                     if(!admin){  //cek admin
-                        a.EditButton.setVisible(false);
                         a.DeleteButton.setVisible(false);
                     }
                     a.setVisible(true);
@@ -438,6 +463,8 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
             }
         } catch (IOException ex) {
             Logger.getLogger(Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ParseException ex) {
+            Logger.getLogger(Frame_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_t_transaksiMouseClicked
 
@@ -537,9 +564,18 @@ public class Frame_Transaksi extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jFormattedTextField3ActionPerformed
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        try {
+            trs.showTable(t_transaksi, isi);
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Transaksi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;

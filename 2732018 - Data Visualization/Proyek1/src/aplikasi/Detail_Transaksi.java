@@ -130,7 +130,6 @@ public class Detail_Transaksi extends javax.swing.JFrame {
         shipDateText = new javax.swing.JTextField();
         jLabel53 = new javax.swing.JLabel();
         donationText1 = new javax.swing.JTextField();
-        EditButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -437,6 +436,8 @@ public class Detail_Transaksi extends javax.swing.JFrame {
             }
         });
 
+        eOrderDate.setDateFormatString("dd/MM/yyyy");
+
         eShipMode.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Standard Class", "Second Class", "First Class", "Same Day" }));
         eShipMode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -567,7 +568,7 @@ public class Detail_Transaksi extends javax.swing.JFrame {
                     .addComponent(SaveButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE))
         );
 
         cardPanel.add(editPanel, "card3");
@@ -983,15 +984,6 @@ public class Detail_Transaksi extends javax.swing.JFrame {
 
         jScrollPane3.setViewportView(DatapanelMain);
 
-        EditButton.setText("Edit");
-        EditButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        EditButton.setPreferredSize(new java.awt.Dimension(80, 26));
-        EditButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                EditButtonMouseClicked(evt);
-            }
-        });
-
         DeleteButton.setText("Delete");
         DeleteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         DeleteButton.setPreferredSize(new java.awt.Dimension(80, 26));
@@ -1007,9 +999,7 @@ public class Detail_Transaksi extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(102, 102, 102)
-                .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addGap(155, 155, 155)
                 .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -1017,9 +1007,7 @@ public class Detail_Transaksi extends javax.swing.JFrame {
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(EditButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(DeleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE))
         );
@@ -1179,13 +1167,6 @@ public class Detail_Transaksi extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_donationText1ActionPerformed
 
-    private void EditButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EditButtonMouseClicked
-        this.cardPanel.removeAll();
-        this.cardPanel.add(this.editPanel);
-        this.repaint();
-        this.revalidate();
-    }//GEN-LAST:event_EditButtonMouseClicked
-
     private void DeleteButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DeleteButtonMouseClicked
         try {
             new TransaksiController().delete(this.orderID.getText(), this.namaProdukText1.getText());
@@ -1237,7 +1218,6 @@ public class Detail_Transaksi extends javax.swing.JFrame {
     private javax.swing.JPanel DatapanelEdit;
     private javax.swing.JPanel DatapanelMain;
     public javax.swing.JButton DeleteButton;
-    public javax.swing.JButton EditButton;
     private javax.swing.JButton SaveButton;
     public javax.swing.JPanel cardPanel;
     public javax.swing.JTextField custIDText1;

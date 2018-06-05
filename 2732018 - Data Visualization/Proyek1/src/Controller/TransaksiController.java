@@ -248,7 +248,6 @@ public class TransaksiController extends ModelTransaksi{
             
             for(int i = 0;i < size;i++){
                 isi[0] = subList.get(i).getOrderID();
-                SimpleDateFormat bebas = new SimpleDateFormat("yyyy MM dd");
 //                Date d = new Date(bebas.format(subList.get(i).getOrderDate()));
 //                isi[1] = d;
                 isi[1] = subList.get(i).getOrderDate();

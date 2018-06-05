@@ -231,7 +231,7 @@ public class Dash_User extends javax.swing.JFrame {
 
         FilterButton1.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         FilterButton1.setForeground(new java.awt.Color(0, 0, 51));
-        FilterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/filter.png"))); // NOI18N
+        FilterButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/reload.png"))); // NOI18N
         FilterButton1.setText("Refresh");
         FilterButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         FilterButton1.addMouseListener(new java.awt.event.MouseAdapter() {
