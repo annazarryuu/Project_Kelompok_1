@@ -207,7 +207,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         jLabelSearchItem = new javax.swing.JLabel();
         jLabelFilterItem = new javax.swing.JLabel();
 
-        setPreferredSize(new java.awt.Dimension(1200, 717));
+        setPreferredSize(new java.awt.Dimension(1220, 717));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 255));
         jPanel2.setMaximumSize(new java.awt.Dimension(1200, 600));
