@@ -3,37 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Detail_Pelanggan.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Keranjang.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Detail_Transaksi.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Detail_Barang.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Barang.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_admBarang.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Dash_User.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Pelanggan.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Add_Barang.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Lokasi.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/TabelOpr.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Dash_Admin.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Transaksi.java</file>
-            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/BarangController.java</file>
-=======
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/BarangController.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Grid.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/TransaksiController.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Home.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/GrafikController.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Grid_Barang.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Detail_Transaksi.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Login.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/DonationController.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/main.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_admBarang.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/Controller/DaerahController.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Barang.java</file>
-            <file>file:/C:/Users/ACER%20Z3-451/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Dashboard.java</file>
->>>>>>> fa261899b7e32131586c0f65cc1aac2b48446b15
+            <file>file:/C:/Users/ACER/Documents/GitHub/Project_Kelompok_1/2732018%20-%20Data%20Visualization/Proyek1/src/aplikasi/Frame_Grid_Barang.java</file>
         </group>
     </open-files>
 </project-private>
