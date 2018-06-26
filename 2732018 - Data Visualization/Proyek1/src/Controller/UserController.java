@@ -50,6 +50,7 @@ public class UserController extends ModelUser{
                 usr.setUsername(UN.getStringCellValue());
                 usr.setPassword(pswd.getStringCellValue());
                 usr.setLast_login(lLog.getDateCellValue());
+                usr.setUserID(lLog.getStringCellValue());
                 
                 this.list.add(usr);
             }

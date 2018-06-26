@@ -75,6 +75,7 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
     private int start = 0;
     private int end = 5;
     private int max = 0;
+    Dash_User dashUser;
 
     /**
      * Creates new form Frame_Keranjang
@@ -83,17 +84,19 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
         initComponents();
     }
 
-    public Frame_Keranjang(List<ModelKeranjang> shopCart, int start, int end, String username) {
+    public Frame_Keranjang(List<ModelKeranjang> shopCart, int start, int end, String username, Dash_User dashUser) {
         initComponents();
         this.keranjang = shopCart;
         this.user = username;
+        this.dashUser = dashUser;
         this.showGrid(shopCart, start, end);
         this.showShipmode();
     }
 
-    public Frame_Keranjang(List<ModelKeranjang> shopCart, int start, int end) {
+    public Frame_Keranjang(List<ModelKeranjang> shopCart, int start, int end, Dash_User dashUser) {
         initComponents();
         this.keranjang = shopCart;
+        this.dashUser = dashUser;
         this.showGrid(shopCart, start, end);
         this.showShipmode();
     }
@@ -516,8 +519,13 @@ public class Frame_Keranjang extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jComboBoxShippingItemStateChanged
 
     private void jButtonProsesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonProsesMouseClicked
-        Dash_User x = new Dash_User();
-        System.out.println(this.user);
+        try {
+            Dash_User DU = new Dash_User(this.user, jComboBoxShipping.getSelectedIndex());
+            DU.setVisible(true);
+            this.dashUser.dispose();
+        } catch (IOException ex) {
+            Logger.getLogger(Frame_Keranjang.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButtonProsesMouseClicked
 
 

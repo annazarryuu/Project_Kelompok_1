@@ -133,6 +133,7 @@ public class Login extends javax.swing.JFrame {
 
         usernameField.setBackground(new java.awt.Color(218, 238, 224));
         usernameField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        usernameField.setText("FrankP");
         usernameField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
         usernameField.setRequestFocusEnabled(false);
         usernameField.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +144,7 @@ public class Login extends javax.swing.JFrame {
 
         passwordField.setBackground(new java.awt.Color(218, 238, 224));
         passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passwordField.setText("cartrity");
         passwordField.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 51)));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 51));

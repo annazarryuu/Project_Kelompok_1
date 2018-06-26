@@ -59,4 +59,19 @@ public class ModelUser {
     private String username;
     private String password;
     private Date last_login;
+    private String userID;
+
+    /**
+     * @return the userID
+     */
+    public String getUserID() {
+        return userID;
+    }
+
+    /**
+     * @param userID the userID to set
+     */
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 }

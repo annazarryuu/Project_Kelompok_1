@@ -10,6 +10,7 @@ import Model.ModelKeranjang;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.io.IOException;
 import java.util.List;
@@ -33,28 +34,29 @@ public class Dash_User extends javax.swing.JFrame {
     int max = 0;
     
     String user;
+    int shipMode;
     List<ModelKeranjang> shopCart = new KeranjangController().getList();
     double jambleh = new KeranjangController().getTotal();
 
     /**
      * Creates new form Dash_User
      */
-    public Dash_User() {
-        initComponents();
-        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//        userLabel.setText(username);
-//        start = 0;
-//        end = 15;
-//        Frame_Grid_Barang grid = new Frame_Grid_Barang();
-//
-//        max = max == 0 ? grid.getMax() : max;
-//
-//        konten.removeAll();
-//        konten.add(grid);
-//        grid.setVisible(true);
-//        
-//        btnPrev.setEnabled(this.start > 0);
-    }
+//    public Dash_User() {
+//        initComponents();
+//        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+////        userLabel.setText(username);
+////        start = 0;
+////        end = 15;
+////        Frame_Grid_Barang grid = new Frame_Grid_Barang();
+////
+////        max = max == 0 ? grid.getMax() : max;
+////
+////        konten.removeAll();
+////        konten.add(grid);
+////        grid.setVisible(true);
+////        
+////        btnPrev.setEnabled(this.start > 0);
+//    }
     void immove(JInternalFrame a){
         BasicInternalFrameUI ui = (BasicInternalFrameUI)a.getUI();
         Component north = ui.getNorthPane();
@@ -79,6 +81,39 @@ public class Dash_User extends javax.swing.JFrame {
         konten.add(grid);
         grid.setVisible(true);
         
+        this.a_transaksi.setEnabled(false);
+        
+        for(MouseListener temp : this.a_transaksi.getMouseListeners()) {
+            this.a_transaksi.removeMouseListener(temp);
+        }
+        
+//        btnPrev.setEnabled(this.start > 0);
+    }
+    
+    
+    public Dash_User(String username, int shipMode) throws IOException {
+        initComponents();
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.user = username;
+        this.shipMode = shipMode;
+        userLabel.setText(username);
+        start = 0;
+        end = 15;
+        Frame_Grid_Barang grid = new Frame_Grid_Barang();
+
+        max = max == 0 ? grid.getMax() : max;
+
+        konten.removeAll();
+        konten.add(grid);
+        grid.setVisible(true);
+        
+        this.makeTransaction(shipMode);
+        this.a_keranjang.setEnabled(false);
+        
+        for(MouseListener temp : this.a_keranjang.getMouseListeners()) {
+            this.a_keranjang.removeMouseListener(temp);
+        }
+      
 //        btnPrev.setEnabled(this.start > 0);
     }
     
@@ -112,13 +147,14 @@ public class Dash_User extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         FilterButton = new javax.swing.JLabel();
         a_shop = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        a_transaksi = new javax.swing.JLabel();
         FilterButton1 = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(218, 238, 224));
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.setPreferredSize(new java.awt.Dimension(147, 300));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/logo.png"))); // NOI18N
@@ -225,9 +261,14 @@ public class Dash_User extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 51));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/transaction.png"))); // NOI18N
-        jLabel6.setText("Transaction");
+        a_transaksi.setForeground(new java.awt.Color(0, 0, 51));
+        a_transaksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/transaction.png"))); // NOI18N
+        a_transaksi.setText("Transaction");
+        a_transaksi.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_transaksiMouseClicked(evt);
+            }
+        });
 
         FilterButton1.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
         FilterButton1.setForeground(new java.awt.Color(0, 0, 51));
@@ -258,7 +299,7 @@ public class Dash_User extends javax.swing.JFrame {
                                 .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(FilterButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(a_login)
-                                .addComponent(jLabel6)
+                                .addComponent(a_transaksi)
                                 .addComponent(FilterButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -281,7 +322,7 @@ public class Dash_User extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_keranjang, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
-                .addComponent(jLabel6)
+                .addComponent(a_transaksi)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(SearchButton, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -331,7 +372,7 @@ public class Dash_User extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void a_keranjangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_keranjangMouseClicked
-        Frame_Keranjang fk = new Frame_Keranjang(shopCart,1,5,user);
+        Frame_Keranjang fk = new Frame_Keranjang(shopCart,1,5,user, this);
         immove(fk);
         konten.removeAll();
         konten.add(fk);
@@ -388,6 +429,23 @@ public class Dash_User extends javax.swing.JFrame {
         grid.setVisible(true);
     }//GEN-LAST:event_FilterButton1MouseClicked
 
+    private void a_transaksiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_transaksiMouseClicked
+        this.makeTransaction(this.shipMode);
+    }//GEN-LAST:event_a_transaksiMouseClicked
+
+    private void makeTransaction(int shipMode) {
+        try {
+            // TODO add your handling code here:
+            Frame_Transaksi_User fk = new Frame_Transaksi_User(shopCart,1,5,user,shipMode,this);
+            immove(fk);
+            konten.removeAll();
+            konten.add(fk);
+            fk.setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Dash_User.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -418,7 +476,7 @@ public class Dash_User extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Dash_User().setVisible(true);
+//                new Dash_User().setVisible(true);
             }
         });
     }
@@ -430,12 +488,12 @@ public class Dash_User extends javax.swing.JFrame {
     private javax.swing.JLabel a_keranjang;
     private javax.swing.JLabel a_login;
     private javax.swing.JLabel a_shop;
+    private javax.swing.JLabel a_transaksi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel konten;
