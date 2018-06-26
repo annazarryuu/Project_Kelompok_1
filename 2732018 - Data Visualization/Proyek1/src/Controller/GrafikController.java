@@ -175,7 +175,7 @@ public class GrafikController {
                 String bln = sdfMt.format(tc.getList().get(i).getOrderDate()).substring(0, 3);
                 String Thn = sdfYr.format(tc.getList().get(i).getOrderDate());
 
-                System.out.println("Tahun : " + Thn);
+//                System.out.println("Tahun : " + Thn);
                 if (!blnTemp.equals(bln)) {
                     blnTemp = bln;
                     bo = 0; ch = 0; fu = 0; ta = 0;
@@ -189,121 +189,121 @@ public class GrafikController {
 //                        System.out.println("case");
                             dataset.addValue(bo++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "CH":
                             dataset.addValue(ch++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "FU":
                             dataset.addValue(fu++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "TA":
                             dataset.addValue(ta++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "AP":
                             dataset.addValue(ap++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "AR":
                             dataset.addValue(ar++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "BI":
                             dataset.addValue(bi++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "EN":
                             dataset.addValue(en++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "FA":
                             dataset.addValue(fa++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "LA":
                             dataset.addValue(la++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "PA":
                             dataset.addValue(pa++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "ST":
                             dataset.addValue(st++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "SU":
                             dataset.addValue(su++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "AC":
                             dataset.addValue(ac++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "CO":
                             dataset.addValue(co++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "MA":
                             dataset.addValue(ma++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                         case "PH":
                             dataset.addValue(ph++, tc.getList().get(i).getProduct().getSubcategory().getSubKategori(),
                                     bln.substring(0, 3));
-                            System.out.println("Sub Kategori : "
-                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
-                                    + "\nBulan : " + bln.substring(0, 3));
+//                            System.out.println("Sub Kategori : "
+//                                    + tc.getList().get(i).getProduct().getSubcategory().getSubKategori()
+//                                    + "\nBulan : " + bln.substring(0, 3));
                             break;
                     }
                 }
