@@ -347,7 +347,8 @@ public class Frame_Lokasi extends javax.swing.JInternalFrame {
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         try {
-            d.showTable(t_lokasi, isi);
+            Object[] isia = {"Postal Code", "Region", "Country", "City", "State"};
+            d.showTable(t_lokasi, isia);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Lokasi.class.getName()).log(Level.SEVERE, null, ex);
         }

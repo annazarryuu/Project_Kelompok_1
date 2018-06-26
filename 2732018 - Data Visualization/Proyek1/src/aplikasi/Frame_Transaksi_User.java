@@ -710,7 +710,8 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
             case "Canada" : orderID = "CA-" + new Date().getYear() + "-" + random; break;
         }
         
-        String userID = new UserController().searchObject(this.user).getUserID();
+//        String userID = new UserController().searchObject(this.user).getUserID();
+        String userID = "123";
         String rowID = "666666";
         String shipMode = (String) this.jComboBoxShipping.getSelectedItem();
         String postalCode = jLabelPostalCode.getText();
@@ -721,7 +722,8 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
             Date shipDate = date;
         
         for(ModelKeranjang temp : this.keranjang) {
-            Row currentRow = sheet.createRow(sheet.getLastRowNum() + 1);
+            sheet.createRow(sheet.getLastRowNum() + 1);
+            Row currentRow = sheet.getRow(sheet.getLastRowNum());
             for(int i = 0; i < 14; i++) {
                 currentRow.createCell(i);
             }
@@ -738,8 +740,9 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
             currentRow.getCell(9).setCellValue(temp.getQty());
             currentRow.getCell(10).setCellValue(0);
             currentRow.getCell(11).setCellValue(0);
-            currentRow.getCell(12).setCellValue(jTextFieldDonasi.getText());
+            currentRow.getCell(12).setCellValue(this.jTextFieldDonasi.getText());
             currentRow.getCell(13).setCellValue(temp.getTotal());
+            System.out.println("All Done");
         }
     }
     

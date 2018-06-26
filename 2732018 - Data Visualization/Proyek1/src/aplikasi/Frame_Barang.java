@@ -355,7 +355,8 @@ public class Frame_Barang extends javax.swing.JInternalFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
-            Brg.showTable(t_barang, isi);
+            Object[] isa = {"Product ID","Category","Sub-Category","Product Name","Product Price"};
+            Brg.showTable(t_barang, isa);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Barang.class.getName()).log(Level.SEVERE, null, ex);
         }

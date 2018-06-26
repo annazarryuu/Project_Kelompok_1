@@ -67,6 +67,7 @@ public class Dash_Admin extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         a_login = new javax.swing.JLabel();
+        a_report = new javax.swing.JLabel();
         konten = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
@@ -176,6 +177,17 @@ public class Dash_Admin extends javax.swing.JFrame {
             }
         });
 
+        a_report.setFont(new java.awt.Font("Roboto Condensed", 0, 12)); // NOI18N
+        a_report.setForeground(new java.awt.Color(0, 0, 51));
+        a_report.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/report.png"))); // NOI18N
+        a_report.setText("Report");
+        a_report.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        a_report.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                a_reportMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -186,6 +198,7 @@ public class Dash_Admin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(a_report)
                     .addComponent(a_login)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(a_barang, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -209,8 +222,10 @@ public class Dash_Admin extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(a_pelanggan, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(a_report)
+                .addGap(18, 18, 18)
                 .addComponent(a_login)
-                .addGap(141, 141, 141)
+                .addGap(107, 107, 107)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -338,6 +353,14 @@ public class Dash_Admin extends javax.swing.JFrame {
         l.setVisible(true);
     }//GEN-LAST:event_a_loginMouseClicked
 
+    private void a_reportMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_a_reportMouseClicked
+        Frame_Report fr = new Frame_Report();
+        immove(fr);
+        konten.removeAll();
+        konten.add(fr);
+        fr.setVisible(true);
+    }//GEN-LAST:event_a_reportMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -378,6 +401,7 @@ public class Dash_Admin extends javax.swing.JFrame {
     private javax.swing.JLabel a_login;
     private javax.swing.JLabel a_lokasi;
     private javax.swing.JLabel a_pelanggan;
+    private javax.swing.JLabel a_report;
     private javax.swing.JLabel a_transaksi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

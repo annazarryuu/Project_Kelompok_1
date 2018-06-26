@@ -271,7 +271,8 @@ public class Frame_Pelanggan extends javax.swing.JInternalFrame {
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         try {
-            p.showTable(t_pelanggan, isi);
+            Object[] isoi = {"Customer ID", "Name", "Segment"};
+            p.showTable(t_pelanggan, isoi);
         } catch (IOException ex) {
             Logger.getLogger(Frame_Pelanggan.class.getName()).log(Level.SEVERE, null, ex);
         }
