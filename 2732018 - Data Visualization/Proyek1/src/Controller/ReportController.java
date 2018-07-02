@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JProgressBar;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -29,9 +30,9 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class ReportController {
 
-    TransaksiController tc = new TransaksiController();
+//    TransaksiController tc = new TransaksiController();
 
-    public void setReportExcel(String month, String year) {
+    public void setReportExcel(String month, String year, TransaksiController tc, JProgressBar progBar) {
         try {
             FileOutputStream excelFile = new FileOutputStream(new File("src/Excel/Report_" + year + "_" + month + ".xlsx"));
             Workbook workbook = new XSSFWorkbook();
@@ -40,6 +41,9 @@ public class ReportController {
 //            iterator.next();
             int i = 0, idRow = 0, idCell;
             boolean finish = false;
+            int size = tc.getList().size();
+            int interval = size/100;
+            
             CellStyle styleDate = workbook.createCellStyle();
             CreationHelper createHelper = workbook.getCreationHelper();
             styleDate.setDataFormat(createHelper.createDataFormat().getFormat("m/d/yy"));
@@ -51,9 +55,9 @@ public class ReportController {
 
             Cell ordID = currentRow.createCell(idCell++);
             Cell ordDate = currentRow.createCell(idCell++);
-//            ordDate.setCellStyle(styleDate);
+            ordDate.setCellStyle(styleDate);
             Cell shipDate = currentRow.createCell(idCell++);
-//            shipDate.setCellStyle(styleDate);
+            shipDate.setCellStyle(styleDate);
             Cell sMode = currentRow.createCell(idCell++);
             Cell cusName = currentRow.createCell(idCell++);
             Cell posCode = currentRow.createCell(idCell++);
@@ -79,14 +83,20 @@ public class ReportController {
             don.setCellValue("Donation");
             tot.setCellValue("Total");
 
-            while (i < tc.getList().size()) {
+            while (i < size) {
                 SimpleDateFormat sdfMt = new SimpleDateFormat("MMMM");
                 SimpleDateFormat sdfYr = new SimpleDateFormat("yyyy");
 
                 String bln = sdfMt.format(tc.getList().get(i).getOrderDate());
                 String thn = sdfYr.format(tc.getList().get(i).getOrderDate());
                 System.out.println(bln + " " + thn);
-
+                
+                if(i%interval == 0){
+                    progBar.removeAll();
+                    progBar.setValue(progBar.getValue() + 1);
+                    progBar.setVisible(true);
+                }
+                
                 if (bln.equals(month) && thn.equals(year)) {
                     currentRow = sheet.createRow(idRow++);
                     idCell = 0;
