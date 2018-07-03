@@ -109,9 +109,29 @@ public class Dash_User extends javax.swing.JFrame {
         
         this.makeTransaction(shipMode);
         this.a_keranjang.setEnabled(false);
+        this.a_shop.setEnabled(false);
+        this.FilterButton.setEnabled(false);
+        this.FilterButton1.setEnabled(false);
+        this.SearchButton.setEnabled(false);
         
         for(MouseListener temp : this.a_keranjang.getMouseListeners()) {
             this.a_keranjang.removeMouseListener(temp);
+        }
+        
+        for(MouseListener temp : this.a_shop.getMouseListeners()) {
+            this.a_shop.removeMouseListener(temp);
+        }
+        
+        for(MouseListener temp : this.FilterButton.getMouseListeners()) {
+            this.FilterButton.removeMouseListener(temp);
+        }
+        
+        for(MouseListener temp : this.FilterButton1.getMouseListeners()) {
+            this.FilterButton1.removeMouseListener(temp);
+        }
+        
+        for(MouseListener temp : this.SearchButton.getMouseListeners()) {
+            this.SearchButton.removeMouseListener(temp);
         }
       
 //        btnPrev.setEnabled(this.start > 0);
