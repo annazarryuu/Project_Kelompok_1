@@ -28,6 +28,7 @@ public class Frame_Report extends javax.swing.JInternalFrame {
      */
     public Frame_Report() {
         initComponents();
+        jLabel1.setText("Januari 2017");
         tblReport.setModel(tblModel.getTable());
         writeTable("Januari", "2017");
     }
@@ -164,7 +165,6 @@ public class Frame_Report extends javax.swing.JInternalFrame {
 
     private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
         // TODO add your handling code here:
-        jLabel1.setText("Januari 2017");
         rc.setReportExcel("Januari", "2017", tc, progBar);
     }//GEN-LAST:event_SaveButtonActionPerformed
 
