@@ -93,4 +93,29 @@ public class ShipController extends ModelShipMode{
         
         return sh;
     }
+    
+    public ModelShipMode searchRevObject(String shipMode) throws IOException{
+        ModelShipMode sh = new ModelShipMode();
+        
+        if(this.list.isEmpty()){
+            getAllData();
+        }
+        
+        int i = 0;
+        boolean ketemu = false;
+        while(i<list.size() && !ketemu){
+            String ID = list.get(i).getShipMode();
+
+            sh = list.get(i);
+
+            if(ID.equals(shipMode)){
+                ketemu = true;
+            }
+
+            i += 1;
+        }
+        
+        
+        return sh;
+    }
 }

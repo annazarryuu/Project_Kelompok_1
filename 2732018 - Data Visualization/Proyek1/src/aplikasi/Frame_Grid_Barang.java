@@ -505,7 +505,7 @@ public class Frame_Grid_Barang extends javax.swing.JInternalFrame {
         }
         
         public void actionPerformed(ActionEvent e) {
-            if(jml == 0){
+            if(jml < 1){
                 jml = 1;
             }
             cart.tambahBarang(text, jml);

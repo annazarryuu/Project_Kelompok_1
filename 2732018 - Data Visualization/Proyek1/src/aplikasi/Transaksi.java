@@ -5,9 +5,7 @@
  */
 package aplikasi;
 
-import Controller.DaerahController;
 import Controller.TransaksiController;
-import Model.ModelDaerah;
 import Model.ModelTransaksi;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -23,7 +21,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.text.NumberFormatter;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 

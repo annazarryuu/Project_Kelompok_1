@@ -14,21 +14,27 @@ import Model.ModelShipMode;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.lang.NumberFormatException;
 
 /**
  *
@@ -342,7 +348,7 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
                         .addComponent(jLabel5)
                         .addGap(0, 0, 0)
                         .addComponent(jLabelQty1)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jComboBoxShipping, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -701,49 +707,58 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
         
         CreationHelper createHelp = workbook.getCreationHelper();
         XSSFCellStyle cellType = (XSSFCellStyle) workbook.createCellStyle();
-        cellType.setDataFormat(createHelp.createDataFormat().getFormat(("MM/dd/yyyy")));
+        cellType.setDataFormat(createHelp.createDataFormat().getFormat(("MMMM d, yyyy")));
         
-        String random = "" + Math.random() % 10 + Math.random() % 10 + Math.random() % 10 + Math.random() % 10 + Math.random() % 10 + Math.random() % 10;
+        Random rn = new Random();
+        String random = "" + rn.nextInt(10) + rn.nextInt(10) + rn.nextInt(10) + rn.nextInt(10) + rn.nextInt(10) + rn.nextInt(10);
         String orderID = null;
-        switch((String)this.jComboBoxCountry.getSelectedItem()) {
-            case "United States" : orderID = "US-" + new Date().getYear() + "-" + random; break;
-            case "Canada" : orderID = "CA-" + new Date().getYear() + "-" + random; break;
-        }
         
-//        String userID = new UserController().searchObject(this.user).getUserID();
-        String userID = "123";
-        String rowID = "666666";
-        String shipMode = (String) this.jComboBoxShipping.getSelectedItem();
-        String postalCode = jLabelPostalCode.getText();
-            
             Date date = new Date();
             Date orderDate = date;
-            date.setDate(date.getDate() + 3);
-            Date shipDate = date;
+            Date shipDate = addDays(orderDate, 3);
+            
+        switch((String)this.jComboBoxCountry.getSelectedItem()) {
+            case "United States" : orderID = "US-2018" + "-" + random; break;
+            case "Canada" : orderID = "CA-2018" + "-" + random; break;
+        }
+        
+        String userID = new UserController().searchObject(this.user).getUserID();
+        String shipMode = new ShipController().searchRevObject((String) this.jComboBoxShipping.getSelectedItem()).getShipID();
+        String postalCode = jLabelPostalCode.getText();
         
         for(ModelKeranjang temp : this.keranjang) {
-            sheet.createRow(sheet.getLastRowNum() + 1);
-            Row currentRow = sheet.getRow(sheet.getLastRowNum());
+//            sheet.createRow(sheet.getLastRowNum() + 1);
+            Row currentRow = sheet.createRow(sheet.getLastRowNum() + 1);
             for(int i = 0; i < 14; i++) {
                 currentRow.createCell(i);
             }
             
-            currentRow.getCell(0).setCellValue(rowID);
+            currentRow.getCell(0).setCellValue(sheet.getLastRowNum());
             currentRow.getCell(1).setCellValue(orderID);
             currentRow.getCell(2).setCellValue(orderDate);
             currentRow.getCell(3).setCellValue(shipDate);
+            
+            currentRow.getCell(2).setCellStyle(cellType);
+            currentRow.getCell(3).setCellStyle(cellType);
+            
             currentRow.getCell(4).setCellValue(shipMode);
             currentRow.getCell(5).setCellValue(userID);
-            currentRow.getCell(6).setCellValue(postalCode);
+            currentRow.getCell(6).setCellValue(Integer.parseInt(postalCode));
             currentRow.getCell(7).setCellValue(temp.getBarang().getProductID());
-            currentRow.getCell(8).setCellValue(temp.getTotal());
+            currentRow.getCell(8).setCellValue((double) temp.getBarang().getPrice());
             currentRow.getCell(9).setCellValue(temp.getQty());
-            currentRow.getCell(10).setCellValue(0);
-            currentRow.getCell(11).setCellValue(0);
-            currentRow.getCell(12).setCellValue(this.jTextFieldDonasi.getText());
-            currentRow.getCell(13).setCellValue(temp.getTotal());
+            currentRow.getCell(10).setCellValue((double) 0);
+            currentRow.getCell(11).setCellValue((double) 0);
+            currentRow.getCell(12).setCellValue(Double.parseDouble(this.jTextFieldDonasi.getText()));
+            currentRow.getCell(13).setCellValue((double) temp.getTotal());
+            
             System.out.println("All Done");
         }
+        
+        FileOutputStream fileOut = new FileOutputStream("*/../src/Excel/DataTransaksi.xlsx");
+        workbook.write(fileOut);
+        fileOut.close();
+        workbook.close();
     }
     
     private void jComboBoxShippingItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxShippingItemStateChanged
@@ -864,10 +879,22 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
         if(jTextFieldDonasi.getText().length() == 0) {
             jTextFieldDonasi.setText("0");
         }
-        this.jLabelJumlahBayar.setText(String.valueOf(Double.parseDouble(jLabelTotal.getText().substring(1)) + Double.parseDouble(jTextFieldDonasi.getText())));
+        try {
+            this.jLabelJumlahBayar.setText(String.valueOf(Double.parseDouble(jLabelTotal.getText().substring(1)) + Double.parseDouble(jTextFieldDonasi.getText())));
+        } catch (NumberFormatException e) {
+            jTextFieldDonasi.setText("0");
+            this.jLabelJumlahBayar.setText(String.valueOf(Double.parseDouble(jLabelTotal.getText().substring(1)) + Double.parseDouble(jTextFieldDonasi.getText())));
+        }
     }//GEN-LAST:event_jTextFieldDonasiKeyReleased
 
-
+    public static Date addDays(Date date, int days)
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DATE, days); //minus number would decrement the days
+        return cal.getTime();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonNext;
@@ -914,3 +941,4 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTextFieldDonasi;
     // End of variables declaration//GEN-END:variables
 }
+

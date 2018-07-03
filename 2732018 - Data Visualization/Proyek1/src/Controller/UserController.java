@@ -35,7 +35,7 @@ public class UserController extends ModelUser{
         try {
             FileInputStream excelFile = new FileInputStream(new File(super.FILE_NAME));
             Workbook workbook = new XSSFWorkbook(excelFile);
-            Sheet sheet = workbook.getSheetAt(4);
+            Sheet sheet = workbook.getSheet("User");
             Iterator<Row> iterator = sheet.iterator();
             iterator.next();
             
@@ -49,7 +49,6 @@ public class UserController extends ModelUser{
                 ModelUser usr = new ModelUser();
                 usr.setUsername(UN.getStringCellValue());
                 usr.setPassword(pswd.getStringCellValue());
-                usr.setLast_login(lLog.getDateCellValue());
                 usr.setUserID(lLog.getStringCellValue());
                 
                 this.list.add(usr);
