@@ -34,6 +34,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import java.lang.NumberFormatException;
 
 /**
  *
@@ -878,7 +879,12 @@ public class Frame_Transaksi_User extends javax.swing.JInternalFrame {
         if(jTextFieldDonasi.getText().length() == 0) {
             jTextFieldDonasi.setText("0");
         }
-        this.jLabelJumlahBayar.setText(String.valueOf(Double.parseDouble(jLabelTotal.getText().substring(1)) + Double.parseDouble(jTextFieldDonasi.getText())));
+        try {
+            this.jLabelJumlahBayar.setText(String.valueOf(Double.parseDouble(jLabelTotal.getText().substring(1)) + Double.parseDouble(jTextFieldDonasi.getText())));
+        } catch (NumberFormatException e) {
+            jTextFieldDonasi.setText("0");
+            this.jLabelJumlahBayar.setText(String.valueOf(Double.parseDouble(jLabelTotal.getText().substring(1)) + Double.parseDouble(jTextFieldDonasi.getText())));
+        }
     }//GEN-LAST:event_jTextFieldDonasiKeyReleased
 
     public static Date addDays(Date date, int days)
